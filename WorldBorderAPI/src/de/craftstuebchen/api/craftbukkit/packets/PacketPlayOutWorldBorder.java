@@ -1,15 +1,17 @@
 package de.craftstuebchen.api.craftbukkit.packets;
 
+import de.craftstuebchen.api.craftbukkit.world.IWorldBorder;
 import de.craftstuebchen.api.craftbukkit.world.WorldBorder;
 import de.craftstuebchen.api.craftbukkit.world.WorldBorderAction;
 
 public class PacketPlayOutWorldBorder {
-	private net.minecraft.server.v1_8_R1.PacketPlayOutWorldBorder	borderPacket;
+	private net.minecraft.server.v1_8_R1.PacketPlayOutWorldBorder borderPacket;
 
-	public PacketPlayOutWorldBorder(WorldBorder border, WorldBorderAction action) {
+	public PacketPlayOutWorldBorder(IWorldBorder border,
+			WorldBorderAction action) {
 
 		this.borderPacket = new net.minecraft.server.v1_8_R1.PacketPlayOutWorldBorder(
-				border.getHandle(), action.getHandle());
+				((WorldBorder) border).getHandle(), action.getHandle());
 
 	}
 

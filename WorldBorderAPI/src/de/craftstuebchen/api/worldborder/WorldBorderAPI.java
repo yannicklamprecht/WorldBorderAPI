@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import de.craftstuebchen.api.craftbukkit.entity.CraftPlayer;
 import de.craftstuebchen.api.craftbukkit.packets.PacketPlayOutWorldBorder;
+import de.craftstuebchen.api.craftbukkit.world.IWorldBorder;
 import de.craftstuebchen.api.craftbukkit.world.WorldBorder;
 import de.craftstuebchen.api.craftbukkit.world.WorldBorderAction;
 
@@ -86,7 +87,7 @@ public class WorldBorderAPI {
 	 */
 	public void setBorder(Player player, double radius, Location location) {
 
-		WorldBorder border = new WorldBorder(player);
+		IWorldBorder border = new WorldBorder(player);
 
 		border.setRadius(radius);
 		border.setCenter(location.getX(), location.getZ());
@@ -149,7 +150,7 @@ public class WorldBorderAPI {
 	 * @param action
 	 *            The action of the border
 	 */
-	public void setBorder(Player player, WorldBorder border,
+	public void setBorder(Player player, IWorldBorder border,
 			WorldBorderAction action) {
 		sentPacket(player, new PacketPlayOutWorldBorder(border, action));
 	}
@@ -159,7 +160,7 @@ public class WorldBorderAPI {
 		cplayer.sendPacket(packet);
 	}
 
-	public WorldBorder getWorldBorder(Player p) {
+	public IWorldBorder getWorldBorder(Player p) {
 		return new WorldBorder(p);
 	}
 
