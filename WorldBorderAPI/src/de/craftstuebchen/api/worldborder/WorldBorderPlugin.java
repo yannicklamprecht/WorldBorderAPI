@@ -6,6 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import de.craftstuebchen.api.worldborder.CommandRedirecter;
+import de.craftstuebchen.api.worldborder.WorldBorderAPI;
+
 public class WorldBorderPlugin extends JavaPlugin implements Listener {
 
 	private static WorldBorderPlugin	inst;
@@ -22,7 +25,7 @@ public class WorldBorderPlugin extends JavaPlugin implements Listener {
 	public void onEnable() {
 
 		new CommandRedirecter(this);
-		
+
 		Bukkit.getPluginManager().registerEvents(this, this);
 	}
 
