@@ -93,6 +93,7 @@ public class WorldBorderAPI {
 
 		sentPacket(player, new PacketPlayOutWorldBorder(border,
 				WorldBorderAction.SET_SIZE));
+		sentPacket(player, new PacketPlayOutWorldBorder(border, WorldBorderAction.SET_CENTER));
 		customWorldBorder.add(player);
 	}
 
