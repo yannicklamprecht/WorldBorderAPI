@@ -27,7 +27,7 @@ public class WorldBorderAPI {
 
 	/**
 	 * Will send a red edge to the given player a certain Time
-	 * 
+	 *
 	 * @param player
 	 *            The player that will get the red edge on screen
 	 * @param time
@@ -64,7 +64,7 @@ public class WorldBorderAPI {
 
 	/**
 	 * Will set a custom border for player
-	 * 
+	 *
 	 * @param player
 	 *            The player who will get the border
 	 * @param radius
@@ -76,7 +76,7 @@ public class WorldBorderAPI {
 
 	/**
 	 * Will set a custom border for player
-	 * 
+	 *
 	 * @param player
 	 *            The player who will get the border
 	 * @param radius
@@ -93,12 +93,13 @@ public class WorldBorderAPI {
 
 		sentPacket(player, new PacketPlayOutWorldBorder(border,
 				WorldBorderAction.SET_SIZE));
+		sentPacket(player, new PacketPlayOutWorldBorder(border, WorldBorderAction.SET_CENTER));
 		customWorldBorder.add(player);
 	}
 
 	/**
 	 * Will set the border for the given player centered at worldspawnlocation
-	 * 
+	 *
 	 * @param player
 	 *            The player who will get the border
 	 * @param radius
@@ -115,7 +116,7 @@ public class WorldBorderAPI {
 
 	/**
 	 * Will set the border for everyone after 10 seconds
-	 * 
+	 *
 	 * @param radius
 	 *            The radius of the border
 	 */
@@ -125,12 +126,13 @@ public class WorldBorderAPI {
 
 	/**
 	 * Will set the border for everyone
-	 * 
+	 *
 	 * @param radius
 	 *            The radius of the border
 	 * @param seconds
 	 *            The seconds until border reappear
 	 */
+	@SuppressWarnings("deprecation")
 	public void setBorder(double radius, int seconds) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			setBorder(p, radius, seconds);
@@ -139,7 +141,7 @@ public class WorldBorderAPI {
 
 	/**
 	 * Will set a border for given player
-	 * 
+	 *
 	 * @param player
 	 *            The player that gets the border
 	 * @param border
@@ -153,7 +155,7 @@ public class WorldBorderAPI {
 	}
 
 	private void sentPacket(Player player, PacketPlayOutWorldBorder packet) {
-		CraftPlayer cplayer = (CraftPlayer) player;
+		CraftPlayer cplayer = new CraftPlayer(player);
 		cplayer.sendPacket(packet);
 	}
 
