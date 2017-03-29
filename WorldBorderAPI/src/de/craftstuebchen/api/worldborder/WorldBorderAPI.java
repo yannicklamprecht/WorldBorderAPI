@@ -48,7 +48,7 @@ public class WorldBorderAPI {
 		PacketPlayOutWorldBorder WT = new PacketPlayOutWorldBorder(border,
 				WorldBorderAction.SET_WARNING_BLOCKS);
 
-		sentPacket(player, borderpacket);
+		sendPacket(player, borderpacket);
 		customWorldBorder.add(player);
 
 		Bukkit.getScheduler().runTaskLater(WorldBorderPlugin.inst(),
@@ -56,7 +56,7 @@ public class WorldBorderAPI {
 
 					@Override
 					public void run() {
-						sentPacket(player, WT);
+						sendPacket(player, WT);
 						customWorldBorder.remove(player);
 					}
 				}, time * 20L);
@@ -92,9 +92,9 @@ public class WorldBorderAPI {
 		border.setRadius(radius);
 		border.setCenter(location.getX(), location.getZ());
 
-		sentPacket(player, new PacketPlayOutWorldBorder(border,
+		sendPacket(player, new PacketPlayOutWorldBorder(border,
 				WorldBorderAction.SET_SIZE));
-		sentPacket(player, new PacketPlayOutWorldBorder(border, WorldBorderAction.SET_CENTER));
+		sendPacket(player, new PacketPlayOutWorldBorder(border, WorldBorderAction.SET_CENTER));
 		customWorldBorder.add(player);
 	}
 
@@ -111,7 +111,7 @@ public class WorldBorderAPI {
 	public void setBorder(Player player, double radius, int seconds) {
 		WorldBorder border = new WorldBorder(player);
 		border.lerp(border.getLength(), radius, seconds);
-		sentPacket(player, new PacketPlayOutWorldBorder(border,
+		sendPacket(player, new PacketPlayOutWorldBorder(border,
 				WorldBorderAction.LERP_SIZE));
 	}
 
@@ -152,10 +152,10 @@ public class WorldBorderAPI {
 	 */
 	public void setBorder(Player player, IWorldBorder border,
 			WorldBorderAction action) {
-		sentPacket(player, new PacketPlayOutWorldBorder(border, action));
+		sendPacket(player, new PacketPlayOutWorldBorder(border, action));
 	}
 
-	private void sentPacket(Player player, PacketPlayOutWorldBorder packet) {
+	private void sendPacket(Player player, PacketPlayOutWorldBorder packet) {
 		CraftPlayer cplayer = new CraftPlayer(player);
 		cplayer.sendPacket(packet);
 	}
