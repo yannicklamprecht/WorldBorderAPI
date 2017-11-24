@@ -17,6 +17,7 @@ public class WorldBorder implements IWorldBorder{
 	public WorldBorder(Player player){
 		try {
 			this.border = net.minecraft.server.v1_12_R1.WorldBorder.class.newInstance();
+			this.border.world=((CraftWorld)player.getWorld()).getHandle();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
