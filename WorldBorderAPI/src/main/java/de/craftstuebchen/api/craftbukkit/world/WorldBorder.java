@@ -1,13 +1,14 @@
 package de.craftstuebchen.api.craftbukkit.world;
 
+import net.minecraft.server.v1_12_R1.ChunkCoordIntPair;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.entity.Player;
 
 public class WorldBorder implements IWorldBorder{
 
-	private net.minecraft.server.v1_8_R3.WorldBorder	border;
+	private net.minecraft.server.v1_12_R1.WorldBorder	border;
 
 	public WorldBorder(World bukkitWorld) {
 			this.border =((CraftWorld) bukkitWorld).getHandle().getWorldBorder();
@@ -15,7 +16,7 @@ public class WorldBorder implements IWorldBorder{
 	
 	public WorldBorder(Player player){
 		try {
-			this.border = net.minecraft.server.v1_8_R3.WorldBorder.class.newInstance();
+			this.border = net.minecraft.server.v1_12_R1.WorldBorder.class.newInstance();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -23,7 +24,7 @@ public class WorldBorder implements IWorldBorder{
 		}
 	}
 
-	public net.minecraft.server.v1_8_R3.WorldBorder getHandle() {
+	public net.minecraft.server.v1_12_R1.WorldBorder getHandle() {
 		return border;
 	}
 
@@ -100,7 +101,7 @@ public class WorldBorder implements IWorldBorder{
 	}
 
 	public boolean isInBounds(Location location){
-		return border.isInBounds(location.getBlockX(), location.getBlockZ());
+		return border.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ()));
 	}
 	
 	public void lerp(double oldSize,double newSize, long time){
