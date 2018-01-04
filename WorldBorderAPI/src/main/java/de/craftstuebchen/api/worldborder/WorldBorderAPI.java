@@ -21,6 +21,8 @@ public class WorldBorderAPI {
         return inst;
     }
 
+    private WorldBorderAPI(){}
+
     public void sendRedScreen(Player player) {
         this.sendRedScreen(player, 10);
     }

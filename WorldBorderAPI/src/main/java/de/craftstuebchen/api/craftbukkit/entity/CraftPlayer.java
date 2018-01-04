@@ -6,10 +6,10 @@ import de.craftstuebchen.api.craftbukkit.packets.PacketPlayOutWorldBorder;
 
 public class CraftPlayer {
 
-	private org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer	player;
+	private org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer	player;
 
 	public CraftPlayer(Player player) {
-		this.player = (org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer) player;
+		this.player = (org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) player;
 	}
 
 	public void sendPacket(PacketPlayOutWorldBorder packetPlayOutWorldBorder) {
