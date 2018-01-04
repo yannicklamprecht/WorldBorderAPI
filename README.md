@@ -1,4 +1,4 @@
-WorldBorderAPI 1.8
+WorldBorderAPI 1.12.x
 ==================
 Sends a red screen for a certain time for player.  
 `WorldBorderAPI.sendRedScreen(Player player, int time);`
