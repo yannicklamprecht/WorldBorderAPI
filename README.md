@@ -1,4 +1,4 @@
-#BorderAPI 1.13.x
+# BorderAPI 1.13.x
 
 Sends a red screen for a certain time for player.  
 `BorderAPI.sendRedScreen(Player player, int time);`
