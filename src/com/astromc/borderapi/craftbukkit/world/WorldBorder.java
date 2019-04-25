@@ -1,14 +1,14 @@
-package de.craftstuebchen.api.craftbukkit.world;
+package com.astromc.borderapi.craftbukkit.world;
 
-import net.minecraft.server.v1_12_R1.ChunkCoordIntPair;
+import net.minecraft.server.v1_13_R2.ChunkCoordIntPair;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
 import org.bukkit.entity.Player;
 
 public class WorldBorder implements IWorldBorder{
 
-	private net.minecraft.server.v1_12_R1.WorldBorder	border;
+	private net.minecraft.server.v1_13_R2.WorldBorder	border;
 
 	public WorldBorder(World bukkitWorld) {
 			this.border =((CraftWorld) bukkitWorld).getHandle().getWorldBorder();
@@ -16,7 +16,7 @@ public class WorldBorder implements IWorldBorder{
 	
 	public WorldBorder(Player player){
 		try {
-			this.border = net.minecraft.server.v1_12_R1.WorldBorder.class.newInstance();
+			this.border = net.minecraft.server.v1_13_R2.WorldBorder.class.newInstance();
 			this.border.world=((CraftWorld)player.getWorld()).getHandle();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -25,7 +25,7 @@ public class WorldBorder implements IWorldBorder{
 		}
 	}
 
-	public net.minecraft.server.v1_12_R1.WorldBorder getHandle() {
+	public net.minecraft.server.v1_13_R2.WorldBorder getHandle() {
 		return border;
 	}
 

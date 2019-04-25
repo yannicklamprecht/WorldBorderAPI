@@ -1,15 +1,15 @@
-package de.craftstuebchen.api.craftbukkit.entity;
+package com.astromc.borderapi.craftbukkit.entity;
 
 import org.bukkit.entity.Player;
 
-import de.craftstuebchen.api.craftbukkit.packets.PacketPlayOutWorldBorder;
+import com.astromc.borderapi.craftbukkit.packets.PacketPlayOutWorldBorder;
 
 public class CraftPlayer {
 
-	private org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer	player;
+	private org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer	player;
 
 	public CraftPlayer(Player player) {
-		this.player = (org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) player;
+		this.player = (org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer) player;
 	}
 
 	public void sendPacket(PacketPlayOutWorldBorder packetPlayOutWorldBorder) {

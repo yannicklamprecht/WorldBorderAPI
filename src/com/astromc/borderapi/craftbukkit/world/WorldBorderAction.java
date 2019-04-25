@@ -1,6 +1,6 @@
-package de.craftstuebchen.api.craftbukkit.world;
+package com.astromc.borderapi.craftbukkit.world;
 
-import net.minecraft.server.v1_12_R1.PacketPlayOutWorldBorder;
+import net.minecraft.server.v1_13_R2.PacketPlayOutWorldBorder;
 
 public enum WorldBorderAction {
 
