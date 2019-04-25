@@ -1,4 +1,4 @@
-package de.craftstuebchen.api.craftbukkit.world;
+package com.astromc.borderapi.craftbukkit.world;
 import org.bukkit.Location;
 
 public interface IWorldBorder {

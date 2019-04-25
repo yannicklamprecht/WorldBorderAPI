@@ -1,30 +1,29 @@
-package de.craftstuebchen.api.worldborder;
+package com.astromc.borderapi;
 
-import de.craftstuebchen.api.craftbukkit.entity.CraftPlayer;
-import de.craftstuebchen.api.craftbukkit.packets.PacketPlayOutWorldBorder;
-import de.craftstuebchen.api.craftbukkit.world.IWorldBorder;
-import de.craftstuebchen.api.craftbukkit.world.WorldBorder;
-import de.craftstuebchen.api.craftbukkit.world.WorldBorderAction;
+import com.astromc.borderapi.craftbukkit.entity.CraftPlayer;
+import com.astromc.borderapi.craftbukkit.packets.PacketPlayOutWorldBorder;
+import com.astromc.borderapi.craftbukkit.world.IWorldBorder;
+import com.astromc.borderapi.craftbukkit.world.WorldBorder;
+import com.astromc.borderapi.craftbukkit.world.WorldBorderAction;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
 
-public class WorldBorderAPI {
+public class BorderAPI extends JavaPlugin {
 
-    private static WorldBorderAPI inst = new WorldBorderAPI();
+    private static BorderAPI instance;
 
-    private HashSet<Player> customWorldBorder = new HashSet<Player>();
+    private static final HashSet<Player> customWorldBorder = new HashSet<>();
 
-    public static WorldBorderAPI inst() {
-        return inst;
+    public BorderAPI() {
+        instance = this;
     }
 
-    private WorldBorderAPI(){}
-
-    public void sendRedScreen(Player player) {
-        this.sendRedScreen(player, 10);
+    public static void sendRedScreen(Player player) {
+        instance.sendRedScreen(player, 10);
     }
 
     /**
@@ -33,7 +32,8 @@ public class WorldBorderAPI {
      * @param player The player that will get the red edge on screen
      * @param time   The time the red edge disappears
      */
-    public void sendRedScreen(final Player player, int time) {
+
+    public static void sendRedScreen(final Player player, int time) {
 
         WorldBorder border = new WorldBorder(player);
 
@@ -50,15 +50,14 @@ public class WorldBorderAPI {
         sendPacket(player, borderpacket);
         customWorldBorder.add(player);
 
-        Bukkit.getScheduler().runTaskLater(WorldBorderPlugin.inst(),
+        Bukkit.getScheduler().runTaskLater(instance,
                 () -> {
                     sendPacket(player, WT);
                     customWorldBorder.remove(player);
                 }, time * 20L);
-
     }
 
-    private void sendPacket(Player player, PacketPlayOutWorldBorder packet) {
+    private static void sendPacket(Player player, PacketPlayOutWorldBorder packet) {
         CraftPlayer cplayer = new CraftPlayer(player);
         cplayer.sendPacket(packet);
     }
@@ -69,7 +68,7 @@ public class WorldBorderAPI {
      * @param player The player who will get the border
      * @param radius The borderradius
      */
-    public void setBorder(Player player, double radius) {
+    public static void setBorder(Player player, double radius) {
         setBorder(player, radius, player.getWorld().getSpawnLocation());
     }
 
@@ -80,7 +79,7 @@ public class WorldBorderAPI {
      * @param radius   The borderradius
      * @param location The center location of the worldborder
      */
-    public void setBorder(Player player, double radius, Location location) {
+    public static void setBorder(Player player, double radius, Location location) {
 
         IWorldBorder border = new WorldBorder(player);
 
@@ -98,7 +97,7 @@ public class WorldBorderAPI {
      *
      * @param radius The radius of the border
      */
-    public void setBorder(double radius) {
+    public static void setBorder(double radius) {
         setBorder(radius, 10);
     }
 
@@ -109,7 +108,7 @@ public class WorldBorderAPI {
      * @param seconds The seconds until border reappear
      */
     @SuppressWarnings("deprecation")
-    public void setBorder(double radius, int seconds) {
+    public static void setBorder(double radius, int seconds) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             setBorder(p, radius, seconds);
         }
@@ -122,7 +121,7 @@ public class WorldBorderAPI {
      * @param radius  the radius of the border
      * @param seconds The seconds until the border will reappear
      */
-    public void setBorder(Player player, double radius, int seconds) {
+    public static void setBorder(Player player, double radius, int seconds) {
         WorldBorder border = new WorldBorder(player);
         border.lerp(border.getLength(), radius, seconds);
         sendPacket(player, new PacketPlayOutWorldBorder(border,
@@ -136,13 +135,17 @@ public class WorldBorderAPI {
      * @param border The border that will be set
      * @param action The action of the border
      */
-    public void setBorder(Player player, IWorldBorder border,
+    public static void setBorder(Player player, IWorldBorder border,
                           WorldBorderAction action) {
         sendPacket(player, new PacketPlayOutWorldBorder(border, action));
     }
 
-    public IWorldBorder getWorldBorder(Player p) {
+    public static IWorldBorder getWorldBorder(Player p) {
         return new WorldBorder(p);
+    }
+
+    public static BorderAPI getInstance() {
+        return instance;
     }
 
 }
