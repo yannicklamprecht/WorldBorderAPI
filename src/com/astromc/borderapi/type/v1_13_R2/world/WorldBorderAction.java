@@ -1,4 +1,4 @@
-package com.astromc.borderapi.craftbukkit.world;
+package com.astromc.borderapi.type.v1_13_R2.world;
 
 import net.minecraft.server.v1_13_R2.PacketPlayOutWorldBorder;
 

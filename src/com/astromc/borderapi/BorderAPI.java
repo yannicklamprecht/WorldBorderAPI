@@ -1,112 +1,105 @@
 package com.astromc.borderapi;
 
-import com.astromc.borderapi.craftbukkit.entity.CraftPlayer;
-import com.astromc.borderapi.craftbukkit.packets.PacketPlayOutWorldBorder;
-import com.astromc.borderapi.craftbukkit.world.IWorldBorder;
-import com.astromc.borderapi.craftbukkit.world.WorldBorder;
-import com.astromc.borderapi.craftbukkit.world.WorldBorderAction;
+import com.astromc.borderapi.type.SupportedPacketPlayOutWorldBorder;
+import com.astromc.borderapi.type.SupportedVersion;
+import com.astromc.borderapi.type.SupportedWorldBorder;
+import com.astromc.borderapi.type.SupportedWorldBorderAction;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashSet;
-
-public class BorderAPI extends JavaPlugin {
+public class BorderAPI extends JavaPlugin implements Listener {
 
     private static BorderAPI instance;
 
-    private static final HashSet<Player> customWorldBorder = new HashSet<>();
+    private SupportedVersion version;
 
-    public BorderAPI() {
+    @Override
+    public void onEnable() {
         instance = this;
-    }
-
-    public static void sendRedScreen(Player player) {
-        instance.sendRedScreen(player, 10);
+        try {
+            this.version = VersionSupport.getVersion();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            // don't bother, version isn't supported
+            setEnabled(false);
+        }
     }
 
     /**
-     * Will send a red edge to the given player a certain Time
-     *
-     * @param player The player that will get the red edge on screen
-     * @param time   The time the red edge disappears
+     * Send a red screen to the player for 10 seconds.
+     * @param player - the player to send the red border to
      */
 
-    public static void sendRedScreen(final Player player, int time) {
+    public static void sendRedBorder(Player player) {
+        sendRedBorder(player, 10);
+    }
 
-        WorldBorder border = new WorldBorder(player);
+    /**
+     * Send a red screen to the player for n seconds.
+     * @param player - the player to send the border to
+     * @param time - the duration of the red border
+     */
+
+    public static void sendRedBorder(final Player player, int time) {
+        final SupportedWorldBorder border = VersionSupport.getWorldBorder(player);
+
+        assert border != null;
 
         border.setWarningDistanceInBlocks((int) border.getLength() / 2);
 
-        PacketPlayOutWorldBorder borderpacket = new PacketPlayOutWorldBorder(
-                border, WorldBorderAction.SET_WARNING_BLOCKS);
+        VersionSupport.sendPacketPlayOutWorldBorder(player, VersionSupport.getPacketPlayOutWorldBorder(
+                border, SupportedWorldBorderAction.SET_WARNING_BLOCKS
+        ));
 
         border.setWarningDistanceInBlocks(0);
 
-        final PacketPlayOutWorldBorder WT = new PacketPlayOutWorldBorder(border,
-                WorldBorderAction.SET_WARNING_BLOCKS);
-
-        sendPacket(player, borderpacket);
-        customWorldBorder.add(player);
-
-        Bukkit.getScheduler().runTaskLater(instance,
-                () -> {
-                    sendPacket(player, WT);
-                    customWorldBorder.remove(player);
-                }, time * 20L);
-    }
-
-    private static void sendPacket(Player player, PacketPlayOutWorldBorder packet) {
-        CraftPlayer cplayer = new CraftPlayer(player);
-        cplayer.sendPacket(packet);
+        getInstance().getServer().getScheduler().runTaskLater(instance, () -> {
+            final SupportedPacketPlayOutWorldBorder removeBorderPacket = VersionSupport.getPacketPlayOutWorldBorder(
+                    border, SupportedWorldBorderAction.SET_WARNING_BLOCKS
+            );
+            VersionSupport.sendPacketPlayOutWorldBorder(player, removeBorderPacket);
+        }, time * 20L);
     }
 
     /**
-     * Will set a custom border for player
-     *
-     * @param player The player who will get the border
-     * @param radius The borderradius
+     * Set the border for this player at n radius from the world spawn location.
+     * @param player - the player to send the border to
+     * @param radius - the radius of the border
      */
+
     public static void setBorder(Player player, double radius) {
         setBorder(player, radius, player.getWorld().getSpawnLocation());
     }
 
-    /**
-     * Will set a custom border for player
-     *
-     * @param player   The player who will get the border
-     * @param radius   The borderradius
-     * @param location The center location of the worldborder
-     */
     public static void setBorder(Player player, double radius, Location location) {
+        SupportedWorldBorder border = VersionSupport.getWorldBorder(player);;
 
-        IWorldBorder border = new WorldBorder(player);
+        assert border != null;
 
         border.setRadius(radius);
         border.setCenter(location.getX(), location.getZ());
 
-        sendPacket(player, new PacketPlayOutWorldBorder(border,
-                WorldBorderAction.SET_SIZE));
-        sendPacket(player, new PacketPlayOutWorldBorder(border, WorldBorderAction.SET_CENTER));
-        customWorldBorder.add(player);
+        VersionSupport.sendPacketPlayOutWorldBorder(player, VersionSupport.getPacketPlayOutWorldBorder(
+                border, SupportedWorldBorderAction.SET_SIZE
+        ));
+
+        VersionSupport.sendPacketPlayOutWorldBorder(player, VersionSupport.getPacketPlayOutWorldBorder(
+                border, SupportedWorldBorderAction.SET_CENTER
+        ));
     }
 
     /**
-     * Will set the border for everyone after 10 seconds
-     *
-     * @param radius The radius of the border
+     * Set the border for all players at n radius from the world spawn location.
+     * @param radius - the radius of the border
      */
+
     public static void setBorder(double radius) {
         setBorder(radius, 10);
     }
 
-    /**
-     * Will set the border for everyone
-     *
-     * @param radius  The radius of the border
-     * @param seconds The seconds until border reappear
-     */
     @SuppressWarnings("deprecation")
     public static void setBorder(double radius, int seconds) {
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -115,37 +108,40 @@ public class BorderAPI extends JavaPlugin {
     }
 
     /**
-     * Will set the border for the given player centered at worldspawnlocation
-     *
-     * @param player  The player who will get the border
-     * @param radius  the radius of the border
-     * @param seconds The seconds until the border will reappear
+     * Grow the border for this player to n radius over n seconds.
+     * @param player - the player to send the border to
+     * @param radius - the radius of the border
+     * @param seconds - duration of growth
      */
+
     public static void setBorder(Player player, double radius, int seconds) {
-        WorldBorder border = new WorldBorder(player);
+        SupportedWorldBorder border = VersionSupport.getWorldBorder(player);;
+        assert border != null;
         border.lerp(border.getLength(), radius, seconds);
-        sendPacket(player, new PacketPlayOutWorldBorder(border,
-                WorldBorderAction.LERP_SIZE));
+        VersionSupport.sendPacketPlayOutWorldBorder(player, VersionSupport.getPacketPlayOutWorldBorder(
+                border, SupportedWorldBorderAction.LERP_SIZE
+        ));
     }
 
     /**
-     * Will set a border for given player
-     *
-     * @param player The player that gets the border
-     * @param border The border that will be set
-     * @param action The action of the border
+     * Send a border packet to the player.
+     * @param player - the player to send the border to
+     * @param border - a SupportedWorldBorder
+     * @param action - a SupportedWorldBorderAction
      */
-    public static void setBorder(Player player, IWorldBorder border,
-                          WorldBorderAction action) {
-        sendPacket(player, new PacketPlayOutWorldBorder(border, action));
-    }
 
-    public static IWorldBorder getWorldBorder(Player p) {
-        return new WorldBorder(p);
+    public static void setBorder(Player player, SupportedWorldBorder border, SupportedWorldBorderAction action) {
+        VersionSupport.sendPacketPlayOutWorldBorder(player, VersionSupport.getPacketPlayOutWorldBorder(
+                border, action
+        ));
     }
 
     public static BorderAPI getInstance() {
         return instance;
+    }
+
+    public SupportedVersion getVersion() {
+        return version;
     }
 
 }

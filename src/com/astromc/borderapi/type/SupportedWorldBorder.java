@@ -1,7 +1,8 @@
-package com.astromc.borderapi.craftbukkit.world;
+package com.astromc.borderapi.type;
+
 import org.bukkit.Location;
 
-public interface IWorldBorder {
+public interface SupportedWorldBorder {
 
 	double getCenterX();
 
