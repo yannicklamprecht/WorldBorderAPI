@@ -15,21 +15,22 @@ public class WorldBorderPlugin extends JavaPlugin {
 
         WorldBorderApi worldBorderApi = null;
 
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        String version = Bukkit.getServer().getClass().getPackage().getName().replace('.',',').split(",")[3];
+        System.out.println("Version: "+ version);
         switch (version) {
-            case "1_8_R3":
+            case "v1_8_R3":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_8_R3.Impl();
                 break;
-            case "1_11_R1":
+            case "v1_11_R1":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_11_R1.Impl();
                 break;
-            case "1_12_R1":
+            case "v1_12_R1":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_12_R1.Impl();
                 break;
-            case "1_13_R2":
+            case "v1_13_R2":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_13_R2.Impl();
                 break;
-            case "1_14_R1":
+            case "v1_14_R1":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_14_R1.Impl();
                 break;
             default: {

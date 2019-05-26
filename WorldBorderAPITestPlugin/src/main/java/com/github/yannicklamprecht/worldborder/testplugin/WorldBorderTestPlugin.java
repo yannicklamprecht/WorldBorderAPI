@@ -22,9 +22,10 @@ public class WorldBorderTestPlugin extends JavaPlugin implements Listener {
 
         Plugin plugin = Bukkit.getPluginManager().getPlugin("WorldBorderAPI");
 
-        if (plugin == null) {
+        if (plugin == null || !plugin.isEnabled()) {
             getLogger().info("API not found");
             getServer().getPluginManager().disablePlugin(this);
+            return;
         }
 
         this.worldBorderApi = BorderAPI.getApi();
@@ -57,6 +58,14 @@ public class WorldBorderTestPlugin extends JavaPlugin implements Listener {
             }
 
             this.worldBorderApi.sendRedScreenForSeconds(ev.getPlayer(), time, this);
+        } else if( ev.getMessage().startsWith("yeah")){
+
+            int size = 30;
+
+            if (ev.getMessage().split(" ").length > 1) {
+                size = Integer.parseInt(ev.getMessage().split(" ")[1]);
+            }
+            this.worldBorderApi.setBorder(ev.getPlayer(),size,ev.getPlayer().getLocation());
         }
 
     }

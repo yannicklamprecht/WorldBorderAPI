@@ -7,6 +7,8 @@ import net.minecraft.server.v1_13_R2.ChunkCoordIntPair;
 import net.minecraft.server.v1_13_R2.PacketPlayOutWorldBorder;
 import net.minecraft.server.v1_13_R2.PacketPlayOutWorldBorder.EnumWorldBorderAction;
 import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -17,12 +19,13 @@ public class WorldBorder extends AbstractWorldBorder {
 
     private net.minecraft.server.v1_13_R2.WorldBorder handle;
 
-    public WorldBorder() {
+    public WorldBorder(Player player) {
         this(new net.minecraft.server.v1_13_R2.WorldBorder());
+        this.handle.world = ((CraftWorld)player.getWorld()).getHandle();
     }
 
-    public WorldBorder(Player player) {
-        this(((CraftPlayer) player).getHandle().world.getWorldBorder());
+    public WorldBorder(World world) {
+        this(((CraftWorld) world).getHandle().getWorldBorder());
     }
 
     private WorldBorder(net.minecraft.server.v1_13_R2.WorldBorder worldBorder) {

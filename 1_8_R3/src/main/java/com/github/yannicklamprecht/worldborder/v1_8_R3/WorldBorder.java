@@ -7,18 +7,22 @@ import net.minecraft.server.v1_8_R3.ChunkCoordIntPair;
 import net.minecraft.server.v1_8_R3.PacketPlayOutWorldBorder;
 import net.minecraft.server.v1_8_R3.PacketPlayOutWorldBorder.EnumWorldBorderAction;
 import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class WorldBorder extends AbstractWorldBorder {
 
     private net.minecraft.server.v1_8_R3.WorldBorder handle;
-    WorldBorder() {
+
+    public WorldBorder(Player player) {
         this(new net.minecraft.server.v1_8_R3.WorldBorder());
+        this.handle.world = ((CraftWorld) player.getWorld()).getHandle();
     }
 
-    WorldBorder(Player player){
-        this(((CraftPlayer) player).getHandle().world.getWorldBorder());
+    public WorldBorder(World world) {
+        this(((CraftWorld) world).getHandle().getWorldBorder());
     }
 
     private WorldBorder(net.minecraft.server.v1_8_R3.WorldBorder worldBorder) {
@@ -40,7 +44,7 @@ public class WorldBorder extends AbstractWorldBorder {
         (Location location) -> worldBorder.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ())),
         worldBorder::transitionSizeBetween
         );
-        this.handle=worldBorder;
+        this.handle = worldBorder;
     }
 
     @Override
