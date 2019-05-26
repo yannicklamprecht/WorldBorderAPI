@@ -1,22 +1,46 @@
-# BorderAPI 1.13.x
+# BorderAPI 1.8.8 - 1.14.x
 
-Sends a red screen for a certain time for player.  
-`BorderAPI.sendRedScreen(Player player, int time);`
+A world border api that allows it to define a world border per player
 
-Change the radius per player.  
-`BorderAPI.setBorder(Player player, double radius);`  
+## Supported versions
 
-Change the global WorldBorder radius.  
-`BorderAPI.setBorder(double radius);` 
+- 1.8.8
+- 1.11.2
+- 1.12.2
+- 1.13.2
+- 1.14.1 (later on only 1.14.n)
 
-Sets the location,radius of the players WorldBorder.  
-`BorderAPI.setBorder(Player player, double radius, Location location);`
+## Usage
 
-Change the radius of the players WorldBorder in a certain time.  
-`BorderAPI.setBorder(Player player, double radius, int seconds);`  
 
-Changes the radius of the WorldBorder in a certain time.  
-`BorderAPI.setBorder(double radius, int seconds);`
+Obtain the API
 
-With this method you are able to set your own modified WorldBorder an the certain action 
-`BorderAPI.setBorder(Player player, WorldBorder border, WorldBorderAction action);`
+`WorldBorderAPI worldBorderAPI = BorderAPI.getApi();`
+
+Sends a red screen for a certain time for player.
+
+`WorldBorderAPI#sendRedScreenForSeconds(Player player, int timeSeconds, JavaPlugin javaPlugin);`
+
+Change the size per player.
+
+`WorldBorderAPI#setBorder(Player player, double size);`
+
+Resets the player world border to the global one
+
+`WorldBorderAPI#resetWorldBorderToGlobal(Player player);`
+
+Sets the location,size of the players WorldBorder.
+
+`WorldBorderAPI#setBorder(Player player, double size, Location location);`
+
+Change the size of the players WorldBorder in a certain time.
+
+`WorldBorderAPI#setBorder(Player player, double size, int seconds);`
+
+Gets an instance to modify your stuff yourself
+
+`WorldBorderAPI#getWorldBorder(Player p)`
+
+Gets an instance of the global WorldBorder
+
+`WorldBorderAPI#getWorldBorder`

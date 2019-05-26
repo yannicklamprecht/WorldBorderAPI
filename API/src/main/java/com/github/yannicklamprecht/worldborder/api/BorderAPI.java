@@ -1,7 +1,9 @@
 package com.github.yannicklamprecht.worldborder.api;
 
 
-public class BorderAPI {
+public final class BorderAPI {
+
+    private BorderAPI(){}
 
     private static WorldBorderApi api;
 

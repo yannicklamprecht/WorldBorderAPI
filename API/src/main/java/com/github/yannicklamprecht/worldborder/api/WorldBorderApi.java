@@ -57,12 +57,10 @@ public class WorldBorderApi {
         }, timeSeconds * 20L);
     }
 
-    public void setBorder(Player player, IWorldBorder border, WorldBorderAction action) {
-
-    }
-
-    public void setBorder(Player player, double radius, long seconds) {
-
+    public void setBorder(Player player, double size, long seconds) {
+        IWorldBorder worldBorder = getWorldBorder(player);
+        worldBorder.lerp(worldBorder.getSize(),size,seconds);
+        worldBorder.send(player,WorldBorderAction.LERP_SIZE);
     }
 
 
