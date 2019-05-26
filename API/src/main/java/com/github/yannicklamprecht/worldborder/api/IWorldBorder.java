@@ -1,6 +1,7 @@
 package com.github.yannicklamprecht.worldborder.api;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 public interface IWorldBorder {
 
@@ -35,5 +36,7 @@ public interface IWorldBorder {
     boolean isInBounds(Location location);
 
     void lerp(double oldSize, double newSize, long time);
+
+    void send(Player player, WorldBorderAction worldBorderAction);
 
 }

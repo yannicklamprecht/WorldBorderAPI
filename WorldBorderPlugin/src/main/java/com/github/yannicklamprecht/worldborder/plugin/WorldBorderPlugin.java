@@ -2,7 +2,6 @@ package com.github.yannicklamprecht.worldborder.plugin;
 
 import com.github.yannicklamprecht.worldborder.api.BorderAPI;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
-import com.github.yannicklamprecht.worldborder.v1_12_R1.Impl;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,11 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  * Created by ysl3000
  */
 public class WorldBorderPlugin extends JavaPlugin {
-
-    @Override
-    public void onDisable() {
-
-    }
 
     @Override
     public void onEnable() {
@@ -30,7 +24,7 @@ public class WorldBorderPlugin extends JavaPlugin {
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_11_R1.Impl();
                 break;
             case "1_12_R1":
-                worldBorderApi = new Impl();
+                worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_12_R1.Impl();
                 break;
             case "1_13_R2":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_13_R2.Impl();
@@ -44,7 +38,5 @@ public class WorldBorderPlugin extends JavaPlugin {
             }
         }
         BorderAPI.setWorldBorderApi(worldBorderApi);
-
-
     }
 }

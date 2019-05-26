@@ -2,16 +2,26 @@ package com.github.yannicklamprecht.worldborder.v1_8_R3;
 
 import com.github.yannicklamprecht.worldborder.api.AbstractWorldBorder;
 import com.github.yannicklamprecht.worldborder.api.Position;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
 import net.minecraft.server.v1_8_R3.ChunkCoordIntPair;
+import net.minecraft.server.v1_8_R3.PacketPlayOutWorldBorder;
+import net.minecraft.server.v1_8_R3.PacketPlayOutWorldBorder.EnumWorldBorderAction;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 
 public class WorldBorder extends AbstractWorldBorder {
 
-    public WorldBorder() {
+    private net.minecraft.server.v1_8_R3.WorldBorder handle;
+    WorldBorder() {
         this(new net.minecraft.server.v1_8_R3.WorldBorder());
     }
 
-    public WorldBorder(net.minecraft.server.v1_8_R3.WorldBorder worldBorder) {
+    WorldBorder(Player player){
+        this(((CraftPlayer) player).getHandle().world.getWorldBorder());
+    }
+
+    private WorldBorder(net.minecraft.server.v1_8_R3.WorldBorder worldBorder) {
         super(
         () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ()),
         (position -> worldBorder.setCenter(position.getX(), position.getZ())),
@@ -30,5 +40,11 @@ public class WorldBorder extends AbstractWorldBorder {
         (Location location) -> worldBorder.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ())),
         worldBorder::transitionSizeBetween
         );
+        this.handle=worldBorder;
+    }
+
+    @Override
+    public void send(Player player, WorldBorderAction worldBorderAction) {
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldBorder(handle, EnumWorldBorderAction.valueOf(worldBorderAction.name())));
     }
 }
