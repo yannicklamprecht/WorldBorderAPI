@@ -1,0 +1,5 @@
+name: WorldBorderAPITestPLugin
+main: com.github.yannicklamprecht.worldborder.testplugin.WorldBorderTestPlugin
+version: 1.0-SNAPSHOT
+depend:
+  - WorldBorderAPI
