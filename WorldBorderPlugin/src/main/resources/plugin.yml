@@ -1,0 +1,3 @@
+name: WorldBorderAPI
+main: com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin
+version: "1.0"
