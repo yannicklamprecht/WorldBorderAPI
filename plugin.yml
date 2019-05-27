@@ -1,7 +1,0 @@
-name: BorderAPI
-version: 1.0.0
-api-version: 1.13
-main: com.astromc.borderapi.BorderAPI
-authors:
-  - github.com/astromc
-  - github.com/yannicklamprecht

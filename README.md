@@ -8,7 +8,7 @@ A world border api that allows it to define a world border per player
 - 1.11.2
 - 1.12.2
 - 1.13.2
-- 1.14.1 (later on only 1.14.n)
+- 1.14.2 (later on only 1.14.n)
 
 ## Usage
 
