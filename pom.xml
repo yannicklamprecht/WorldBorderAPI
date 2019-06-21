@@ -15,13 +15,22 @@
   </properties>
   <modules>
     <module>API</module>
-    <module>1_8_R3</module>
-    <module>1_11_R1</module>
-    <module>1_12_R1</module>
-    <module>1_13_R2</module>
-    <module>1_14_R1</module>
-    <module>WorldBorderPlugin</module>
+
     <module>WorldBorderAPITestPlugin</module>
   </modules>
+
+  <profiles>
+    <profile>
+      <id>Impl</id>
+      <modules>
+        <module>1_8_R3</module>
+        <module>1_11_R1</module>
+        <module>1_12_R1</module>
+        <module>1_13_R2</module>
+        <module>1_14_R1</module>
+        <module>WorldBorderPlugin</module>
+      </modules>
+    </profile>
+  </profiles>
 
 </project>
