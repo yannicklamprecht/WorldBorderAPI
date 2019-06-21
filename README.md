@@ -1,4 +1,5 @@
-# BorderAPI 1.8.8 - 1.14.x
+# BorderAPI 1.8.8 - 1.14.x [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI)
+
 
 A world border api that allows it to define a world border per player
 
