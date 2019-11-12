@@ -1,6 +1,7 @@
 package com.github.yannicklamprecht.worldborder.api;
 
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -57,11 +58,16 @@ public class WorldBorderApi {
         }, timeSeconds * 20L);
     }
 
-    public void setBorder(Player player, double size, long seconds) {
+    public void setBorder(Player player, double size, long milliSeconds) {
         IWorldBorder worldBorder = getWorldBorder(player);
-        worldBorder.lerp(worldBorder.getSize(), size, seconds);
+        worldBorder.lerp(worldBorder.getSize(), size, milliSeconds);
         worldBorder.send(player, WorldBorderAction.LERP_SIZE);
     }
+
+    public void setBorder(Player player, double size, long time, TimeUnit timeUnit){
+        setBorder(player, size, timeUnit.toMillis(time));
+    }
+
 
 
 }

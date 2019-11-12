@@ -9,7 +9,7 @@ A world border api that allows it to define a world border per player
 - 1.11.2
 - 1.12.2
 - 1.13.2
-- 1.14.3 (later on only 1.14.n)
+- 1.14.4
 
 ## Usage
 
@@ -36,7 +36,11 @@ Sets the location,size of the players WorldBorder.
 
 Change the size of the players WorldBorder in a certain time.
 
-`WorldBorderAPI#setBorder(Player player, double size, int seconds);`
+`WorldBorderAPI#setBorder(Player player, double size, int milliSeconds);`
+
+Change the size of the players WorldBorder in a certain time.
+
+`WorldBorderAPI#setBorder(Player player, double size, int time, TimeUnit timeUnit);`
 
 Gets an instance to modify your stuff yourself
 
