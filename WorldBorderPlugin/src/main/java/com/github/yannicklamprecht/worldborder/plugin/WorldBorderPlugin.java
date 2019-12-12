@@ -13,7 +13,7 @@ public class WorldBorderPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        WorldBorderApi worldBorderApi = null;
+        WorldBorderApi worldBorderApi;
 
         String version = Bukkit.getServer().getClass().getPackage().getName().replace('.',',').split(",")[3];
         System.out.println("Version: "+ version);
@@ -39,6 +39,7 @@ public class WorldBorderPlugin extends JavaPlugin {
             default: {
                 getLogger().info("Unsupported version of Minecraft");
                 Bukkit.getPluginManager().disablePlugin(this);
+                return;
             }
         }
         BorderAPI.setWorldBorderApi(worldBorderApi);
