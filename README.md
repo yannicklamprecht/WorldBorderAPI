@@ -68,4 +68,4 @@ Gets an instance of the global WorldBorder
         <version>1.0.3-SNAPSHOT</version>
 </dependency>
 ```
-Replace `1.0.3-SNAPSHOT` with the current release version.
+Replace `1.0.3-SNAPSHOT` with the current release version found here https://github.com/yannicklamprecht/WorldBorderAPI/tags followed by `-SNAPSHOT`
