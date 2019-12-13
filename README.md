@@ -62,10 +62,11 @@ Gets an instance of the global WorldBorder
  ```
  
  ```
- <dependency>
-        <groupId>com.github.yannicklamprecht</groupId>
-        <artifactId>WorldBorderAPI</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+<dependency>
+   <groupId>com.github.yannicklamprecht.WorldBorderAPI</groupId>
+   <artifactId>API</artifactId>
+   <version>1.0.3</version>
 </dependency>
+
 ```
 Replace `1.0.3-SNAPSHOT` with the current release version found here https://github.com/yannicklamprecht/WorldBorderAPI/tags followed by `-SNAPSHOT`
