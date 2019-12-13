@@ -37,15 +37,15 @@ public class WorldBorderTestPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void chat(AsyncPlayerChatEvent ev) {
-
+        String[] args = ev.getMessage().split(" ");
         if (ev.getMessage().startsWith("text")) {
             int radius = 30;
             int time = 60;
-            if (ev.getMessage().split(" ").length > 1) {
-                radius = Integer.parseInt(ev.getMessage().split(" ")[1]);
+            if (args.length > 1) {
+                radius = Integer.parseInt(args[1]);
 
-                if (ev.getMessage().split(" ").length > 2) {
-                    time = Integer.parseInt(ev.getMessage().split(" ")[2]);
+                if (args.length > 2) {
+                    time = Integer.parseInt(args[2]);
                 }
 
             }
@@ -53,8 +53,8 @@ public class WorldBorderTestPlugin extends JavaPlugin implements Listener {
         } else if (ev.getMessage().startsWith("fuck")) {
 
             int time = 30;
-            if (ev.getMessage().split(" ").length > 1) {
-                time = Integer.parseInt(ev.getMessage().split(" ")[1]);
+            if (args.length > 1) {
+                time = Integer.parseInt(args[1]);
             }
 
             this.worldBorderApi.sendRedScreenForSeconds(ev.getPlayer(), time, this);
@@ -62,8 +62,8 @@ public class WorldBorderTestPlugin extends JavaPlugin implements Listener {
 
             int size = 30;
 
-            if (ev.getMessage().split(" ").length > 1) {
-                size = Integer.parseInt(ev.getMessage().split(" ")[1]);
+            if (args.length > 1) {
+                size = Integer.parseInt(args[1]);
             }
             this.worldBorderApi.setBorder(ev.getPlayer(),size,ev.getPlayer().getLocation());
         }
