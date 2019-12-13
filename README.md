@@ -49,3 +49,23 @@ Gets an instance to modify your stuff yourself
 Gets an instance of the global WorldBorder
 
 `WorldBorderAPI#getWorldBorder`
+
+## How to add with Maven
+
+```
+<repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+</repositories>
+ ```
+ 
+ ```
+ <dependency>
+        <groupId>com.github.yannicklamprecht</groupId>
+        <artifactId>WorldBorderAPI</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+</dependency>
+```
+Replace `1.0.3-SNAPSHOT` with the current release version.
