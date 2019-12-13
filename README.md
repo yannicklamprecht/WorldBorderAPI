@@ -1,4 +1,4 @@
-# BorderAPI 1.8.8 - 1.14.x [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI)
+# BorderAPI 1.8.8 - 1.14.x [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI) ![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
 
 
 A world border api that allows it to define a world border per player
@@ -69,4 +69,6 @@ Gets an instance of the global WorldBorder
 </dependency>
 
 ```
-Replace `1.0.3-SNAPSHOT` with the current release version found here https://github.com/yannicklamprecht/WorldBorderAPI/tags followed by `-SNAPSHOT`
+Replace `1.0.3` with the current release version found here https://github.com/yannicklamprecht/WorldBorderAPI/tags
+
+
