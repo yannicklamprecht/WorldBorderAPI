@@ -10,6 +10,7 @@ A world border api that allows it to define a world border per player
 - 1.12.2
 - 1.13.2
 - 1.14.4
+- 1.15.1
 
 ## Usage
 
