@@ -22,3 +22,5 @@ deploy:
     - 'WorldBorderAPITestPlugin/target/WorldBorderAPITestPlugin*.jar'
   on:
     repo: yannicklamprecht/WorldBorderAPI
+    tags: true
+  skip_cleanup: true
