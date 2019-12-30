@@ -9,6 +9,7 @@
 
   <artifactId>API</artifactId>
   <build>
+    <finalName>${project.name}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
