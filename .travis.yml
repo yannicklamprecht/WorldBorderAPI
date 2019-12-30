@@ -18,8 +18,8 @@ deploy:
   api_key:
     secure: K08L+V9lW1fdkr0gY/I9Q5r5e2zQMgpLRWk9dLJsKPlCs5XpkKYvXipWik5OLoK3IV5X9/hAqAXcnPSwd6YSr79tK95I/HKin503Vn3n3WvWLvVTpcfEXOxS78by9iVOtPamOybufBNV3HG/lLzxY4RpBkEiYDWy1QX65Z4xRvk=
   file: 
-    - 'API/target/API*.jar'
-    - 'WorldBorderAPITestPlugin/target/WorldBorderAPITestPlugin*.jar'
+    - './API/target/API*.jar'
+    - './WorldBorderAPITestPlugin/target/WorldBorderAPITestPlugin*.jar'
   on:
     repo: yannicklamprecht/WorldBorderAPI
     tags: true
