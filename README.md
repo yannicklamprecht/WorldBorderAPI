@@ -15,6 +15,10 @@ A world border api that allows it to define a world border per player
 ## Usage
 
 
+You just want to use the Plugin because it is a dependency of another Plugin you're using?
+Have a look at [Getting started using it](#getting-started-using-it)
+
+
 Obtain the API
 
 `WorldBorderAPI worldBorderAPI = BorderAPI.getApi();`
