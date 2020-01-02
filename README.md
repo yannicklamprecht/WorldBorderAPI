@@ -1,8 +1,8 @@
 # BorderAPI 1.8.8 - 1.15.x [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI) [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
 
-
 A world border api that allows it to define a world border per player
 
+---
 ## Supported versions
 
 - 1.8.8
@@ -12,21 +12,25 @@ A world border api that allows it to define a world border per player
 - 1.14.4
 - 1.15.1
 
+---
+
 ## Usage
 
-### Getting started using it
-From version 1.0.5 onwards the Jars in the release section are the following:
+You just want to use the Plugin because it is a dependency of another Plugin you're using?
+Have a look at the release section. The right jar is named like this - WorldBorderPlugin-1.0.4-SNAPSHOT
 
+You're a developer and want to use this as a dependency for your plugin? [See](#obtain-the-api)
+
+From version 1.0.5 onwards the following jars are available in the release section:
 - API.jar _> The API non Maven/Gradle user can include to develop a plugin depending on this plugin
 - WorldBorderAPITestPlugin.jar _> A plugin to test the functionallity of the WorldBorderPlugin (currently specific chat messages are used to trigger the different states)
-- WorldBorderPlugin-[![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)-SNAPSHOT _> The plugin that should be dropped into the Pluginsfolder
+ _> The plugin that should be dropped into the Pluginsfolder
 
-### Using it as an end user
-You just want to use the Plugin because it is a dependency of another Plugin you're using?
-Have a look at [Getting started using it](#getting-started-using-it)
+---
+## Obtain the API
 
+You can either develop using the `API.jar` from the release section or by using Maven/Gradle [See](#how-to-add-it-with-maven)
 
-# Obtain the API
 
 `WorldBorderAPI worldBorderAPI = BorderAPI.getApi();`
 
@@ -62,7 +66,7 @@ Gets an instance of the global WorldBorder
 
 `WorldBorderAPI#getWorldBorder`
 
-## How to add with Maven
+### How to add with Maven
 
 ```
 <repositories>
@@ -83,8 +87,7 @@ Gets an instance of the global WorldBorder
 ```
 Replace `1.0.3` with the current release version found here [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
 
-
-## More examples
+### More examples
 
 See WorldBorderAPITestPlugin
 
