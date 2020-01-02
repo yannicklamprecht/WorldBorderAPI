@@ -24,7 +24,7 @@ You're a developer and want to use this as a dependency for your plugin? [See](#
 From version 1.0.5 onwards the following jars are available in the release section:
 - API.jar _> The API non Maven/Gradle user can include to develop a plugin depending on this plugin
 - WorldBorderAPITestPlugin.jar _> A plugin to test the functionallity of the WorldBorderPlugin (currently specific chat messages are used to trigger the different states)
- _> The plugin that should be dropped into the Pluginsfolder
+ - WorldBorderPLugin _> The plugin that should be dropped into the Pluginsfolder
 
 ---
 ## Obtain the API
