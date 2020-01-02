@@ -1,4 +1,4 @@
-# BorderAPI 1.8.8 - 1.14.x [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI) [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
+# BorderAPI 1.8.8 - 1.15.x [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI) [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
 
 
 A world border api that allows it to define a world border per player
@@ -76,4 +76,12 @@ Replace `1.0.3` with the current release version found here [![](https://jitpack
 ## More examples
 
 See WorldBorderAPITestPlugin
+
+
+## Getting started using it
+From version 1.0.5 onwards the Jars in the release section are the following:
+
+- API.jar _> The API non Maven/Gradle user can include to develop a plugin depending on this plugin
+- WorldBorderAPITestPlugin.jar _> A plugin to test the functionallity of the WorldBorderPlugin (currently specific chat messages are used to trigger the different states)
+- WorldBorderPlugin-[![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)-SNAPSHOT _> The plugin that should be dropped into the Pluginsfolder
 
