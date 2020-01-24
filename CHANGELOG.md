@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
-### New
+## [1.152.1] The pre-flattening drop
 
+### New
+- Updating to 1.15.2
 - Updating from 1.14.1 to 1.14.2
+- dropping pre-flattening support
 
 
 ## [1.0]
