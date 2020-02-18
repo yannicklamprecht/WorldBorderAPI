@@ -1,73 +1,27 @@
 package com.github.yannicklamprecht.worldborder.api;
 
-
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class WorldBorderApi {
+import java.util.concurrent.TimeUnit;
 
-    private Function<Player, IWorldBorder> getWorldBorderPlayer;
+public interface WorldBorderApi {
 
-    private Function<World, IWorldBorder> getWorldBorder;
+    IWorldBorder getWorldBorder(Player p);
 
-    public WorldBorderApi(Function<Player, IWorldBorder> getWorldBorderPlayer, Function<World, IWorldBorder> getWorldBorder) {
-        this.getWorldBorderPlayer = getWorldBorderPlayer;
-        this.getWorldBorder = getWorldBorder;
-    }
+    IWorldBorder getWorldBorder(World world);
 
-    public IWorldBorder getWorldBorder(Player p) {
-        return getWorldBorderPlayer.apply(p);
-    }
+    void resetWorldBorderToGlobal(Player player);
 
-    public IWorldBorder getWorldBorder(World world) {
-        return getWorldBorder.apply(world);
-    }
+    void setBorder(Player player, double size);
 
-    public void resetWorldBorderToGlobal(Player player) {
-        getWorldBorder(player.getWorld()).send(player, WorldBorderAction.INITIALIZE);
-    }
+    void setBorder(Player player, double size, Location location);
 
-    public void setBorder(Player player, double size) {
-        setBorder(player, size, player.getWorld().getSpawnLocation());
-    }
+    void sendRedScreenForSeconds(Player player, long timeSeconds, JavaPlugin javaPlugin);
 
-    public void setBorder(Player player, double size, Location location) {
-        IWorldBorder border = getWorldBorder(player);
-        border.setSize(size);
-        border.setCenter(new Position(location));
-        border.send(player, WorldBorderAction.SET_SIZE);
-        border.send(player, WorldBorderAction.SET_CENTER);
-    }
+    void setBorder(Player player, double size, long milliSeconds);
 
-    public void sendRedScreenForSeconds(Player player, long timeSeconds, JavaPlugin javaPlugin) {
-        IWorldBorder border = getWorldBorder(player);
-
-        border.setWarningDistanceInBlocks((int) border.getSize() / 2);
-
-        border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
-
-        Bukkit.getScheduler().runTaskLater(javaPlugin,
-        () -> {
-            border.setWarningDistanceInBlocks(0);
-            border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
-        }, timeSeconds * 20L);
-    }
-
-    public void setBorder(Player player, double size, long milliSeconds) {
-        IWorldBorder worldBorder = getWorldBorder(player);
-        worldBorder.lerp(worldBorder.getSize(), size, milliSeconds);
-        worldBorder.send(player, WorldBorderAction.LERP_SIZE);
-    }
-
-    public void setBorder(Player player, double size, long time, TimeUnit timeUnit){
-        setBorder(player, size, timeUnit.toMillis(time));
-    }
-
-
-
+    void setBorder(Player player, double size, long time, TimeUnit timeUnit);
 }

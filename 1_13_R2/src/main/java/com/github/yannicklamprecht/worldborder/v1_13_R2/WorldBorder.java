@@ -21,7 +21,7 @@ public class WorldBorder extends AbstractWorldBorder {
 
     public WorldBorder(Player player) {
         this(new net.minecraft.server.v1_13_R2.WorldBorder());
-        this.handle.world = ((CraftWorld)player.getWorld()).getHandle();
+        this.handle.world = ((CraftWorld) player.getWorld()).getHandle();
     }
 
     public WorldBorder(World world) {
@@ -30,22 +30,23 @@ public class WorldBorder extends AbstractWorldBorder {
 
     private WorldBorder(net.minecraft.server.v1_13_R2.WorldBorder worldBorder) {
         super(
-        () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ()),
-        (position -> worldBorder.setCenter(position.getX(), position.getZ())),
-        () -> new Position(worldBorder.b(), worldBorder.c()),
-        () -> new Position(worldBorder.d(), worldBorder.e()),
-        worldBorder::getSize,
-        worldBorder::setSize,
-        worldBorder::l,
-        worldBorder::a,
-        worldBorder::getDamageAmount,
-        worldBorder::setDamageAmount,
-        worldBorder::getWarningTime,
-        worldBorder::setWarningTime,
-        worldBorder::getWarningDistance,
-        worldBorder::setWarningDistance,
-        (Location location) -> worldBorder.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ())),
-        worldBorder::transitionSizeBetween
+                () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ()),
+                (position -> worldBorder.setCenter(position.getX(), position.getZ())),
+                () -> new Position(worldBorder.b(), worldBorder.c()),
+                () -> new Position(worldBorder.d(), worldBorder.e()),
+                worldBorder::getSize,
+                worldBorder::setSize,
+                () -> (int) worldBorder.getDamageBuffer(),
+                worldBorder::setDamageBuffer,
+                worldBorder::setDamageBuffer,
+                worldBorder::getDamageAmount,
+                worldBorder::setDamageAmount,
+                worldBorder::getWarningTime,
+                worldBorder::setWarningTime,
+                worldBorder::getWarningDistance,
+                worldBorder::setWarningDistance,
+                (Location location) -> worldBorder.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ())),
+                worldBorder::transitionSizeBetween
         );
         this.handle = worldBorder;
     }
