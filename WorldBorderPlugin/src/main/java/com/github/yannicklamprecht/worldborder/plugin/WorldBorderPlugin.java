@@ -44,7 +44,6 @@ public class WorldBorderPlugin extends JavaPlugin {
         if(supportsPersistence){
             return new PersistenceWrapper(this, worldBorderApi);
         }
-        // todo add persistence proxy
         return worldBorderApi;
     }
 }

@@ -17,18 +17,20 @@ public class PersistenceWrapper implements WorldBorderApi {
 
     private final WorldBorderApi worldBorderApi;
     private final NamespacedKey worldBorderDataKey;
+    private WorldBorderDataTagType worldBorderDataTagType;
 
     public PersistenceWrapper(JavaPlugin javaPlugin, WorldBorderApi worldBorderApi) {
         this.worldBorderApi = worldBorderApi;
         this.worldBorderDataKey = new NamespacedKey(javaPlugin, "world_border_data");
+        this.worldBorderDataTagType = new WorldBorderDataTagType(javaPlugin);
     }
 
     @Override
     public IWorldBorder getWorldBorder(Player p) {
         IWorldBorder worldBorder = worldBorderApi.getWorldBorder(p);
         PersistentDataContainer persistentDataContainer = p.getPersistentDataContainer();
-        if (persistentDataContainer.has(worldBorderDataKey, WorldBorderDataTagType.TYPE)) {
-            applyWorldDataToWorldBorder(worldBorder, persistentDataContainer.get(worldBorderDataKey, WorldBorderDataTagType.TYPE));
+        if (persistentDataContainer.has(worldBorderDataKey, worldBorderDataTagType)) {
+            applyWorldDataToWorldBorder(worldBorder, persistentDataContainer.get(worldBorderDataKey, worldBorderDataTagType));
         }
         return worldBorder;
     }
@@ -42,7 +44,7 @@ public class PersistenceWrapper implements WorldBorderApi {
     public void resetWorldBorderToGlobal(Player player) {
         worldBorderApi.resetWorldBorderToGlobal(player);
         PersistentDataContainer persistentDataContainer = player.getPersistentDataContainer();
-        if (persistentDataContainer.has(worldBorderDataKey, WorldBorderDataTagType.TYPE)) {
+        if (persistentDataContainer.has(worldBorderDataKey, worldBorderDataTagType)) {
             persistentDataContainer.remove(worldBorderDataKey);
         }
     }
@@ -91,10 +93,10 @@ public class PersistenceWrapper implements WorldBorderApi {
     private void modifyAndUpdateWorldData(Player player, Consumer<WorldBorderData> worldBorderDataConsumer) {
         PersistentDataContainer persistentDataContainer = player.getPersistentDataContainer();
         WorldBorderData worldBorderData = new WorldBorderData();
-        if (persistentDataContainer.has(worldBorderDataKey, WorldBorderDataTagType.TYPE)) {
-            worldBorderData = persistentDataContainer.get(worldBorderDataKey, WorldBorderDataTagType.TYPE);
+        if (persistentDataContainer.has(worldBorderDataKey, worldBorderDataTagType)) {
+            worldBorderData = persistentDataContainer.get(worldBorderDataKey, worldBorderDataTagType);
         }
         worldBorderDataConsumer.accept(worldBorderData);
-        persistentDataContainer.set(worldBorderDataKey, WorldBorderDataTagType.TYPE, worldBorderData);
+        persistentDataContainer.set(worldBorderDataKey, worldBorderDataTagType, worldBorderData);
     }
 }
