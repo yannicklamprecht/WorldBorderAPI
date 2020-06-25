@@ -10,13 +10,13 @@ import java.util.Optional;
 
 public class WorldBorderDataTagType implements PersistentDataType<PersistentDataContainer, WorldBorderData> {
 
-    private NamespacedKey sizeKey;
-    private NamespacedKey xKey;
-    private NamespacedKey zKey;
-    private NamespacedKey damageBufferInBlocksKey;
-    private NamespacedKey damageAmountKey;
-    private NamespacedKey warningTimeSecondsKey;
-    private NamespacedKey warningDistanceKey;
+    private final NamespacedKey sizeKey;
+    private final NamespacedKey xKey;
+    private final NamespacedKey zKey;
+    private final NamespacedKey damageBufferInBlocksKey;
+    private final NamespacedKey damageAmountKey;
+    private final NamespacedKey warningTimeSecondsKey;
+    private final NamespacedKey warningDistanceKey;
 
     public WorldBorderDataTagType(JavaPlugin javaPlugin) {
         this.sizeKey = new NamespacedKey(javaPlugin, "size");
