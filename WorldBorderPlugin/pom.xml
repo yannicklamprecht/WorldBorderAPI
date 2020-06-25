@@ -27,12 +27,6 @@
 
     <dependency>
       <groupId>com.github.yannicklamprecht</groupId>
-      <artifactId>1_13_R2</artifactId>
-      <version>1.152.1-SNAPSHOT</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.yannicklamprecht</groupId>
       <artifactId>1_14_R1</artifactId>
       <version>1.152.1-SNAPSHOT</version>
     </dependency>
@@ -43,6 +37,11 @@
       <version>1.152.1-SNAPSHOT</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.yannicklamprecht</groupId>
+      <artifactId>1_16_R1</artifactId>
+      <version>1.152.1-SNAPSHOT</version>
+    </dependency>
 
   </dependencies>
 
