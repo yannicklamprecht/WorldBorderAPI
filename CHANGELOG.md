@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.161.0] The persistence update
+
 ### New
 - Updating to 1.16.1
 - Add new persistent feature (The WorldBorder data gets attached to the Player when sending to client and removed on reset)
