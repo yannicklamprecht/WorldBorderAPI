@@ -21,6 +21,7 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
 
     private Supplier<Integer> damageBufferInBlockSupplier;
     private Consumer<Integer> damageBufferInBlockConsumer;
+    private Consumer<Double> damageBufferDoubleBlockConsumer;
 
     private Supplier<Double> damagePerSecondsPerBlockSupplier;
     private Consumer<Double> damagePerSecondsPerBlockConsumer;
@@ -37,8 +38,8 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
     private FunctionDoubleDoubleLong lerpConsumer;
 
     public AbstractWorldBorder(Supplier<Position> centerSupplier, Consumer<Position> centerConsumer, Supplier<Position> minSupplier, Supplier<Position> maxSupplier, Supplier<Double> sizeSupplier, Consumer<Double> sizeConsumer,
-    Supplier<Integer> damageBufferInBlockSupplier, Consumer<Integer> damageBufferInBlockConsumer, Supplier<Double> damagePerSecondsPerBlockSupplier, Consumer<Double> damagePerSecondsPerBlockConsumer, Supplier<Integer> warningTimerInSecondsSupplier,
-    Consumer<Integer> warningTimerInSecondsConsumer, Supplier<Integer> warningDistanceInBlocksSupplier, Consumer<Integer> warningDistanceInBlocksConsumer, Function<Location, Boolean> inBoundsSupplier, FunctionDoubleDoubleLong lerpConsumer) {
+                               Supplier<Integer> damageBufferInBlockSupplier, Consumer<Integer> damageBufferInBlockConsumer, Consumer<Double> damageBufferDoubleBlockConsumer, Supplier<Double> damagePerSecondsPerBlockSupplier, Consumer<Double> damagePerSecondsPerBlockConsumer, Supplier<Integer> warningTimerInSecondsSupplier,
+                               Consumer<Integer> warningTimerInSecondsConsumer, Supplier<Integer> warningDistanceInBlocksSupplier, Consumer<Integer> warningDistanceInBlocksConsumer, Function<Location, Boolean> inBoundsSupplier, FunctionDoubleDoubleLong lerpConsumer) {
         this.centerSupplier = centerSupplier;
         this.centerConsumer = centerConsumer;
         this.minSupplier = minSupplier;
@@ -47,6 +48,7 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
         this.sizeConsumer = sizeConsumer;
         this.damageBufferInBlockSupplier = damageBufferInBlockSupplier;
         this.damageBufferInBlockConsumer = damageBufferInBlockConsumer;
+        this.damageBufferDoubleBlockConsumer = damageBufferDoubleBlockConsumer;
         this.damagePerSecondsPerBlockSupplier = damagePerSecondsPerBlockSupplier;
         this.damagePerSecondsPerBlockConsumer = damagePerSecondsPerBlockConsumer;
         this.warningTimerInSecondsSupplier = warningTimerInSecondsSupplier;
@@ -88,6 +90,10 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
 
     public void setDamageBufferInBlocks(int blocks) {
         damageBufferInBlockConsumer.accept(blocks);
+    }
+
+    public void setDamageBufferInBlocks(double blocks) {
+        damageBufferDoubleBlockConsumer.accept(blocks);
     }
 
     public double getDamagePerSecondPerBlock() {

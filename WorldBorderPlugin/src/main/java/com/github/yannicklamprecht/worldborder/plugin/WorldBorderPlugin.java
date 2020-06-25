@@ -15,17 +15,17 @@ public class WorldBorderPlugin extends JavaPlugin {
 
         WorldBorderApi worldBorderApi;
 
-        String version = Bukkit.getServer().getClass().getPackage().getName().replace('.',',').split(",")[3];
-        System.out.println("Version: "+ version);
+        String version = Bukkit.getServer().getClass().getPackage().getName().replace('.', ',').split(",")[3];
+        System.out.println("Version: " + version);
         switch (version) {
             case "v1_13_R2":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_13_R2.Impl();
                 break;
             case "v1_14_R1":
-                worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_14_R1.Impl();
+                worldBorderApi = new PersistenceWrapper(this, new com.github.yannicklamprecht.worldborder.v1_14_R1.Impl());
                 break;
             case "v1_15_R1":
-                worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_15_R1.Impl();
+                worldBorderApi = new PersistenceWrapper(this, new com.github.yannicklamprecht.worldborder.v1_15_R1.Impl());
                 break;
             default: {
                 getLogger().info("Unsupported version of Minecraft");
@@ -35,4 +35,5 @@ public class WorldBorderPlugin extends JavaPlugin {
         }
         BorderAPI.setWorldBorderApi(worldBorderApi);
     }
+
 }

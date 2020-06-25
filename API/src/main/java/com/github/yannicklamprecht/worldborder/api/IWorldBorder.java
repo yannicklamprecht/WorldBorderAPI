@@ -21,6 +21,8 @@ public interface IWorldBorder {
 
     void setDamageBufferInBlocks(int blocks);
 
+    void setDamageBufferInBlocks(double blocks);
+
     double getDamagePerSecondPerBlock();
 
     void setDamagerPerSecondPerBlock(double damage);
