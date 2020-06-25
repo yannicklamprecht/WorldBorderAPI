@@ -28,6 +28,7 @@ public class PersistenceWrapper implements WorldBorderApi {
     @Override
     public IWorldBorder getWorldBorder(Player p) {
         IWorldBorder worldBorder = worldBorderApi.getWorldBorder(p);
+        // todo wrap worldBorder so that its values get persistet on send
         PersistentDataContainer persistentDataContainer = p.getPersistentDataContainer();
         if (persistentDataContainer.has(worldBorderDataKey, worldBorderDataTagType)) {
             applyWorldDataToWorldBorder(worldBorder, persistentDataContainer.get(worldBorderDataKey, worldBorderDataTagType));
