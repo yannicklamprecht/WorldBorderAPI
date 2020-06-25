@@ -3,7 +3,7 @@
   <parent>
     <artifactId>WorldBorderAPI</artifactId>
     <groupId>com.github.yannicklamprecht</groupId>
-    <version>1.152.1-SNAPSHOT</version>
+    <version>1.161.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -22,25 +22,25 @@
     <dependency>
       <groupId>com.github.yannicklamprecht</groupId>
       <artifactId>API</artifactId>
-      <version>1.152.1-SNAPSHOT</version>
+      <version>1.161.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.github.yannicklamprecht</groupId>
       <artifactId>1_14_R1</artifactId>
-      <version>1.152.1-SNAPSHOT</version>
+      <version>1.161.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.github.yannicklamprecht</groupId>
       <artifactId>1_15_R1</artifactId>
-      <version>1.152.1-SNAPSHOT</version>
+      <version>1.161.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.github.yannicklamprecht</groupId>
       <artifactId>1_16_R1</artifactId>
-      <version>1.152.1-SNAPSHOT</version>
+      <version>1.161.0</version>
     </dependency>
 
   </dependencies>
