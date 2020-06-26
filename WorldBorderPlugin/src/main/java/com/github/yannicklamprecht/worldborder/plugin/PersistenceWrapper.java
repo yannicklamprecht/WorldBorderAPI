@@ -17,7 +17,7 @@ public class PersistenceWrapper implements WorldBorderApi {
 
     private final WorldBorderApi worldBorderApi;
     private final NamespacedKey worldBorderDataKey;
-    private WorldBorderDataTagType worldBorderDataTagType;
+    private final WorldBorderDataTagType worldBorderDataTagType;
 
     public PersistenceWrapper(JavaPlugin javaPlugin, WorldBorderApi worldBorderApi) {
         this.worldBorderApi = worldBorderApi;
@@ -28,7 +28,6 @@ public class PersistenceWrapper implements WorldBorderApi {
     @Override
     public IWorldBorder getWorldBorder(Player p) {
         IWorldBorder worldBorder = worldBorderApi.getWorldBorder(p);
-        // todo wrap worldBorder so that its values get persistet on send
         PersistentDataContainer persistentDataContainer = p.getPersistentDataContainer();
         if (persistentDataContainer.has(worldBorderDataKey, worldBorderDataTagType)) {
             applyWorldDataToWorldBorder(worldBorder, persistentDataContainer.get(worldBorderDataKey, worldBorderDataTagType));

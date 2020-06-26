@@ -11,9 +11,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class WorldBorderApiImpl implements WorldBorderApi {
 
-    private Function<Player, IWorldBorder> getWorldBorderPlayer;
+    private final Function<Player, IWorldBorder> getWorldBorderPlayer;
 
-    private Function<World, IWorldBorder> getWorldBorder;
+    private final Function<World, IWorldBorder> getWorldBorder;
 
     public WorldBorderApiImpl(Function<Player, IWorldBorder> getWorldBorderPlayer, Function<World, IWorldBorder> getWorldBorder) {
         this.getWorldBorderPlayer = getWorldBorderPlayer;

@@ -10,32 +10,32 @@ import org.bukkit.Location;
  */
 public abstract class AbstractWorldBorder implements IWorldBorder {
 
-    private Supplier<Position> centerSupplier;
-    private Consumer<Position> centerConsumer;
+    private final Supplier<Position> centerSupplier;
+    private final Consumer<Position> centerConsumer;
 
-    private Supplier<Position> minSupplier;
-    private Supplier<Position> maxSupplier;
+    private final Supplier<Position> minSupplier;
+    private final Supplier<Position> maxSupplier;
 
-    private Supplier<Double> sizeSupplier;
-    private Consumer<Double> sizeConsumer;
+    private final Supplier<Double> sizeSupplier;
+    private final Consumer<Double> sizeConsumer;
 
-    private Supplier<Integer> damageBufferInBlockSupplier;
-    private Consumer<Integer> damageBufferInBlockConsumer;
-    private Consumer<Double> damageBufferDoubleBlockConsumer;
+    private final Supplier<Integer> damageBufferInBlockSupplier;
+    private final Consumer<Integer> damageBufferInBlockConsumer;
+    private final Consumer<Double> damageBufferDoubleBlockConsumer;
 
-    private Supplier<Double> damagePerSecondsPerBlockSupplier;
-    private Consumer<Double> damagePerSecondsPerBlockConsumer;
+    private final Supplier<Double> damagePerSecondsPerBlockSupplier;
+    private final Consumer<Double> damagePerSecondsPerBlockConsumer;
 
 
-    private Supplier<Integer> warningTimerInSecondsSupplier;
-    private Consumer<Integer> warningTimerInSecondsConsumer;
+    private final Supplier<Integer> warningTimerInSecondsSupplier;
+    private final Consumer<Integer> warningTimerInSecondsConsumer;
 
-    private Supplier<Integer> warningDistanceInBlocksSupplier;
-    private Consumer<Integer> warningDistanceInBlocksConsumer;
+    private final Supplier<Integer> warningDistanceInBlocksSupplier;
+    private final Consumer<Integer> warningDistanceInBlocksConsumer;
 
-    private Function<Location, Boolean> inBoundsSupplier;
+    private final Function<Location, Boolean> inBoundsSupplier;
 
-    private FunctionDoubleDoubleLong lerpConsumer;
+    private final FunctionDoubleDoubleLong lerpConsumer;
 
     public AbstractWorldBorder(Supplier<Position> centerSupplier, Consumer<Position> centerConsumer, Supplier<Position> minSupplier, Supplier<Position> maxSupplier, Supplier<Double> sizeSupplier, Consumer<Double> sizeConsumer,
                                Supplier<Integer> damageBufferInBlockSupplier, Consumer<Integer> damageBufferInBlockConsumer, Consumer<Double> damageBufferDoubleBlockConsumer, Supplier<Double> damagePerSecondsPerBlockSupplier, Consumer<Double> damagePerSecondsPerBlockConsumer, Supplier<Integer> warningTimerInSecondsSupplier,
