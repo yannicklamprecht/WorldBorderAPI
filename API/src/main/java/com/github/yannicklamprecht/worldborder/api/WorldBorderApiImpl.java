@@ -52,8 +52,7 @@ public class WorldBorderApiImpl implements WorldBorderApi {
     @Override
     public void sendRedScreenForSeconds(Player player, long timeSeconds, JavaPlugin javaPlugin) {
         IWorldBorder border = getWorldBorder(player);
-
-        border.setWarningDistanceInBlocks((int) border.getSize() / 2);
+        border.setWarningDistanceInBlocks((int) border.getSize());
 
         border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
 
