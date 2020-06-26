@@ -10,15 +10,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class WorldBorderPlugin extends JavaPlugin {
 
-    private static final boolean PERSISTENCE = false;
-
     @Override
     public void onEnable() {
 
-        WorldBorderApi worldBorderApi;
-
         String version = Bukkit.getServer().getClass().getPackage().getName().replace('.', ',').split(",")[3];
         System.out.println("Version: " + version);
+        WorldBorderApi worldBorderApi;
         switch (version) {
             case "v1_14_R1":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_14_R1.Impl();
@@ -36,9 +33,7 @@ public class WorldBorderPlugin extends JavaPlugin {
             }
         }
 
-        if (PERSISTENCE) {
-            worldBorderApi = new PersistenceWrapper(this, worldBorderApi);
-        }
+        worldBorderApi = new PersistenceWrapper(this, worldBorderApi);
 
         BorderAPI.setWorldBorderApi(worldBorderApi);
     }

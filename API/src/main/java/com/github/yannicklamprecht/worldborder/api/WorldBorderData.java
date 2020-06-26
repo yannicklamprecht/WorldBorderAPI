@@ -68,4 +68,13 @@ public class WorldBorderData {
     public void setWarningDistance(int distance) {
         this.warningDistance = distance;
     }
+
+    public void applyAll(IWorldBorder worldBorder){
+        worldBorder.setSize(size);
+        worldBorder.setCenter(new Position(x, z));
+        worldBorder.setDamageBufferInBlocks(damageBufferInBlocks);
+        worldBorder.setDamagePerSecondPerBlock(damageAmount);
+        worldBorder.setWarningTimeInSeconds(warningTimeSeconds);
+        worldBorder.setWarningDistanceInBlocks(warningDistance);
+    }
 }

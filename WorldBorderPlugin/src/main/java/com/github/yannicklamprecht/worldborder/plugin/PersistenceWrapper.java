@@ -1,8 +1,6 @@
 package com.github.yannicklamprecht.worldborder.plugin;
 
-import com.github.yannicklamprecht.worldborder.api.IWorldBorder;
-import com.github.yannicklamprecht.worldborder.api.Position;
-import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
+import com.github.yannicklamprecht.worldborder.api.*;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -13,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-public class PersistenceWrapper implements WorldBorderApi {
+public class PersistenceWrapper implements PersistentWorldBorderApi {
 
     private final WorldBorderApi worldBorderApi;
     private final NamespacedKey worldBorderDataKey;
@@ -79,6 +77,15 @@ public class PersistenceWrapper implements WorldBorderApi {
     public void setBorder(Player player, double size, long time, TimeUnit timeUnit) {
         worldBorderApi.setBorder(player, size, time, timeUnit);
         modifyAndUpdateWorldData(player, worldBorderData -> worldBorderData.setSize(size));
+    }
+
+    @Override
+    public WorldBorderData getWorldBorderData(Player p) {
+        PersistentDataContainer persistentDataContainer = p.getPersistentDataContainer();
+        if (persistentDataContainer.has(worldBorderDataKey, worldBorderDataTagType)) {
+            return persistentDataContainer.get(worldBorderDataKey, worldBorderDataTagType);
+        }
+        return null;
     }
 
     private void applyWorldDataToWorldBorder(IWorldBorder iWorldBorder, WorldBorderData worldBorderData) {

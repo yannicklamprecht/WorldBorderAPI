@@ -1,5 +1,6 @@
 package com.github.yannicklamprecht.worldborder.plugin;
 
+import com.github.yannicklamprecht.worldborder.api.WorldBorderData;
 import org.bukkit.NamespacedKey;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -77,7 +78,7 @@ public class WorldBorderDataTagType implements PersistentDataType<PersistentData
 
     private <T, Z> Optional<Z> get(PersistentDataContainer persistentDataContainer, NamespacedKey namespacedKey, PersistentDataType<T, Z> type) {
         if (persistentDataContainer.has(namespacedKey, type)) {
-            return Optional.ofNullable(persistentDataContainer.get(sizeKey, type));
+            return Optional.ofNullable(persistentDataContainer.get(namespacedKey, type));
         }
         return Optional.empty();
     }

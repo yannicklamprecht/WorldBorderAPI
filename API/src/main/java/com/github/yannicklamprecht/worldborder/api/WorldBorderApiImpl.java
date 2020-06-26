@@ -1,13 +1,14 @@
 package com.github.yannicklamprecht.worldborder.api;
 
 
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class WorldBorderApiImpl implements WorldBorderApi {
 
@@ -57,10 +58,10 @@ public class WorldBorderApiImpl implements WorldBorderApi {
         border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
 
         Bukkit.getScheduler().runTaskLater(javaPlugin,
-        () -> {
-            border.setWarningDistanceInBlocks(0);
-            border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
-        }, timeSeconds * 20L);
+                () -> {
+                    border.setWarningDistanceInBlocks(0);
+                    border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
+                }, timeSeconds * 20L);
     }
 
     @Override
@@ -71,10 +72,7 @@ public class WorldBorderApiImpl implements WorldBorderApi {
     }
 
     @Override
-    public void setBorder(Player player, double size, long time, TimeUnit timeUnit){
+    public void setBorder(Player player, double size, long time, TimeUnit timeUnit) {
         setBorder(player, size, timeUnit.toMillis(time));
     }
-
-
-
 }

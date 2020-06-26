@@ -1,9 +1,10 @@
 package com.github.yannicklamprecht.worldborder.api;
 
+import org.bukkit.Location;
+
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import org.bukkit.Location;
 
 /**
  * Created by ysl3000
@@ -100,8 +101,13 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
         return damagePerSecondsPerBlockSupplier.get();
     }
 
-    public void setDamagerPerSecondPerBlock(double damage) {
+    @Override
+    public void setDamagePerSecondPerBlock(double damage) {
         damagePerSecondsPerBlockConsumer.accept(damage);
+    }
+
+    public void setDamagerPerSecondPerBlock(double damage) {
+        setDamagePerSecondPerBlock(damage);
     }
 
     public int getWarningTimerInSeconds() {

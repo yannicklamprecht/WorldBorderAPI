@@ -2,14 +2,10 @@ package com.github.yannicklamprecht.worldborder.testplugin;
 
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Default;
-import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.Subcommand;
-import com.github.yannicklamprecht.worldborder.api.IWorldBorder;
-import com.github.yannicklamprecht.worldborder.api.Position;
-import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
-import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
+import co.aikar.commands.annotation.*;
+import com.github.yannicklamprecht.worldborder.api.*;
+import com.google.gson.Gson;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +17,7 @@ public class BorderTestCommands extends BaseCommand {
 
     private final WorldBorderApi worldBorderApi;
     private final JavaPlugin javaPlugin;
+    private final Gson gson = new Gson();
 
 
     public BorderTestCommands(WorldBorderApi worldBorderApi, JavaPlugin javaPlugin) {
@@ -42,6 +39,17 @@ public class BorderTestCommands extends BaseCommand {
     public void set(Player player, @Default("30") int radius, @Default("60") int time) {
         this.worldBorderApi.setBorder(player, radius, time);
     }
+
+    @Subcommand("set")
+    public void set(Player player, @Default("30") int size, @Optional Double x, @Optional Double y, @Optional Double z) {
+        Location location = player.getLocation();
+        if(x != null && y != null && z != null){
+            location = new Location(location.getWorld(), x, y, z);
+        }
+        this.worldBorderApi.setBorder(player, size, location);
+    }
+
+
 
     @Subcommand("green")
     public void green(Player player) {
@@ -65,6 +73,14 @@ public class BorderTestCommands extends BaseCommand {
         iWorldBorder.lerp(oldSize, newSize, TimeUnit.SECONDS.toMillis(timeInSeconds));
         iWorldBorder.setCenter(new Position(player.getLocation()));
         iWorldBorder.send(player, WorldBorderAction.LERP_SIZE);
+    }
+
+    @Subcommand("print")
+    public void lerp(Player player) {
+        if (worldBorderApi instanceof PersistentWorldBorderApi) {
+            WorldBorderData worldBorderData = ((PersistentWorldBorderApi) worldBorderApi).getWorldBorderData(player);
+            player.sendMessage(gson.toJson(worldBorderData));
+        }
     }
 
 }

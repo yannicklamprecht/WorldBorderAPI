@@ -25,6 +25,14 @@ public interface IWorldBorder {
 
     double getDamagePerSecondPerBlock();
 
+    void setDamagePerSecondPerBlock(double damage);
+
+    /**
+     * Typing error use {@link IWorldBorder#setDamagePerSecondPerBlock(double)}
+     *
+     * @param damage
+     */
+    @Deprecated
     void setDamagerPerSecondPerBlock(double damage);
 
     int getWarningTimerInSeconds();
@@ -40,5 +48,4 @@ public interface IWorldBorder {
     void lerp(double oldSize, double newSize, long time);
 
     void send(Player player, WorldBorderAction worldBorderAction);
-
 }

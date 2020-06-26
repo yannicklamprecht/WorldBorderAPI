@@ -3,6 +3,7 @@ package com.github.yannicklamprecht.worldborder.v1_14_R1;
 import com.github.yannicklamprecht.worldborder.api.AbstractWorldBorder;
 import com.github.yannicklamprecht.worldborder.api.Position;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderData;
 import net.minecraft.server.v1_14_R1.ChunkCoordIntPair;
 import net.minecraft.server.v1_14_R1.PacketPlayOutWorldBorder;
 import net.minecraft.server.v1_14_R1.PacketPlayOutWorldBorder.EnumWorldBorderAction;
