@@ -30,7 +30,7 @@ public interface IWorldBorder {
     /**
      * Typing error use {@link IWorldBorder#setDamagePerSecondPerBlock(double)}
      *
-     * @param damage
+     * @param damage the damage that should be dealt each second per block
      */
     @Deprecated
     void setDamagerPerSecondPerBlock(double damage);

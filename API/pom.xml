@@ -20,6 +20,18 @@
           <target>8</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <show>protected</show>
+          <failOnError>false</failOnError>
+          <sourceFileExcludes>
+            <sourceFileExclude>**/module-info.java</sourceFileExclude>
+          </sourceFileExcludes>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
