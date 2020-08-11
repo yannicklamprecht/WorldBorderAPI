@@ -23,7 +23,7 @@ public class WorldBorderPlugin extends JavaPlugin {
             case "v1_15_R1":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_15_R1.Impl();
                 break;
-            case "v1_16_R1":
+            case "v1_16_R2":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_16_R2.Impl();
                 break;
             default: {
