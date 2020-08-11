@@ -39,7 +39,7 @@
 
     <dependency>
       <groupId>com.github.yannicklamprecht</groupId>
-      <artifactId>1_16_R1</artifactId>
+      <artifactId>1_16_R2</artifactId>
       <version>1.162.0</version>
     </dependency>
 

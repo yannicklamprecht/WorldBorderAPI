@@ -1,22 +1,22 @@
-package com.github.yannicklamprecht.worldborder.v1_16_R1;
+package com.github.yannicklamprecht.worldborder.v1_16_R2;
 
 import com.github.yannicklamprecht.worldborder.api.AbstractWorldBorder;
 import com.github.yannicklamprecht.worldborder.api.Position;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
-import net.minecraft.server.v1_16_R1.ChunkCoordIntPair;
-import net.minecraft.server.v1_16_R1.PacketPlayOutWorldBorder;
+import net.minecraft.server.v1_16_R2.ChunkCoordIntPair;
+import net.minecraft.server.v1_16_R2.PacketPlayOutWorldBorder;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class WorldBorder extends AbstractWorldBorder {
 
-    private net.minecraft.server.v1_16_R1.WorldBorder handle;
+    private final net.minecraft.server.v1_16_R2.WorldBorder handle;
 
     public WorldBorder(Player player) {
-        this(new net.minecraft.server.v1_16_R1.WorldBorder());
+        this(new net.minecraft.server.v1_16_R2.WorldBorder());
         this.handle.world = ((CraftWorld)player.getWorld()).getHandle();
     }
 
@@ -24,7 +24,7 @@ public class WorldBorder extends AbstractWorldBorder {
         this(((CraftWorld) world).getHandle().getWorldBorder());
     }
 
-    private WorldBorder(net.minecraft.server.v1_16_R1.WorldBorder worldBorder) {
+    private WorldBorder(net.minecraft.server.v1_16_R2.WorldBorder worldBorder) {
         super(
                 () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ()),
                 (position -> worldBorder.setCenter(position.getX(), position.getZ())),
