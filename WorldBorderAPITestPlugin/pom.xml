@@ -4,7 +4,7 @@
     <parent>
         <artifactId>WorldBorderAPI</artifactId>
         <groupId>com.github.yannicklamprecht</groupId>
-        <version>1.162.0</version>
+        <version>1.163.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>com.github.yannicklamprecht</groupId>
             <artifactId>API</artifactId>
-            <version>1.162.0</version>
+            <version>1.163.0</version>
             <scope>provided</scope>
         </dependency>
 
