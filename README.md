@@ -82,7 +82,6 @@ Gets an instance of the global WorldBorder
 </dependency>
 
 ```
-Replace `1.0.3` with the current release version found here [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
 
 ### More examples
 

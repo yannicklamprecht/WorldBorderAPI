@@ -11,6 +11,8 @@ git fetch origin
 git reset origin/master --hard
 mvn versions:set -DnewVersion="$1"
 mvn versions:commit
+sed -i.bak -E "s/(<version>).*(<\/version>)/\1$1\2/" README.md
+rm README.md.bak
 git commit -am "Release $1"
 git tag "$1"
 git push origin master --tags
