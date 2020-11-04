@@ -23,8 +23,8 @@ public class WorldBorderPlugin extends JavaPlugin {
             case "v1_15_R1":
                 worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_15_R1.Impl();
                 break;
-            case "v1_16_R2":
-                worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_16_R2.Impl();
+            case "v1_16_R3":
+                worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_16_R3.Impl();
                 break;
             default: {
                 getLogger().info("Unsupported version of Minecraft");
