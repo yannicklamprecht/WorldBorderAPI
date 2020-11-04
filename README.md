@@ -78,7 +78,7 @@ Gets an instance of the global WorldBorder
 <dependency>
    <groupId>com.github.yannicklamprecht.WorldBorderAPI</groupId>
    <artifactId>API</artifactId>
-   <version>1.163.1</version>
+   <version>1.164.0</version>
 </dependency>
 
 ```
