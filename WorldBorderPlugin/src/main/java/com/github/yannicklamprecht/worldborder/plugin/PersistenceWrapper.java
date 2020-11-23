@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Vector;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -54,11 +55,21 @@ public class PersistenceWrapper implements PersistentWorldBorderApi {
     }
 
     @Override
+    public void setBorder(Player player, double size, Vector vector) {
+        setBorder(player, size, new Position(vector));
+    }
+
+    @Override
     public void setBorder(Player player, double size, Location location) {
-        worldBorderApi.setBorder(player, size, location);
+        setBorder(player, size, new Position(location));
+    }
+
+    @Override
+    public void setBorder(Player player, double size, Position position) {
+        worldBorderApi.setBorder(player, size, position);
         modifyAndUpdateWorldData(player, worldBorderData -> {
             worldBorderData.setSize(size);
-            worldBorderData.setCenter(location.getBlockX(), location.getBlockZ());
+            worldBorderData.setCenter(position.getX(), position.getZ());
         });
     }
 
@@ -92,7 +103,7 @@ public class PersistenceWrapper implements PersistentWorldBorderApi {
         worldBorderData.applyCenter((x, z) -> iWorldBorder.setCenter(new Position(x, z)));
         iWorldBorder.setSize(worldBorderData.getSize());
         iWorldBorder.setDamageBufferInBlocks(worldBorderData.getDamageBuffer());
-        iWorldBorder.setDamagerPerSecondPerBlock(worldBorderData.getDamageAmount());
+        iWorldBorder.setDamagePerSecondPerBlock(worldBorderData.getDamageAmount());
         iWorldBorder.setWarningDistanceInBlocks(worldBorderData.getWarningDistance());
         iWorldBorder.setWarningTimeInSeconds(worldBorderData.getWarningTimeSeconds());
     }

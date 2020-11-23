@@ -1,6 +1,7 @@
 package com.github.yannicklamprecht.worldborder.api;
 
 import org.bukkit.Location;
+import org.bukkit.util.Vector;
 
 /**
  * Created by ysl3000
@@ -10,6 +11,9 @@ public class Position {
     private double x;
     private double z;
 
+    public Position(Vector vector){
+        this(vector.getX(), vector.getZ());
+    }
     public Position(Location location){
         this(location.getX(),location.getZ());
     }

@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Vector;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +18,11 @@ public interface WorldBorderApi {
 
     void setBorder(Player player, double size);
 
+    void setBorder(Player player, double size, Vector vector);
+
     void setBorder(Player player, double size, Location location);
+
+    void setBorder(Player player, double size, Position position);
 
     void sendRedScreenForSeconds(Player player, long timeSeconds, JavaPlugin javaPlugin);
 
