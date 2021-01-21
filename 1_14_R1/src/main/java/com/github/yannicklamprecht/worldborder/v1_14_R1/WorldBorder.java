@@ -18,7 +18,7 @@ import org.bukkit.entity.Player;
  */
 public class WorldBorder extends AbstractWorldBorder {
 
-    private net.minecraft.server.v1_14_R1.WorldBorder handle;
+    private final net.minecraft.server.v1_14_R1.WorldBorder handle;
 
     public WorldBorder(Player player) {
         this(new net.minecraft.server.v1_14_R1.WorldBorder());
