@@ -1,4 +1,4 @@
-# BorderAPI 1.14.4 - 1.16.4 [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI) [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
+# BorderAPI 1.14.4 - 1.16.5 [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI) [![](https://jitpack.io/v/yannicklamprecht/WorldBorderAPI.svg)](https://jitpack.io/#yannicklamprecht/WorldBorderAPI)
 
 A world border api that allows it to define a world border per player
 
@@ -8,6 +8,7 @@ A world border api that allows it to define a world border per player
 - 1.14.4
 - 1.15.2
 - 1.16.4
+- 1.16.5
 
 ---
 
