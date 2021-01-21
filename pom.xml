@@ -5,7 +5,7 @@
   <groupId>com.github.yannicklamprecht</groupId>
   <artifactId>WorldBorderAPI</artifactId>
   <packaging>pom</packaging>
-  <version>1.164.0</version>
+  <version>1.165.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
