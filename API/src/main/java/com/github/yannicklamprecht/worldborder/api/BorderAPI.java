@@ -7,6 +7,7 @@ public final class BorderAPI {
 
     private static WorldBorderApi api;
 
+    @Deprecated
     public static void setWorldBorderApi(WorldBorderApi worldBorderApi) {
         if (api != null) {
             throw new UnsupportedOperationException("Cannot redefine singleton Server");
@@ -15,6 +16,7 @@ public final class BorderAPI {
         }
     }
 
+    @Deprecated
     public static WorldBorderApi getApi() {
         return api;
     }

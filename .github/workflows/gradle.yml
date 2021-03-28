@@ -1,0 +1,22 @@
+  on:
+    push:
+      branches:
+        - master
+        - develop
+  jobs:
+    build:
+      strategy:
+        matrix:
+          java-version: [ '11' ]
+          os: [ 'windows-latest', 'ubuntu-latest', 'macos-latest' ]
+      runs-on: ${{ matrix.os }}
+      steps:
+        - name: Checkout Source Code
+          uses: actions/checkout@v1
+        - name: Setup Java ${{ matrix.java-version }}
+          uses: actions/setup-java@v1
+          with:
+            java-version: ${{ matrix.java-version }}
+            architecture: x64
+        - name: Build with gradle
+          run: ./gradlew build shadowJar

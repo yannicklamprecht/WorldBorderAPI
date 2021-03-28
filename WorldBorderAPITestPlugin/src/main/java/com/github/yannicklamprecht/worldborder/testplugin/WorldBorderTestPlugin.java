@@ -1,13 +1,19 @@
 package com.github.yannicklamprecht.worldborder.testplugin;
 
-import co.aikar.commands.BukkitCommandManager;
-import com.github.yannicklamprecht.worldborder.api.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.github.yannicklamprecht.worldborder.api.IWorldBorder;
+import com.github.yannicklamprecht.worldborder.api.PersistentWorldBorderApi;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderData;
+
+import co.aikar.commands.BukkitCommandManager;
 
 /**
  * Created by ysl3000
@@ -19,15 +25,15 @@ public class WorldBorderTestPlugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
-        Plugin plugin = Bukkit.getPluginManager().getPlugin("WorldBorderAPI");
+        RegisteredServiceProvider<WorldBorderApi> worldBorderApiRegisteredServiceProvider = getServer().getServicesManager().getRegistration(WorldBorderApi.class);
 
-        if (plugin == null || !plugin.isEnabled()) {
+        if (worldBorderApiRegisteredServiceProvider == null) {
             getLogger().info("API not found");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
-        worldBorderApi = BorderAPI.getApi();
+        worldBorderApi = worldBorderApiRegisteredServiceProvider.getProvider();
 
         BukkitCommandManager commandManager = new BukkitCommandManager(this);
         // optional: enable unstable api to use help
