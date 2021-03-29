@@ -3,6 +3,7 @@ package com.github.yannicklamprecht.worldborder.plugin;
 import com.github.yannicklamprecht.worldborder.api.BorderAPI;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -34,6 +35,8 @@ public class WorldBorderPlugin extends JavaPlugin {
         }
 
         worldBorderApi = new PersistenceWrapper(this, worldBorderApi);
+
+        getServer().getServicesManager().register(WorldBorderApi.class, worldBorderApi, this, ServicePriority.High);
 
         BorderAPI.setWorldBorderApi(worldBorderApi);
     }
