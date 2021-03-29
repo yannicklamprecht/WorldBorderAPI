@@ -12,3 +12,8 @@ dependencies {
 }
 
 description = "1_16_R3"
+apply<WorldBorderApiToolsPlugin>()
+
+val build16 = tasks.register<BuildSpigotTask>("buildSpigot"){
+    version = "1.16.5"
+}
