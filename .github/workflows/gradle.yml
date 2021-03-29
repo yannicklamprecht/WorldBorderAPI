@@ -28,3 +28,15 @@
           run: "./gradlew 1_16_R3:buildSpigot"
         - name: Build with gradle
           run: ./gradlew build shadowJar
+        - uses: "actions/upload-artifact@v2-preview"
+          with:
+            name: "WorldBorderPlugin"
+            path: "WorldBorderPlugin/build/libs/WorldBorderPlugin-*-all.jar"
+        - uses: "actions/upload-artifact@v2-preview"
+          with:
+            name: "API"
+            path: "API/build/libs/API-*.jar"
+        - uses: "actions/upload-artifact@v2-preview"
+          with:
+            name: "WorldBorderAPITestPlugin"
+            path: "WorldBorderAPITestPlugin/build/libs/WorldBorderAPITestPlugin-*-all.jar"
