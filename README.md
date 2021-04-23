@@ -7,8 +7,7 @@ A world border api that allows it to define a world border per player
 
 - 1.14.4
 - 1.15.2
-- 1.16.4
-- 1.16.5
+- 1.16.4/5
 
 ---
 
@@ -30,43 +29,70 @@ From version 1.0.5 onwards the following jars are available in the release secti
 You can either develop using the `API.jar` from the release section or by using Maven/Gradle [See](#how-to-add-it-with-maven)
 
 
-`WorldBorderAPI worldBorderAPI = BorderAPI.getApi();`
+```java
+RegisteredServiceProvider<WorldBorderApi> worldBorderApiRegisteredServiceProvider = getServer().getServicesManager().getRegistration(WorldBorderApi.class);
+
+if (worldBorderApiRegisteredServiceProvider == null) {
+    getLogger().info("API not found");
+    getServer().getPluginManager().disablePlugin(this);
+    return;
+}
+
+worldBorderApi = worldBorderApiRegisteredServiceProvider.getProvider();
+```
 
 Sends a red screen for a certain time for player.
 
-`WorldBorderAPI#sendRedScreenForSeconds(Player player, int timeSeconds, JavaPlugin javaPlugin);`
+
+```java
+WorldBorderAPI#sendRedScreenForSeconds(Player player, int timeSeconds, JavaPlugin javaPlugin);
+```
 
 Change the size per player.
 
-`WorldBorderAPI#setBorder(Player player, double size);`
+```java
+WorldBorderAPI#setBorder(Player player, double size);
+```
 
 Resets the player world border to the global one
 
-`WorldBorderAPI#resetWorldBorderToGlobal(Player player);`
+```java
+WorldBorderAPI#resetWorldBorderToGlobal(Player player);
+```
 
 Sets the location,size of the players WorldBorder.
 
-`WorldBorderAPI#setBorder(Player player, double size, Location location);`
+```java
+WorldBorderAPI#setBorder(Player player, double size, Location location);
+```
 
 Change the size of the players WorldBorder in a certain time.
 
-`WorldBorderAPI#setBorder(Player player, double size, int milliSeconds);`
+```java
+WorldBorderAPI#setBorder(Player player, double size, int milliSeconds);
+```
 
 Change the size of the players WorldBorder in a certain time.
 
-`WorldBorderAPI#setBorder(Player player, double size, int time, TimeUnit timeUnit);`
+```java
+WorldBorderAPI#setBorder(Player player, double size, int time, TimeUnit timeUnit);
+```
 
 Gets an instance to modify your stuff yourself
 
-`WorldBorderAPI#getWorldBorder(Player p)`
+```java
+WorldBorderAPI#getWorldBorder(Player p);
+```
 
 Gets an instance of the global WorldBorder
 
-`WorldBorderAPI#getWorldBorder`
+```java
+WorldBorderAPI#getWorldBorder()
+```
 
 ### How to add with Maven
 
-```
+```xml
 <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -75,14 +101,31 @@ Gets an instance of the global WorldBorder
 </repositories>
  ```
  
- ```
+ ```xml
 <dependency>
    <groupId>com.github.yannicklamprecht.WorldBorderAPI</groupId>
    <artifactId>API</artifactId>
    <version>1.165.0</version>
 </dependency>
-
 ```
+
+### How to add with Gradle KTS
+
+```kotlin
+repositories {
+    maven {
+        name = "jitpack.io"
+        url = uri("https://jitpack.io")
+    }    
+}
+```
+
+````kotlin
+dependencies {
+    compileOnly("com.github.yannicklamprecht.WorldBorderAPI:API:1.165.0")
+}
+````
+
 
 ### More examples
 
