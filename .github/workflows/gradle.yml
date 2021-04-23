@@ -20,9 +20,8 @@
             architecture: x64
         - name: Download BuildTools
           run: ./gradlew downloadBuildTools
-        - name: Build Spigot 1.14
-          run: "./gradlew buildSpigot"
         - name: Build Spigot
+          run: "./gradlew buildSpigot"
         - name: Build with gradle
           run: ./gradlew build shadowJar
         - uses: "actions/upload-artifact@v2-preview"
