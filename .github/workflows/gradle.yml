@@ -21,11 +21,8 @@
         - name: Download BuildTools
           run: ./gradlew downloadBuildTools
         - name: Build Spigot 1.14
-          run: "./gradlew 1_14_R1:buildSpigot"
-        - name: Build Spigot 1.15
-          run: "./gradlew 1_15_R1:buildSpigot"
-        - name: Build Spigot 1.16
-          run: "./gradlew 1_16_R3:buildSpigot"
+          run: "./gradlew buildSpigot"
+        - name: Build Spigot
         - name: Build with gradle
           run: ./gradlew build shadowJar
         - uses: "actions/upload-artifact@v2-preview"
