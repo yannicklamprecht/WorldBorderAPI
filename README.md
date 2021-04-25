@@ -29,6 +29,12 @@ From version 1.0.5 onwards the following jars are available in the release secti
 You can either develop using the `API.jar` from the release section or by using Maven/Gradle [See](#how-to-add-it-with-maven)
 
 
+up to 1.165.0 but deprecated (marked for removal with 1.190.0) replacement see below
+```java
+WorldBorderAPI worldBorderAPI = BorderAPI.getApi();
+```
+
+from 1.170.0 (not released comes with 1.17)
 ```java
 RegisteredServiceProvider<WorldBorderApi> worldBorderApiRegisteredServiceProvider = getServer().getServicesManager().getRegistration(WorldBorderApi.class);
 
