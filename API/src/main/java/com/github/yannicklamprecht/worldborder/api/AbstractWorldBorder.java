@@ -11,126 +11,121 @@ import java.util.function.Supplier;
  */
 public abstract class AbstractWorldBorder implements IWorldBorder {
 
-    private final Supplier<Position> centerSupplier;
-    private final Consumer<Position> centerConsumer;
+  private final ConsumerSupplierTupel<Position> center;
 
-    private final Supplier<Position> minSupplier;
-    private final Supplier<Position> maxSupplier;
+  private final Supplier<Position> minSupplier;
+  private final Supplier<Position> maxSupplier;
 
-    private final Supplier<Double> sizeSupplier;
-    private final Consumer<Double> sizeConsumer;
+  private final ConsumerSupplierTupel<Double> size;
 
-    private final Supplier<Integer> damageBufferInBlockSupplier;
-    private final Consumer<Integer> damageBufferInBlockConsumer;
-    private final Consumer<Double> damageBufferDoubleBlockConsumer;
+  private final ConsumerSupplierTupel<Double> damaheBufferInBlocks;
+  private final ConsumerSupplierTupel<Double> damagePerSecondsPerBlock;
+  private final ConsumerSupplierTupel<Integer> warningTimerInSeconds;
+  private final ConsumerSupplierTupel<Integer> warningDistanceInBlocks;
 
-    private final Supplier<Double> damagePerSecondsPerBlockSupplier;
-    private final Consumer<Double> damagePerSecondsPerBlockConsumer;
+  private final Function<Location, Boolean> inBoundsSupplier;
 
+  private final FunctionDoubleDoubleLong lerpConsumer;
 
-    private final Supplier<Integer> warningTimerInSecondsSupplier;
-    private final Consumer<Integer> warningTimerInSecondsConsumer;
-
-    private final Supplier<Integer> warningDistanceInBlocksSupplier;
-    private final Consumer<Integer> warningDistanceInBlocksConsumer;
-
-    private final Function<Location, Boolean> inBoundsSupplier;
-
-    private final FunctionDoubleDoubleLong lerpConsumer;
-
-    public AbstractWorldBorder(Supplier<Position> centerSupplier, Consumer<Position> centerConsumer, Supplier<Position> minSupplier, Supplier<Position> maxSupplier, Supplier<Double> sizeSupplier, Consumer<Double> sizeConsumer,
-                               Supplier<Integer> damageBufferInBlockSupplier, Consumer<Integer> damageBufferInBlockConsumer, Consumer<Double> damageBufferDoubleBlockConsumer, Supplier<Double> damagePerSecondsPerBlockSupplier, Consumer<Double> damagePerSecondsPerBlockConsumer, Supplier<Integer> warningTimerInSecondsSupplier,
-                               Consumer<Integer> warningTimerInSecondsConsumer, Supplier<Integer> warningDistanceInBlocksSupplier, Consumer<Integer> warningDistanceInBlocksConsumer, Function<Location, Boolean> inBoundsSupplier, FunctionDoubleDoubleLong lerpConsumer) {
-        this.centerSupplier = centerSupplier;
-        this.centerConsumer = centerConsumer;
-        this.minSupplier = minSupplier;
-        this.maxSupplier = maxSupplier;
-        this.sizeSupplier = sizeSupplier;
-        this.sizeConsumer = sizeConsumer;
-        this.damageBufferInBlockSupplier = damageBufferInBlockSupplier;
-        this.damageBufferInBlockConsumer = damageBufferInBlockConsumer;
-        this.damageBufferDoubleBlockConsumer = damageBufferDoubleBlockConsumer;
-        this.damagePerSecondsPerBlockSupplier = damagePerSecondsPerBlockSupplier;
-        this.damagePerSecondsPerBlockConsumer = damagePerSecondsPerBlockConsumer;
-        this.warningTimerInSecondsSupplier = warningTimerInSecondsSupplier;
-        this.warningTimerInSecondsConsumer = warningTimerInSecondsConsumer;
-        this.warningDistanceInBlocksSupplier = warningDistanceInBlocksSupplier;
-        this.warningDistanceInBlocksConsumer = warningDistanceInBlocksConsumer;
-        this.inBoundsSupplier = inBoundsSupplier;
-        this.lerpConsumer = lerpConsumer;
-    }
+  public AbstractWorldBorder(ConsumerSupplierTupel<Position> center,
+      Supplier<Position> minSupplier, Supplier<Position> maxSupplier,
+      ConsumerSupplierTupel<Double> size,
+      ConsumerSupplierTupel<Double> damaheBufferInBlocks,
+      ConsumerSupplierTupel<Double> damagePerSecondsPerBlock,
+      ConsumerSupplierTupel<Integer> warningTimerInSeconds,
+      ConsumerSupplierTupel<Integer> warningDistanceInBlocks,
+      Function<Location, Boolean> inBoundsSupplier,
+      FunctionDoubleDoubleLong lerpConsumer) {
+    this.center = center;
+    this.minSupplier = minSupplier;
+    this.maxSupplier = maxSupplier;
+    this.size = size;
+    this.damaheBufferInBlocks = damaheBufferInBlocks;
+    this.damagePerSecondsPerBlock = damagePerSecondsPerBlock;
+    this.warningTimerInSeconds = warningTimerInSeconds;
+    this.warningDistanceInBlocks = warningDistanceInBlocks;
+    this.inBoundsSupplier = inBoundsSupplier;
+    this.lerpConsumer = lerpConsumer;
+  }
 
 
-    public Position getCenter() {
-        return centerSupplier.get();
-    }
+  @Override
+  public Position center() {
+    return this.center.get();
+  }
 
-    public void setCenter(Position center) {
-        centerConsumer.accept(center);
-    }
+  @Override
+  public void center(Position center) {
+    this.center.set(center);
+  }
 
-    public Position getMin() {
-        return minSupplier.get();
-    }
+  @Override
+  public Position min() {
+    return minSupplier.get();
+  }
 
-    public Position getMax() {
-        return maxSupplier.get();
-    }
+  @Override
+  public Position max() {
+    return maxSupplier.get();
+  }
 
-    public double getSize() {
-        return sizeSupplier.get();
-    }
+  @Override
+  public double size() {
+    return this.size.get();
+  }
 
-    public void setSize(double radius) {
-        sizeConsumer.accept(radius);
-    }
+  @Override
+  public void size(double radius) {
+    this.size.set(radius);
+  }
 
-    public int getDamageBufferInBlocks() {
-        return damageBufferInBlockSupplier.get();
-    }
+  @Override
+  public double damageBufferInBlocks() {
+    return damaheBufferInBlocks.get();
+  }
 
-    public void setDamageBufferInBlocks(int blocks) {
-        damageBufferInBlockConsumer.accept(blocks);
-    }
+  @Override
+  public void damageBufferInBlocks(double blocks) {
+    damaheBufferInBlocks.set(blocks);
+  }
 
-    public void setDamageBufferInBlocks(double blocks) {
-        damageBufferDoubleBlockConsumer.accept(blocks);
-    }
+  @Override
+  public double damagePerSecondPerBlock() {
+    return damagePerSecondsPerBlock.get();
+  }
 
-    public double getDamagePerSecondPerBlock() {
-        return damagePerSecondsPerBlockSupplier.get();
-    }
+  @Override
+  public void damagePerSecondPerBlock(double damage) {
+    damagePerSecondsPerBlock.set(damage);
+  }
 
-    @Override
-    public void setDamagePerSecondPerBlock(double damage) {
-        damagePerSecondsPerBlockConsumer.accept(damage);
-    }
+  @Override
+  public int warningTimerInSeconds() {
+    return warningTimerInSeconds.get();
+  }
 
-    public void setDamagerPerSecondPerBlock(double damage) {
-        setDamagePerSecondPerBlock(damage);
-    }
+  @Override
+  public void warningTimeInSeconds(int seconds) {
+    warningTimerInSeconds.set(seconds);
+  }
 
-    public int getWarningTimerInSeconds() {
-        return warningTimerInSecondsSupplier.get();
-    }
+  @Override
+  public int warningDistanceInBlocks() {
+    return warningDistanceInBlocks.get();
+  }
 
-    public void setWarningTimeInSeconds(int seconds) {
-        warningTimerInSecondsConsumer.accept(seconds);
-    }
+  @Override
+  public void warningDistanceInBlocks(int blocks) {
+    warningDistanceInBlocks.set(blocks);
+  }
 
-    public int getWarningDistanceInBlocks() {
-        return warningDistanceInBlocksSupplier.get();
-    }
+  @Override
+  public boolean isInBounds(Location location) {
+    return inBoundsSupplier.apply(location);
+  }
 
-    public void setWarningDistanceInBlocks(int blocks) {
-        warningDistanceInBlocksConsumer.accept(blocks);
-    }
-
-    public boolean isInBounds(Location location) {
-        return inBoundsSupplier.apply(location);
-    }
-
-    public void lerp(double oldSize, double newSize, long time) {
-        lerpConsumer.lerp(oldSize, newSize, time);
-    }
+  @Override
+  public void lerp(double oldSize, double newSize, long time) {
+    lerpConsumer.lerp(oldSize, newSize, time);
+  }
 }

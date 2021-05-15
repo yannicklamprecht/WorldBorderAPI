@@ -5,47 +5,94 @@ import org.bukkit.entity.Player;
 
 public interface IWorldBorder {
 
-    Position getCenter();
 
-    void setCenter(Position center);
+  default Position getCenter() {
+    return center();
+  }
 
-    Position getMin();
+  default void setCenter(Position center) {
+    center(center);
+  }
 
-    Position getMax();
+  default Position getMin() {
+    return min();
+  }
 
-    double getSize();
+  default Position getMax() {
+    return max();
+  }
 
-    void setSize(double radius);
+  default double getSize() {
+    return size();
+  }
 
-    int getDamageBufferInBlocks();
+  default void setSize(double radius) {
+    size(radius);
+  }
 
-    void setDamageBufferInBlocks(int blocks);
+  default double getDamageBufferInBlocks() {
+    return damageBufferInBlocks();
+  }
 
-    void setDamageBufferInBlocks(double blocks);
+  default void setDamageBufferInBlocks(double blocks) {
+    damageBufferInBlocks(blocks);
+  }
 
-    double getDamagePerSecondPerBlock();
+  default double getDamagePerSecondPerBlock() {
+    return damagePerSecondPerBlock();
+  }
 
-    void setDamagePerSecondPerBlock(double damage);
+  default void setDamagePerSecondPerBlock(double damage) {
+    damagePerSecondPerBlock(damage);
+  }
 
-    /**
-     * Typing error use {@link IWorldBorder#setDamagePerSecondPerBlock(double)}
-     *
-     * @param damage the damage that should be dealt each second per block
-     */
-    @Deprecated
-    void setDamagerPerSecondPerBlock(double damage);
+  default int getWarningTimerInSeconds() {
+    return warningTimerInSeconds();
+  }
 
-    int getWarningTimerInSeconds();
+  default void setWarningTimeInSeconds(int seconds) {
+    warningTimeInSeconds(seconds);
+  }
 
-    void setWarningTimeInSeconds(int seconds);
+  default int getWarningDistanceInBlocks() {
+    return warningDistanceInBlocks();
+  }
 
-    int getWarningDistanceInBlocks();
+  default void setWarningDistanceInBlocks(int blocks) {
+    warningDistanceInBlocks(blocks);
+  }
 
-    void setWarningDistanceInBlocks(int blocks);
+  void center(Position center);
 
-    boolean isInBounds(Location location);
+  Position center();
 
-    void lerp(double oldSize, double newSize, long time);
+  Position min();
 
-    void send(Player player, WorldBorderAction worldBorderAction);
+  Position max();
+
+  double size();
+
+  void size(double radius);
+
+  double damageBufferInBlocks();
+
+  void damageBufferInBlocks(double blocks);
+
+  double damagePerSecondPerBlock();
+
+  void damagePerSecondPerBlock(double damage);
+
+  int warningTimerInSeconds();
+
+  void warningTimeInSeconds(int seconds);
+
+  int warningDistanceInBlocks();
+
+  void warningDistanceInBlocks(int blocks);
+
+  boolean isInBounds(Location location);
+
+  void lerp(double oldSize, double newSize, long time);
+
+  void send(Player player, WorldBorderAction worldBorderAction);
 }

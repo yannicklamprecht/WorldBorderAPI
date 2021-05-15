@@ -44,12 +44,12 @@ public class WorldBorderApiImpl implements WorldBorderApi {
 
     @Override
     public void setBorder(Player player, double size, Location location) {
-        setBorder(player, size, new Position(location));
+        setBorder(player, size, Position.of(location));
     }
 
     @Override
     public void setBorder(Player player, double size, Vector vector) {
-        setBorder(player, size, new Position(vector));
+        setBorder(player, size, Position.of(vector));
     }
 
     @Override

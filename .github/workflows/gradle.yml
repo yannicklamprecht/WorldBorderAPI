@@ -7,7 +7,7 @@
     build:
       strategy:
         matrix:
-          java-version: [ '11' ]
+          java-version: [ '16' ]
           os: [ 'ubuntu-latest']
       runs-on: ${{ matrix.os }}
       steps:
@@ -18,21 +18,10 @@
           with:
             java-version: ${{ matrix.java-version }}
             architecture: x64
-        - name: Download BuildTools
-          run: ./gradlew downloadBuildTools
-        - name: Build Spigot
-          run: "./gradlew buildSpigot"
         - name: Build with gradle
-          run: ./gradlew build shadowJar
-        - uses: "actions/upload-artifact@v2-preview"
-          with:
-            name: "WorldBorderPlugin"
-            path: "WorldBorderPlugin/build/libs/WorldBorderPlugin-*-all.jar"
+          run: ./gradlew api:build
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "API"
-            path: "API/build/libs/API-*.jar"
-        - uses: "actions/upload-artifact@v2-preview"
-          with:
-            name: "WorldBorderAPITestPlugin"
-            path: "WorldBorderAPITestPlugin/build/libs/WorldBorderAPITestPlugin-*-all.jar"
+            path: "api/build/libs/api-*.jar"
+

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.github.yannicklamprecht.worldborder.api"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.github.yannicklamprecht.worldborder.api"}];updateSearchResults();

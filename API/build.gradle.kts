@@ -7,7 +7,14 @@ plugins {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
 }
 
-description = "API"
+tasks {
+    withType<Javadoc> {
+        source = sourceSets.main.get().allJava
+    }
+}
+
+
+description = "api"

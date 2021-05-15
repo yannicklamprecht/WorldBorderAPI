@@ -6,3 +6,6 @@ val buildToolsFile = File("BuildTools.jar")
 val buildToolsUrl =
     URL("https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar")
 const val taskGroup = "worldborderapitools"
+
+
+const val shadowVersion = "7.0.0"
