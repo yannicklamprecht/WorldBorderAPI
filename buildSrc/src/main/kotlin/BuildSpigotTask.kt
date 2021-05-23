@@ -15,6 +15,7 @@ open class BuildSpigotTask : DefaultTask() {
             buildToolsFile.name,
             "--rev",
             version,
+            "--disable-java-check",
             directory = buildToolsDir,
             printToStdout = true
         )
