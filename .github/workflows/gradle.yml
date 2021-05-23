@@ -18,10 +18,24 @@
           with:
             java-version: ${{ matrix.java-version }}
             architecture: x64
+        - name: Download BuildTools
+          run: ./gradlew downloadBuildTools
+        - name: Build Spigot
+          run: "./gradlew buildSpigot"
+        - name: Build with gradle
+          run: ./gradlew build shadowJar
+        - uses: "actions/upload-artifact@v2-preview"
+          with:
+            name: "plugin"
+            path: "plugin/build/libs/plugin-*-all.jar"
         - name: Build with gradle
           run: ./gradlew api:build
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "API"
             path: "api/build/libs/api-*.jar"
+        - uses: "actions/upload-artifact@v2-preview"
+          with:
+            name: "testplugin"
+            path: "testplugin/build/libs/WorldBorderAPITestPlugin-*-all.jar"
 
