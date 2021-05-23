@@ -37,5 +37,5 @@
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "testplugin"
-            path: "testplugin/build/libs/WorldBorderAPITestPlugin-*-all.jar"
+            path: "testplugin/build/libs/testplugin-*.jar"
 
