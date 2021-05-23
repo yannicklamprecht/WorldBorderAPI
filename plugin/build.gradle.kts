@@ -9,8 +9,6 @@ plugins {
 
 dependencies {
     implementation(projects.api)
-    implementation(projects.version114)
-    implementation(projects.version115)
     implementation(projects.version116)
     compileOnly("org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT")
 }
