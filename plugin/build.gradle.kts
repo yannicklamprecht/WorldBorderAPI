@@ -10,7 +10,70 @@ plugins {
 dependencies {
     implementation(projects.api)
     implementation(projects.version116)
+    implementation(projects.version117)
     compileOnly("org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT")
 }
 
 description = "plugin"
+
+
+fun filePathWithClassifier(classifier: String? = "all"): File {
+    return project.tasks.shadowJar.get().archiveFile.get().asFile.parentFile
+        .resolve(
+            "${project.tasks.shadowJar.get().archiveBaseName.get()}-${project.version}${classifier.let { "-$it" }}.jar"
+        )
+}
+
+fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File) {
+
+    project.parent?.let {
+
+        println()
+
+        val mutableArguments = mutableListOf(
+            "java",
+            "-jar",
+            it.projectDir.resolve("buildtools/BuildData/bin/SpecialSource.jar").toString(),
+            "-i",
+            inputPath.absolutePath,
+            "-o",
+            outputPath.absolutePath,
+            "-m",
+            System.getProperty("user.home") + "/.m2/repository/org/spigotmc/minecraft-server/1.17-R0.1-SNAPSHOT/minecraft-server-1.17-R0.1-SNAPSHOT-maps-mojang.txt"
+        )
+
+        mutableArguments.addAll(additionalParameters)
+
+
+        cmd(
+            *mutableArguments.toTypedArray(),
+            directory = buildToolsDir,
+            printToStdout = true
+        )
+    }
+}
+
+val reobf: Task by tasks.creating {
+    group = taskGroup
+    doLast {
+        remap(
+            "--reverse",
+            inputPath = filePathWithClassifier(),
+            outputPath = filePathWithClassifier("obf")
+        )
+    }
+}
+reobf.name
+
+
+val deobf: Task by tasks.creating {
+    group = taskGroup
+    doLast {
+        remap(
+            inputPath = filePathWithClassifier("obf"),
+            outputPath = filePathWithClassifier("deobf")
+        )
+    }
+}
+deobf.name
+

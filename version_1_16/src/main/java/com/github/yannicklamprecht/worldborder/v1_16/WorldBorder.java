@@ -1,4 +1,4 @@
-package com.github.yannicklamprecht.worldborder.v1_16_R3;
+package com.github.yannicklamprecht.worldborder.v1_16;
 
 import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
 
@@ -28,7 +28,7 @@ public class WorldBorder extends AbstractWorldBorder {
         this(((CraftWorld) world).getHandle().getWorldBorder());
     }
 
-    private WorldBorder(net.minecraft.server.v1_16_R3.WorldBorder worldBorder) {
+    public WorldBorder(net.minecraft.server.v1_16_R3.WorldBorder worldBorder) {
         super(
             of(
                 position -> worldBorder.setCenter(position.x(), position.z()),

@@ -23,13 +23,15 @@
         - name: Build Spigot
           run: "./gradlew buildSpigot"
         - name: Build with gradle
-          run: ./gradlew build shadowJar
+          run: ./gradlew build shadowJar reobf
         - uses: "actions/upload-artifact@v2-preview"
           with:
-            name: "plugin"
+            name: "plugin-mojangmapped"
             path: "plugin/build/libs/plugin-*-all.jar"
-        - name: Build with gradle
-          run: ./gradlew api:build
+        - uses: "actions/upload-artifact@v2-preview"
+            with:
+              name: "plugin-obf"
+              path: "plugin/build/libs/plugin-*-obf.jar"
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "API"
@@ -38,4 +40,12 @@
           with:
             name: "testplugin"
             path: "testplugin/build/libs/testplugin-*.jar"
+        - name: Release
+          uses: softprops/action-gh-release@v1
+          if: startsWith(github.ref, 'refs/tags/')
+          with:
+            files:
+              - "plugin/build/libs/plugin-*-all.jar"
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

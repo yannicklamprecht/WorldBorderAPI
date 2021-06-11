@@ -8,13 +8,13 @@ plugins {
 
 dependencies {
     compileOnly(projects.api)
-    compileOnly("org.spigotmc:spigot:1.16.5-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:remapped-mojang")
 }
 
-description = "version_1_16"
+description = "version_1_17"
 apply<WorldBorderApiToolsPlugin>()
 
 val build16 = tasks.register<BuildSpigotTask>("buildSpigot"){
-    version.set("1.16.5")
-    mojangMapped.set(false)
+    version.set("1.17")
+    mojangMapped.set(true)
 }

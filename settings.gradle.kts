@@ -3,8 +3,9 @@
  */
 
 rootProject.name = "WorldBorderAPI"
-include("plugin")
-include("version_1_16")
 include("api")
+include("version_1_16")
+include("version_1_17")
+include("plugin")
 include("testplugin")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

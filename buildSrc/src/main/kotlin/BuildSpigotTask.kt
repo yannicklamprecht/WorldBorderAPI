@@ -1,21 +1,35 @@
 import org.gradle.api.DefaultTask
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-open class BuildSpigotTask : DefaultTask() {
+abstract class BuildSpigotTask : DefaultTask() {
 
-    @Input
-    lateinit var version: String
+
+    @get:Input
+    abstract val version: Property<String>
+    @get:Input
+    abstract val mojangMapped: Property<Boolean>
+
 
     @TaskAction
     fun build(){
-        cmd(
+
+        val additionalParams = mutableListOf(
             "java",
             "-jar",
             buildToolsFile.name,
             "--rev",
-            version,
+            version.get(),
             "--disable-java-check",
+        )
+
+        if(mojangMapped.get()) {
+            additionalParams.addAll(listOf("--remapped", "remapped-mojang"))
+
+        }
+
+        cmd(*additionalParams.toTypedArray(),
             directory = buildToolsDir,
             printToStdout = true
         )
