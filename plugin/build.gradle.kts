@@ -57,7 +57,7 @@ fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File
     }
 }
 
-val remap: Task by tasks.creating {
+val remapJar: Task by tasks.creating {
     group = taskGroup
     doLast {
         remap(
@@ -74,6 +74,6 @@ val remap: Task by tasks.creating {
         filePathWithClassifier("obf").delete()
     }
 }
-remap.name
+remapJar.name
 
 

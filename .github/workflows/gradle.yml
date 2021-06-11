@@ -23,7 +23,7 @@
         - name: Build Spigot
           run: "./gradlew buildSpigot"
         - name: Build with gradle
-          run: ./gradlew build shadowJar remap
+          run: ./gradlew clean shadowJar remapJar
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "plugin-mojangmapped"
