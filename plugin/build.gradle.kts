@@ -16,15 +16,19 @@ dependencies {
 
 description = "plugin"
 
+tasks.shadowJar {
+    archiveClassifier.set("mojang")
+}
 
-fun filePathWithClassifier(classifier: String? = "all"): File {
+
+fun filePathWithClassifier(classifier: String): File {
     return project.tasks.shadowJar.get().archiveFile.get().asFile.parentFile
         .resolve(
             "${project.tasks.shadowJar.get().archiveBaseName.get()}-${project.version}${classifier.let { "-$it" }}.jar"
         )
 }
 
-fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File) {
+fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File, mapEnding: String) {
 
     project.parent?.let {
 
@@ -33,13 +37,13 @@ fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File
         val mutableArguments = mutableListOf(
             "java",
             "-jar",
-            it.projectDir.resolve("buildtools/BuildData/bin/SpecialSource.jar").toString(),
+            it.projectDir.resolve("specialsource/SpecialSource.jar").toString(),
             "-i",
             inputPath.absolutePath,
             "-o",
             outputPath.absolutePath,
             "-m",
-            System.getProperty("user.home") + "/.m2/repository/org/spigotmc/minecraft-server/1.17-R0.1-SNAPSHOT/minecraft-server-1.17-R0.1-SNAPSHOT-maps-mojang.txt"
+            System.getProperty("user.home") + "/.m2/repository/org/spigotmc/minecraft-server/1.17-R0.1-SNAPSHOT/minecraft-server-1.17-R0.1-SNAPSHOT-${mapEnding}"
         )
 
         mutableArguments.addAll(additionalParameters)
@@ -53,27 +57,23 @@ fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File
     }
 }
 
-val reobf: Task by tasks.creating {
+val remap: Task by tasks.creating {
     group = taskGroup
     doLast {
         remap(
             "--reverse",
-            inputPath = filePathWithClassifier(),
-            outputPath = filePathWithClassifier("obf")
+            inputPath = filePathWithClassifier("mojang"),
+            outputPath = filePathWithClassifier("obf"),
+            mapEnding = "maps-mojang.txt"
         )
-    }
-}
-reobf.name
-
-
-val deobf: Task by tasks.creating {
-    group = taskGroup
-    doLast {
         remap(
             inputPath = filePathWithClassifier("obf"),
-            outputPath = filePathWithClassifier("deobf")
+            outputPath = filePathWithClassifier("spigot"),
+            mapEnding = "maps-spigot.csrg"
         )
+        filePathWithClassifier("obf").delete()
     }
 }
-deobf.name
+remap.name
+
 

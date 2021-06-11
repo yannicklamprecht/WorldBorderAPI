@@ -27,11 +27,11 @@
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "plugin-mojangmapped"
-            path: "plugin/build/libs/plugin-*-all.jar"
+            path: "plugin/build/libs/plugin-*-mojang.jar"
         - uses: "actions/upload-artifact@v2-preview"
-            with:
-              name: "plugin-obf"
-              path: "plugin/build/libs/plugin-*-obf.jar"
+          with:
+            name: "plugin-spigot"
+            path: "plugin/build/libs/plugin-*-spigot.jar"
         - uses: "actions/upload-artifact@v2-preview"
           with:
             name: "API"
@@ -44,8 +44,9 @@
           uses: softprops/action-gh-release@v1
           if: startsWith(github.ref, 'refs/tags/')
           with:
-            files:
-              - "plugin/build/libs/plugin-*-all.jar"
+            files: |
+              plugin/build/libs/plugin-*-spigot.jar
+              plugin/build/libs/plugin-*-mojang.jar
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

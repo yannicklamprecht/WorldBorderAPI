@@ -19,4 +19,16 @@ fun Project.initWBTools() = run {
             buildToolsDir.resolve(buildToolsFile).writeBytes(buildToolsUrl.readBytes())
         }
     }.name
+
+    project.tasks.register("downloadSpecialsource"){
+        group = taskGroup
+        onlyIf {
+            !specialSourceDir.exists() ||
+                    !specialsoureFile.exists()
+        }
+        doLast {
+            specialSourceDir.mkdirs()
+            specialSourceDir.resolve(specialsoureFile).writeBytes(specialsourceUrl.readBytes())
+        }
+    }.name
 }

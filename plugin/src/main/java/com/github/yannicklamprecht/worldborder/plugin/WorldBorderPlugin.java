@@ -1,5 +1,7 @@
 package com.github.yannicklamprecht.worldborder.plugin;
 
+import java.util.Locale;
+
 import com.github.yannicklamprecht.worldborder.api.BorderAPI;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderApiImpl;
@@ -17,12 +19,13 @@ public class WorldBorderPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        String version = Bukkit.getServer().getClass().getPackage().getName().replace('.', ',').split(",")[3];
+        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].toLowerCase(
+            Locale.ROOT);
         System.out.println("Version: " + version);
         WorldBorderApi worldBorderApi;
         switch (version) {
-            case "v1_16_R3" -> worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_16.Border();
-            case "v1_17_R1" -> worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_17.Border();
+            case "v1_16_r3" -> worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_16.Border();
+            case "v1_17_r1" -> worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_17.Border();
             default -> {
                 getLogger().info("Unsupported version of Minecraft");
                 Bukkit.getPluginManager().disablePlugin(this);
