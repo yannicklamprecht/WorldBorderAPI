@@ -20,60 +20,31 @@ tasks.shadowJar {
     archiveClassifier.set("mojang")
 }
 
-
-fun filePathWithClassifier(classifier: String): File {
-    return project.tasks.shadowJar.get().archiveFile.get().asFile.parentFile
-        .resolve(
-            "${project.tasks.shadowJar.get().archiveBaseName.get()}-${project.version}${classifier.let { "-$it" }}.jar"
-        )
-}
-
-fun remap(vararg additionalParameters: String, inputPath: File, outputPath: File, mapEnding: String) {
-
-    project.parent?.let {
-
-        println()
-
-        val mutableArguments = mutableListOf(
-            "java",
-            "-jar",
-            it.projectDir.resolve("specialsource/SpecialSource.jar").toString(),
-            "-i",
-            inputPath.absolutePath,
-            "-o",
-            outputPath.absolutePath,
-            "-m",
-            System.getProperty("user.home") + "/.m2/repository/org/spigotmc/minecraft-server/1.17-R0.1-SNAPSHOT/minecraft-server-1.17-R0.1-SNAPSHOT-${mapEnding}"
-        )
-
-        mutableArguments.addAll(additionalParameters)
-
-
-        cmd(
-            *mutableArguments.toTypedArray(),
-            directory = buildToolsDir,
-            printToStdout = true
-        )
+fun String.asClassifiedJar(): File {
+    return project.tasks.shadowJar.get().let {
+        return@let it.archiveFile.get().asFile.parentFile.resolve("${it.archiveBaseName.get()}-${project.version}${this.let { classifier -> "-$classifier" }}.jar")
     }
 }
 
 val remapJar: Task by tasks.creating {
     group = taskGroup
+    description = "Remaps the Jar to use spigot mappings"
     doLast {
+        logger.lifecycle("Remap from Mojang to Obf")
         remap(
             "--reverse",
-            inputPath = filePathWithClassifier("mojang"),
-            outputPath = filePathWithClassifier("obf"),
+            inputPath = "mojang".asClassifiedJar(),
+            outputPath = "obf".asClassifiedJar(),
             mapEnding = "maps-mojang.txt"
         )
+        logger.lifecycle("Remap from Obf to Spigot")
         remap(
-            inputPath = filePathWithClassifier("obf"),
-            outputPath = filePathWithClassifier("spigot"),
+            inputPath = "obf".asClassifiedJar(),
+            outputPath = "spigot".asClassifiedJar(),
             mapEnding = "maps-spigot.csrg"
         )
-        filePathWithClassifier("obf").delete()
+        "obf".asClassifiedJar().delete()
     }
 }
-remapJar.name
 
 

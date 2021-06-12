@@ -14,7 +14,7 @@ dependencies {
 description = "version_1_17"
 apply<WorldBorderApiToolsPlugin>()
 
-val build16 = tasks.register<BuildSpigotTask>("buildSpigot"){
+tasks.register<BuildSpigotTask>("buildSpigot"){
     version.set("1.17")
     mojangMapped.set(true)
 }

@@ -2,6 +2,8 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import kotlin.io.path.ExperimentalPathApi
+import kotlin.io.path.name
 
 abstract class BuildSpigotTask : DefaultTask() {
 
@@ -12,13 +14,14 @@ abstract class BuildSpigotTask : DefaultTask() {
     abstract val mojangMapped: Property<Boolean>
 
 
+
     @TaskAction
     fun build(){
 
         val additionalParams = mutableListOf(
             "java",
             "-jar",
-            buildToolsFile.name,
+            buildToolsPath.toFile().name,
             "--rev",
             version.get(),
             "--disable-java-check",
@@ -30,7 +33,7 @@ abstract class BuildSpigotTask : DefaultTask() {
         }
 
         cmd(*additionalParams.toTypedArray(),
-            directory = buildToolsDir,
+            directory = buildToolsPath.parent.toFile(),
             printToStdout = true
         )
     }

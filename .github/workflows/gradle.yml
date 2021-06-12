@@ -18,28 +18,15 @@
           with:
             java-version: ${{ matrix.java-version }}
             architecture: x64
-        - name: Download BuildTools
-          run: ./gradlew downloadBuildTools
-        - name: Build Spigot
-          run: "./gradlew buildSpigot"
         - name: Build with gradle
-          run: ./gradlew clean shadowJar remapJar
-        - uses: "actions/upload-artifact@v2-preview"
+          run: ./gradlew cleanup setup clean shadowJar remap
+        - uses: "actions/upload-artifact@v2"
           with:
-            name: "plugin-mojangmapped"
-            path: "plugin/build/libs/plugin-*-mojang.jar"
-        - uses: "actions/upload-artifact@v2-preview"
-          with:
-            name: "plugin-spigot"
-            path: "plugin/build/libs/plugin-*-spigot.jar"
-        - uses: "actions/upload-artifact@v2-preview"
-          with:
-            name: "API"
-            path: "api/build/libs/api-*.jar"
-        - uses: "actions/upload-artifact@v2-preview"
-          with:
-            name: "testplugin"
-            path: "testplugin/build/libs/testplugin-*.jar"
+            name: "artifacts"
+            path: |
+            plugin/build/libs/plugin-*.jar
+            api/build/libs/api-*.jar
+            testplugin/build/libs/testplugin-*.jar
         - name: Release
           uses: softprops/action-gh-release@v1
           if: startsWith(github.ref, 'refs/tags/')

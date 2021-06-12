@@ -1,5 +1,8 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.get
+import java.net.URL
+import java.nio.file.Path
 
 open class WorldBorderApiToolsPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -7,28 +10,30 @@ open class WorldBorderApiToolsPlugin : Plugin<Project> {
     }
 }
 
-fun Project.initWBTools() = run {
-    project.tasks.register("downloadBuildTools") {
-        group = taskGroup
-        onlyIf {
-            !buildToolsDir.exists() ||
-                    !buildToolsFile.exists()
-        }
-        doLast {
-            buildToolsDir.mkdirs()
-            buildToolsDir.resolve(buildToolsFile).writeBytes(buildToolsUrl.readBytes())
-        }
-    }.name
+fun download(targetPath: Path, url: URL){
+    if(!targetPath.toFile().exists()){
+        targetPath.parent.toFile().mkdirs()
+        targetPath.toFile().writeBytes(url.readBytes())
+    }
+}
 
-    project.tasks.register("downloadSpecialsource"){
+fun Project.initWBTools() = run {
+    project.tasks.register("setup") {
         group = taskGroup
-        onlyIf {
-            !specialSourceDir.exists() ||
-                    !specialsoureFile.exists()
+        description = "Setups the tools used: SpecialSource, BuildTools"
+        doFirst {
+            tooling.toFile().mkdirs()
+            download(buildToolsPath, buildToolsUrl)
+            download(specialsourePath, specialsourceUrl)
         }
+        finalizedBy(project.tasks.getByName("buildSpigot"))
+    }
+
+    project.tasks.register("cleanup"){
+        group = taskGroup
+        description = "Cleanup the tools used: SpecialSource, BuildTools"
         doLast {
-            specialSourceDir.mkdirs()
-            specialSourceDir.resolve(specialsoureFile).writeBytes(specialsourceUrl.readBytes())
+            tooling.toFile().deleteRecursively()
         }
-    }.name
+    }
 }
