@@ -24,9 +24,9 @@
           with:
             name: "artifacts"
             path: |
-            plugin/build/libs/plugin-*.jar
-            api/build/libs/api-*.jar
-            testplugin/build/libs/testplugin-*.jar
+              plugin/build/libs/plugin-*.jar
+              api/build/libs/api-*.jar
+              testplugin/build/libs/testplugin-*.jar
         - name: Release
           uses: softprops/action-gh-release@v1
           if: startsWith(github.ref, 'refs/tags/')
