@@ -21,7 +21,7 @@
             java-version: ${{ matrix.java-version }}
             architecture: x64
         - name: Build with gradle
-          run: ./gradlew cleanup setup clean shadowJar
+          run: ./gradlew setup shadowJar
           # todo remap when special source is fixed or another tool is implemented
         # - uses: "actions/upload-artifact@v2" todo use again when special source is fixed or another tool is implemented
         #   with:
