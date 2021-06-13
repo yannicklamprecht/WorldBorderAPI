@@ -1,6 +1,5 @@
 plugins {
     `java-library`
-    `maven-publish`
 }
 
 repositories {
@@ -11,18 +10,14 @@ repositories {
     }
 
     maven {
-       url = uri("https://repo.aikar.co/content/groups/aikar/")
+        url = uri("https://repo.aikar.co/content/groups/aikar/")
     }
 }
 
 group = "com.github.yannicklamprecht"
-version = "1.165.0"
+version = "1.170.0"
 
-publishing {
-    publications.create<MavenPublication>("maven") {
-        from(components["java"])
-    }
-}
+
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
@@ -34,4 +29,3 @@ plugins.withId("java") {
         vendor.set(JvmVendorSpec.ADOPTOPENJDK)
     }
 }
-

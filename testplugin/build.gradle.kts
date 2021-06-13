@@ -14,3 +14,16 @@ dependencies {
 }
 
 description = "testplugin"
+
+tasks {
+    processResources {
+        from(sourceSets.main.get().resources.srcDirs) {
+            filesMatching("plugin.yml") {
+                expand(
+                    "version" to project.version
+                )
+            }
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
+}

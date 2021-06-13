@@ -13,8 +13,20 @@ dependencies {
 
 description = "plugin"
 
-tasks.shadowJar {
-    archiveClassifier.set("spigot") // todo set to mojang when special source is fixed or another tool is implemented
+tasks {
+    shadowJar {
+        archiveClassifier.set("spigot") // todo set to mojang when special source is fixed or another tool is implemented
+    }
+    processResources {
+        from(sourceSets.main.get().resources.srcDirs) {
+            filesMatching("plugin.yml") {
+                expand(
+                    "version" to project.version
+                )
+            }
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
 }
 
 fun String.asClassifiedJar(): File {
