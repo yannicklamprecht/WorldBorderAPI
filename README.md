@@ -122,34 +122,37 @@ WorldBorderAPI#getWorldBorder()
 ```xml
 <repositories>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>eldonexus</id>
+            <url>https://eldonexus.de/repository/maven-releases/</url>
         </repository>
 </repositories>
  ```
  
  ```xml
+
 <dependency>
-   <groupId>com.github.yannicklamprecht.WorldBorderAPI</groupId>
-   <artifactId>API</artifactId>
-   <version>1.165.0</version>
+  <groupId>com.github.yannicklamprecht.worldborderapi</groupId>
+  <artifactId>api</artifactId>
+  <version>1.170.0</version>
 </dependency>
 ```
 
 ### How to add with Gradle KTS
 
 ```kotlin
+
+
 repositories {
     maven {
-        name = "jitpack.io"
-        url = uri("https://jitpack.io")
+        name = "eldonexus"
+        url = uri("https://eldonexus.de/repository/maven-releases/")
     }    
 }
 ```
 
 ````kotlin
 dependencies {
-    compileOnly("com.github.yannicklamprecht.WorldBorderAPI:API:1.165.0")
+    compileOnly("com.github.yannicklamprecht.worldborderapi:api:1.170.0")
 }
 ````
 
