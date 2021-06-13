@@ -3,6 +3,8 @@
       branches:
         - master
         - develop
+      tags:
+        - '*.*.*'
   jobs:
     build:
       strategy:
@@ -42,6 +44,8 @@
           if: startsWith(github.ref, 'refs/tags/')
           with:
             files: |
+              api/build/libs/api-*jar
+              testplugin/build/libs/testplugin-*.jar
               plugin/build/libs/plugin-*-spigot.jar
               plugin/build/libs/plugin-*-mojang.jar
           env:
