@@ -35,22 +35,17 @@ Built with Java 16: [Not yet available, <span style="text-decoration:underline">
 ## Usage
 
 You just want to use the Plugin because it is a dependency of another Plugin you're using?
-Have a look at the release section. The right jar is named like this `WorldBorderPlugin-1.0.4-SNAPSHOT`
+Have a look at the release section. The right jar is named like this `worldborderapiplugin-1.170.0-SNAPSHOT`
 
 You're a developer and want to use this as a dependency for your plugin? [See](#obtain-the-api)
-
-From version 1.0.5 onwards the following jars are available in the release section:
-- API.jar _> The API non Maven/Gradle user can include to develop a plugin depending on this plugin
-- WorldBorderAPITestPlugin.jar _> A plugin to test the functionallity of the WorldBorderPlugin (currently specific chat messages are used to trigger the different states)
- - WorldBorderPlugin-1.0.4-SNAPSHOT.jar _> The plugin that should be dropped into the Pluginsfolder
 
 ---
 ## Obtain the API
 
-You can either develop using the `API.jar` from the release section or by using Maven/Gradle [See](#how-to-add-it-with-maven)
+You can either develop using the `api.jar` from the release section or by using Maven/Gradle [See](#how-to-add-it-with-maven)
 
 
-up to 1.165.0 but deprecated (marked for removal with 1.190.0) replacement see below
+Up to 1.165.0 but deprecated (marked for removal with 1.190.0) replacement see below
 ```java
 WorldBorderAPI worldBorderAPI = BorderAPI.getApi();
 ```
@@ -140,8 +135,6 @@ WorldBorderAPI#getWorldBorder()
 ### How to add with Gradle KTS
 
 ```kotlin
-
-
 repositories {
     maven {
         name = "eldonexus"

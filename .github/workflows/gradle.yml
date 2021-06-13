@@ -26,11 +26,11 @@
         # - uses: "actions/upload-artifact@v2" todo use again when special source is fixed or another tool is implemented
         #   with:
         #     name: "plugin-mojang"
-        #     path: "plugin/build/libs/plugin-*-mojang.jar"
+        #     path: "plugin/build/libs/worldborderapiplugin-*-mojang.jar"
         - uses: "actions/upload-artifact@v2"
           with:
             name: "plugin-spigot"
-            path: "plugin/build/libs/plugin-*-spigot.jar"
+            path: "plugin/build/libs/worldborderapiplugin-*-spigot.jar"
         - uses: "actions/upload-artifact@v2"
           with:
             name: "api"
@@ -46,8 +46,8 @@
             files: |
               api/build/libs/api-*jar
               testplugin/build/libs/testplugin-*.jar
-              plugin/build/libs/plugin-*-spigot.jar
-              plugin/build/libs/plugin-*-mojang.jar
+              plugin/build/libs/worldborderapiplugin-*-spigot.jar
+              plugin/build/libs/worldborderapiplugin-*-mojang.jar
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

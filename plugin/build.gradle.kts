@@ -16,6 +16,7 @@ description = "plugin"
 tasks {
     shadowJar {
         archiveClassifier.set("spigot") // todo set to mojang when special source is fixed or another tool is implemented
+        archiveBaseName.set("worldborderapiplugin")
     }
     processResources {
         from(sourceSets.main.get().resources.srcDirs) {
