@@ -8,7 +8,7 @@ plugins {
 
 dependencies {
     compileOnly(projects.api)
-    compileOnly("org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:remapped-mojang")
+    compileOnly("org.spigotmc:spigot:1.17-R0.1-SNAPSHOT") // todo add classifier ":remapped-mojang" when special source is fixed or another tool is implemented
 }
 
 description = "version_1_17"
@@ -16,5 +16,5 @@ apply<WorldBorderApiToolsPlugin>()
 
 tasks.register<BuildSpigotTask>("buildSpigot"){
     version.set("1.17")
-    mojangMapped.set(true)
+    mojangMapped.set(false) // todo set to "true" when special source is fixed or another tool is implemented
 }

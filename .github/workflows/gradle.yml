@@ -19,11 +19,12 @@
             java-version: ${{ matrix.java-version }}
             architecture: x64
         - name: Build with gradle
-          run: ./gradlew cleanup setup clean shadowJar remap
-        - uses: "actions/upload-artifact@v2"
-          with:
-            name: "plugin-mojang"
-            path: "plugin/build/libs/plugin-*-mojang.jar"
+          run: ./gradlew cleanup setup clean shadowJar
+          # todo remap when special source is fixed or another tool is implemented
+        # - uses: "actions/upload-artifact@v2" todo use again when special source is fixed or another tool is implemented
+        #   with:
+        #     name: "plugin-mojang"
+        #     path: "plugin/build/libs/plugin-*-mojang.jar"
         - uses: "actions/upload-artifact@v2"
           with:
             name: "plugin-spigot"

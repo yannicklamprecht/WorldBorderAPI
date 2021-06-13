@@ -8,13 +8,13 @@ dependencies {
     implementation(projects.api)
     implementation(projects.version116)
     implementation(projects.version117)
-    compileOnly("org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
 }
 
 description = "plugin"
 
 tasks.shadowJar {
-    archiveClassifier.set("mojang")
+    archiveClassifier.set("spigot") // todo set to mojang when special source is fixed or another tool is implemented
 }
 
 fun String.asClassifiedJar(): File {
