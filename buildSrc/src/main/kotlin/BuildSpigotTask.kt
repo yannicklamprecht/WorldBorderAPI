@@ -12,7 +12,6 @@ abstract class BuildSpigotTask : DefaultTask() {
     abstract val mojangMapped: Property<Boolean>
 
 
-
     @TaskAction
     fun build(){
 

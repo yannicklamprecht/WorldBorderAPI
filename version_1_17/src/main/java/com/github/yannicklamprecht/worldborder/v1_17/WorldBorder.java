@@ -18,7 +18,7 @@ import net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
-import net.minecraft.world.level.ChunkCoordIntPair;
+import net.minecraft.world.level.ChunkPos;
 
 
 public class WorldBorder extends AbstractWorldBorder {
@@ -40,15 +40,15 @@ public class WorldBorder extends AbstractWorldBorder {
                 position -> worldBorder.setCenter(position.x(), position.z()),
                 () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ())
             ),
-            () -> new Position(worldBorder.e(), worldBorder.f()),
-            () -> new Position(worldBorder.g(), worldBorder.h()),
+            () -> new Position(worldBorder.getMinX(), worldBorder.getMinZ()),
+            () -> new Position(worldBorder.getMaxX(), worldBorder.getMaxZ()),
             of(worldBorder::setSize, worldBorder::getSize),
-            of(worldBorder::setDamageBuffer, worldBorder::getDamageBuffer),
-            of(worldBorder::setDamageAmount, worldBorder::getDamageAmount),
+            of(worldBorder::setDamageSafeZone, worldBorder::getDamageSafeZone),
+            of(worldBorder::setDamagePerBlock, worldBorder::getDamagePerBlock),
             of(worldBorder::setWarningTime, worldBorder::getWarningTime),
-            of(worldBorder::setWarningDistance, worldBorder::getWarningDistance),
-            (Location location) -> worldBorder.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ())),
-            worldBorder::transitionSizeBetween
+            of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
+            (Location location) -> worldBorder.isWithinBounds(new ChunkPos(location.getBlockX(), location.getBlockZ())),
+            worldBorder::lerpSizeBetween
         );
         this.handle = worldBorder;
     }
@@ -64,6 +64,6 @@ public class WorldBorder extends AbstractWorldBorder {
             case SET_WARNING_TIME -> new ClientboundSetBorderWarningDelayPacket(handle);
         };
 
-        ((CraftPlayer) player).getHandle().b.sendPacket(packet);
+        ((CraftPlayer) player).getHandle().connection.send(packet);
     }
 }
