@@ -2,8 +2,6 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-import kotlin.io.path.ExperimentalPathApi
-import kotlin.io.path.name
 
 abstract class BuildSpigotTask : DefaultTask() {
 
@@ -21,19 +19,18 @@ abstract class BuildSpigotTask : DefaultTask() {
         val additionalParams = mutableListOf(
             "java",
             "-jar",
-            buildToolsPath.toFile().name,
+            buildToolsJar.toFile().name,
             "--rev",
             version.get(),
             "--disable-java-check",
         )
 
         if(mojangMapped.get()) {
-            additionalParams.addAll(listOf("--remapped", "remapped-mojang"))
-
+            additionalParams.addAll(listOf("--remapped"))
         }
 
         cmd(*additionalParams.toTypedArray(),
-            directory = buildToolsPath.parent.toFile(),
+            directory = buildToolsPath.toFile(),
             printToStdout = true
         )
     }

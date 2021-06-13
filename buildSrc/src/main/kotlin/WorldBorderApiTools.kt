@@ -23,7 +23,7 @@ fun Project.initWBTools() = run {
         description = "Setups the tools used: SpecialSource, BuildTools"
         doFirst {
             tooling.toFile().mkdirs()
-            download(buildToolsPath, buildToolsUrl)
+            download(buildToolsJar, buildToolsUrl)
             download(specialsourePath, specialsourceUrl)
         }
         finalizedBy(project.tasks.getByName("buildSpigot"))
