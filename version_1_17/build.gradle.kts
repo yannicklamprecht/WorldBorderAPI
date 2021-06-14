@@ -22,5 +22,6 @@ tasks {
     }
     register<RemapJar>("remapJar") {
         spigotVersion.set("1.17-R0.1-SNAPSHOT")
+        outputClassifier.set("spigot")
     }
 }
