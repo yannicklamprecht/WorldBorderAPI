@@ -21,6 +21,21 @@ abstract class RemapJar : DefaultTask() {
     @get:Optional
     abstract val outputClassifier: Property<String>
 
+    fun artifact(): File {
+        return libDir.resolve(
+            "${project.description}-${project.version}${
+                outputClassifier.map { "-${it}" }.getOrElse("")
+            }.jar")
+    }
+
+    fun inputArtifact(): File {
+        return libDir.resolve(
+            "${project.description}-${project.version}${
+                inputClassifier.map { "-${it}" }.getOrElse("")
+            }.jar"
+        )
+    }
+
     private val libDir = project.buildDir.resolve("libs")
 
     @TaskAction
@@ -28,25 +43,19 @@ abstract class RemapJar : DefaultTask() {
         val tempFile = libDir.resolve("temp.jar")
         remap(
             "--reverse",
-            inputPath = libDir.resolve(
-                "${project.description}-${project.version}${
-                    inputClassifier.map { "-${it}" }.getOrElse("")
-                }.jar"
-            ),
+            inputPath = inputArtifact(),
             outputPath = tempFile,
             mapEnding = "maps-mojang.txt",
-            spigotVersion = spigotVersion.get()
+            spigotVersion = spigotVersion.get(),
+            obf = false
         )
         logger.lifecycle("Remap from Obf to Spigot")
         remap(
             inputPath = tempFile,
-            outputPath = libDir.resolve(
-                "${project.description}-${project.version}${
-                    outputClassifier.map { "-${it}" }.getOrElse("")
-                }.jar"
-            ),
+            outputPath = artifact(),
             mapEnding = "maps-spigot.csrg",
-            spigotVersion = spigotVersion.get()
+            spigotVersion = spigotVersion.get(),
+            obf = true
         )
         tempFile.delete()
     }
@@ -56,14 +65,18 @@ abstract class RemapJar : DefaultTask() {
         inputPath: File,
         outputPath: File,
         mapEnding: String,
-        spigotVersion: String
+        spigotVersion: String,
+        obf: Boolean
     ) {
 
         val projectDir = project.parent?.project?.projectDir ?: project.projectDir
         val mutableArguments = mutableListOf(
             "java",
-            "-jar",
-            projectDir.toPath().resolve(specialsourePath).toString(),
+            "-cp",
+            "${projectDir.toPath().resolve(specialsourePath)}:${spigotGroupMavenRoot().resolve(Path.of("spigot",
+                spigotVersion, "spigot-${spigotVersion}-remapped-${if(obf) "obf" else "mojang"}.jar"))}",
+            "net.md_5.specialsource.SpecialSource",
+            "--live",
             "-i",
             inputPath.absolutePath,
             "-o",
@@ -72,37 +85,6 @@ abstract class RemapJar : DefaultTask() {
             minecraftFile(spigotVersion, "-${mapEnding}").toString()
         )
         mutableArguments.addAll(additionalParameters)
-        cmd(
-            *mutableArguments.toTypedArray(),
-            directory = buildToolsPath.toFile(),
-            printToStdout = true
-        )
-    }
-
-
-    fun remapClasses(
-        inputPath: File,
-        outputPath: File,
-        nmsVersion: String,
-        classifier: String
-    ) {
-        val projectDir = project.parent?.project?.projectDir ?: project.projectDir
-
-        val mutableArguments = mutableListOf(
-            "java",
-            "-jar",
-            projectDir.toPath().resolve(specialsourePath).toString(),
-            "-i",
-            inputPath.absolutePath,
-            "-o",
-            outputPath.absolutePath,
-            "-m",
-            Path.of(
-                "BuildData",
-                "mappings",
-                "bukkit-${nmsVersion}${classifier}"
-            ).toString()
-        )
         cmd(
             *mutableArguments.toTypedArray(),
             directory = buildToolsPath.toFile(),
