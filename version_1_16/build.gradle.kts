@@ -4,6 +4,7 @@
 
 plugins {
     id("com.github.yannicklamprecht.java-conventions")
+    id("com.github.yannicklamprecht.spigot.tools") version "1.0.1"
 }
 
 dependencies {
@@ -12,9 +13,10 @@ dependencies {
 }
 
 description = "version_1_16"
-apply<SpigotTools>()
 
-tasks.register("buildSpigot", BuildSpigotTask::class){
-    version.set("1.16.5")
-    mojangMapped.set(false)
+tasks {
+    spigotTools {
+        mojangMapped.set(false)
+        version.set("1.16.5")
+    }
 }

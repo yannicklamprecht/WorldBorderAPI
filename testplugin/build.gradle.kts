@@ -4,7 +4,7 @@
 
 plugins {
     id("com.github.yannicklamprecht.java-conventions")
-    id("com.github.johnrengelman.shadow") version shadowVersion
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 dependencies {
