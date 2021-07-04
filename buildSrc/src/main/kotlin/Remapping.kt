@@ -63,7 +63,7 @@ fun Project.remapClasses(
 
 
 private fun Project.specialSource(name: String): String {
-    return projectDir.parentFile.resolve(buildToolsPath.resolve(Path.of("BuildData", "bin", name)).toFile()).toString();
+    return this.projectDir.parentFile.resolve(buildToolsPath.resolve(Path.of("BuildData", "bin", name)).toFile()).toString();
 }
 
 private fun spigotGroupMavenRoot(): Path {

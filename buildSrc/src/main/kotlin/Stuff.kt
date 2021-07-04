@@ -1,4 +1,3 @@
-import org.gradle.api.Project
 import java.net.URL
 import java.nio.file.Path
 
