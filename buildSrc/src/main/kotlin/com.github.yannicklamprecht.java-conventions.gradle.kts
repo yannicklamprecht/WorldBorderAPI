@@ -15,7 +15,7 @@ repositories {
 }
 
 group = "com.github.yannicklamprecht"
-version = "1.170.0"
+version = "1.171.0"
 
 
 

@@ -5,9 +5,9 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.api)
-    implementation(projects.version116)
-    implementation(projects.version117)
+    implementation(project(":api"))
+    implementation(project(":version_1_16"))
+    implementation(project(":version_1_17"))
     compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
 }
 
