@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import com.github.yannicklamprecht.worldborder.api.BorderAPI;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
-import com.github.yannicklamprecht.worldborder.api.WorldBorderApiImpl;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.ServicePriority;
@@ -21,7 +20,7 @@ public class WorldBorderPlugin extends JavaPlugin {
 
         String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].toLowerCase(
             Locale.ROOT);
-        System.out.println("Version: " + version);
+        getLogger().info("Version: " + version);
         WorldBorderApi worldBorderApi;
         switch (version) {
             case "v1_16_r3" -> worldBorderApi = new com.github.yannicklamprecht.worldborder.v1_16.Border();
@@ -39,5 +38,4 @@ public class WorldBorderPlugin extends JavaPlugin {
 
         BorderAPI.setWorldBorderApi(worldBorderApi);
     }
-
 }

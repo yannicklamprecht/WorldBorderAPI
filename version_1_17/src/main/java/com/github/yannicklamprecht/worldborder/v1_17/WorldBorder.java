@@ -2,6 +2,7 @@ package com.github.yannicklamprecht.worldborder.v1_17;
 
 import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
 
+import net.minecraft.world.level.ChunkCoordIntPair;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
@@ -18,7 +19,6 @@ import net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
-import net.minecraft.world.level.ChunkPos;
 
 
 public class WorldBorder extends AbstractWorldBorder {
@@ -40,15 +40,15 @@ public class WorldBorder extends AbstractWorldBorder {
                 position -> worldBorder.setCenter(position.x(), position.z()),
                 () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ())
             ),
-            () -> new Position(worldBorder.getMinX(), worldBorder.getMinZ()),
-            () -> new Position(worldBorder.getMaxX(), worldBorder.getMaxZ()),
+            () -> new Position(worldBorder.e(), worldBorder.f()),
+            () -> new Position(worldBorder.g(), worldBorder.h()),
             of(worldBorder::setSize, worldBorder::getSize),
-            of(worldBorder::setDamageSafeZone, worldBorder::getDamageSafeZone),
-            of(worldBorder::setDamagePerBlock, worldBorder::getDamagePerBlock),
+            of(worldBorder::setDamageBuffer, worldBorder::getDamageBuffer),
+            of(worldBorder::setDamageAmount, worldBorder::getDamageAmount),
             of(worldBorder::setWarningTime, worldBorder::getWarningTime),
-            of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
-            (Location location) -> worldBorder.isWithinBounds(new ChunkPos(location.getBlockX(), location.getBlockZ())),
-            worldBorder::lerpSizeBetween
+            of(worldBorder::setWarningDistance, worldBorder::getWarningDistance),
+            (Location location) -> worldBorder.isInBounds(new ChunkCoordIntPair(location.getBlockX(), location.getBlockZ())),
+            worldBorder::transitionSizeBetween
         );
         this.handle = worldBorder;
     }
@@ -64,6 +64,6 @@ public class WorldBorder extends AbstractWorldBorder {
             case SET_WARNING_TIME -> new ClientboundSetBorderWarningDelayPacket(handle);
         };
 
-        ((CraftPlayer) player).getHandle().connection.send(packet);
+        ((CraftPlayer) player).getHandle().b.sendPacket(packet);
     }
 }

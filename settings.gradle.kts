@@ -8,15 +8,15 @@ include("version_1_16")
 include("version_1_17")
 include("plugin")
 include("testplugin")
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 
 pluginManagement {
     repositories {
         mavenLocal()
         maven {
             name = "eldonexus"
-            // url = uri("https://eldonexus.de/repository/maven-snapshots/")
-            url = uri("https://eldonexus.de/repository/maven-releases/")
+            url = uri("https://eldonexus.de/repository/maven-snapshots/")
+            // url = uri("https://eldonexus.de/repository/maven-releases/")
         }
         gradlePluginPortal()
     }
