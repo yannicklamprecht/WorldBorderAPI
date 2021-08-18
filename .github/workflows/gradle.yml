@@ -1,8 +1,8 @@
   on:
     push:
       branches:
-        - deactivatedmaster
-        - deactivateddevelop
+        - master
+        - develop
       tags:
         - 'deactivated.*.*.*'
   jobs:
