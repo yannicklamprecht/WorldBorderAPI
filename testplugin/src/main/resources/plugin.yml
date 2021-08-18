@@ -1,6 +1,0 @@
-name: WorldBorderAPITestPLugin
-main: com.github.yannicklamprecht.worldborder.testplugin.WorldBorderTestPlugin
-version: ${version}
-api-version: 1.16
-depend:
-  - WorldBorderAPI

@@ -5,7 +5,7 @@
 .DS_Store
 pom.xml.versionsBackup
 .gradle
-*/build
+build
 buildtools
 specialsource
 tooling

@@ -1,4 +1,0 @@
-name: WorldBorderAPI
-main: com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin
-version: ${version}
-api-version: 1.16
