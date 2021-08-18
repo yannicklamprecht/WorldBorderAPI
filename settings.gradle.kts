@@ -3,21 +3,12 @@
  */
 
 rootProject.name = "WorldBorderAPI"
-include("api")
-include("version_1_16")
-include("version_1_17")
-include("plugin")
-include("testplugin")
 
 
 pluginManagement {
     repositories {
-        mavenLocal()
-        maven {
-            name = "eldonexus"
-            url = uri("https://eldonexus.de/repository/maven-snapshots/")
-            // url = uri("https://eldonexus.de/repository/maven-releases/")
-        }
+        maven("https://papermc.io/repo/repository/maven-public/")
         gradlePluginPortal()
+        maven("https://repo.jpenilla.xyz/snapshots/")
     }
 }
