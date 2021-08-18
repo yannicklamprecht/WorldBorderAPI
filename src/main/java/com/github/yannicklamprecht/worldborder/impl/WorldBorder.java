@@ -1,7 +1,14 @@
 package com.github.yannicklamprecht.worldborder.impl;
 
-import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
-
+import com.github.yannicklamprecht.worldborder.api.AbstractWorldBorder;
+import com.github.yannicklamprecht.worldborder.api.Position;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
+import net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket;
+import net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket;
+import net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket;
+import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
+import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
+import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
 import net.minecraft.world.level.ChunkPos;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,16 +16,7 @@ import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import com.github.yannicklamprecht.worldborder.api.AbstractWorldBorder;
-import com.github.yannicklamprecht.worldborder.api.Position;
-import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
-
-import net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
+import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
 
 
 public class WorldBorder extends AbstractWorldBorder {
