@@ -3,7 +3,7 @@ plugins {
     `java-library`
     id("io.papermc.paperweight.userdev") version "1.1.11"
     id("xyz.jpenilla.run-paper") version "1.0.4"
-    id("net.minecrell.plugin-yml.bukkit") version "0.4.0"
+    id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
 }
 
 
