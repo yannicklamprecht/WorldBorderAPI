@@ -129,6 +129,7 @@ WorldBorderAPI#getWorldBorder()
   <groupId>com.github.yannicklamprecht.worldborderapi</groupId>
   <artifactId>api</artifactId>
   <version>1.170.0</version>
+  <scope>provided</scope>
 </dependency>
 ```
 
