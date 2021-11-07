@@ -25,18 +25,18 @@
         - uses: "actions/upload-artifact@v2"
           with:
             path: |
-              build/libs/WorldBorderAPI-*.jar
-              !build/libs/WorldBorderAPI-*.dev.jar
+              build/libs/worldborderapi-*.jar
+              !build/libs/worldborderapi-*.dev.jar
         - uses: "actions/upload-artifact@v2"
           with:
             path: |
-              build/libs/WorldBorderAPI-*-dev.jar
+              build/libs/worldborderapi-*-dev.jar
         - name: Release
           uses: softprops/action-gh-release@v1
           if: startsWith(github.ref, 'refs/tags/')
           with:
             files: |
-              build/libs/WorldBorderAPI-*.jar
+              build/libs/worldborderapi-*.jar
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
