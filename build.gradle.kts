@@ -1,6 +1,6 @@
-
 plugins {
     `java-library`
+    `maven-publish`
     id("io.papermc.paperweight.userdev") version "1.1.14"
     id("xyz.jpenilla.run-paper") version "1.0.4"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
@@ -41,6 +41,28 @@ tasks {
     }
     processResources {
         filteringCharset = Charsets.UTF_8.name()
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    repositories {
+        maven {
+            authentication {
+                credentials(PasswordCredentials::class)
+            }
+            name = "eldonexus"
+            val snapshotsRepoUrl = uri("https://eldonexus.de/repository/maven-snapshots/")
+            val releasesRepoUrl = uri("https://eldonexus.de/repository/maven-releases/")
+            url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+        }
+    }
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
     }
 }
 
