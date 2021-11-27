@@ -1,9 +1,13 @@
-# BorderAPI 1.14.4 - 1.17.0 [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI)
+# BorderAPI [![Build Status](https://travis-ci.org/yannicklamprecht/WorldBorderAPI.svg?branch=master)](https://travis-ci.org/yannicklamprecht/WorldBorderAPI)
 
 A world border api that allows it to define a world border per player
 
 ---
 ## Available versions
+
+
+
+
 
 ### Working just no bugfixes
 
@@ -15,20 +19,25 @@ Legacy: [Artifacts](https://github.com/yannicklamprecht/WorldBorderAPI/releases/
 - 1.14.4
 - 1.15.2
 
-### Working and Bugfixes
-
-#### Release
-
 Built with Java 8: [Artifacts](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.165.0)
 - 1.14.4
 - 1.15.2
 - 1.16.4/5
 
-#### Snapshot
 
-Built with Java 16: [Not yet available, <span style="text-decoration:underline">Also available as Mojang mapped artifact</span>]()
-- 1.16.4/5
-- 1.17.0
+### Working and Bugfixes
+
+#### Release
+
+Built with Java 16
+- 1.17.1
+
+
+#### Snapshot <span style="text-decoration:underline">Also available as Mojang mapped artifact</span>
+
+Built with Java 17
+- 1.18.0-rc3 https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.18.0-rc3
+
 
 ---
 
