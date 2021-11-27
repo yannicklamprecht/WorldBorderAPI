@@ -73,6 +73,7 @@ publishing {
 
 
 bukkit {
+    name = "WorldBorderAPI"
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
     apiVersion = "1.18"
