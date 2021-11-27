@@ -1,9 +1,12 @@
+import de.chojo.Repo
+
 plugins {
     `java-library`
     `maven-publish`
     id("io.papermc.paperweight.userdev") version "1.2.0"
     id("xyz.jpenilla.run-paper") version "1.0.4"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
+    id("de.chojo.publishdata") version "1.0.1"
 }
 
 
@@ -11,14 +14,9 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.171.0"
+version = "1.171.1-SNAPSHOT"
 
 repositories {
-    maven {
-        name = "eldonexus"
-        url = uri("https://eldonexus.de/repository/maven-snapshots/")
-        // url = uri("https://eldonexus.de/repository/maven-releases/")
-    }
     maven("https://papermc.io/repo/repository/maven-public/")
 }
 
@@ -44,6 +42,14 @@ tasks {
     }
 }
 
+publishData {
+    addRepo(Repo.main("", "https://eldonexus.de/repository/maven-releases/", false))
+    useEldoNexusRepos()
+    publishTask("jar")
+    publishTask("sourcesJar")
+    publishTask("javadocJar")
+}
+
 java {
     withJavadocJar()
     withSourcesJar()
@@ -56,13 +62,11 @@ publishing {
                 credentials(PasswordCredentials::class)
             }
             name = "eldonexus"
-            val snapshotsRepoUrl = uri("https://eldonexus.de/repository/maven-snapshots/")
-            val releasesRepoUrl = uri("https://eldonexus.de/repository/maven-releases/")
-            url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+            url = uri(publishData.getRepository())
         }
     }
     publications.create<MavenPublication>("maven") {
-        from(components["java"])
+        publishData.configurePublication(this)
     }
 }
 
