@@ -12,8 +12,8 @@ import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePa
 import net.minecraft.world.level.ChunkPos;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
