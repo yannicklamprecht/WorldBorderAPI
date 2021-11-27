@@ -3,7 +3,7 @@ import de.chojo.Repo
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.2.0"
+    id("io.papermc.paperweight.userdev") version "1.3.0-SNAPSHOT"
     id("xyz.jpenilla.run-paper") version "1.0.4"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
     id("de.chojo.publishdata") version "1.0.1"
@@ -14,14 +14,15 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.171.1-SNAPSHOT"
+version = "1.18.0-SNAPSHOT"
 
 repositories {
-    maven("https://papermc.io/repo/repository/maven-public/")
+    mavenLocal()
+    // maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
-    paperDevBundle("1.17.1-R0.1-SNAPSHOT")
+    paperDevBundle("1.18-rc3-R0.1-SNAPSHOT")
 }
 
 tasks {
@@ -32,7 +33,7 @@ tasks {
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(16)
+        options.release.set(17)
     }
     javadoc {
         options.encoding = Charsets.UTF_8.name()
@@ -74,6 +75,6 @@ publishing {
 bukkit {
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
-    apiVersion = "1.17"
+    apiVersion = "1.18"
     authors = listOf("ysl3000")
 }
