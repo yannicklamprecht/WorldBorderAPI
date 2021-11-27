@@ -10,27 +10,24 @@ A world border api that allows it to define a world border per player
 Built with Java 16
 - 1.17.1
 
-### Snapshot <span style="text-decoration:underline">Also available as Mojang mapped artifact</span>
+### Snapshot
 
 Built with Java 17
 - 1.18.0-rc3 https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.18.0-rc3
 
 
 
+--- 
+
+## Legacy
+
 ### Working just no bugfixes
 
 Legacy: [Artifacts](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.15.2)
-- 1.8.8
-- 1.11.2
-- 1.12.2
-- 1.13.2
-- 1.14.4
-- 1.15.2
+- 1.8.8, 1.11.2, 1.12.2, 1.13.2, 1.14.4, 1.15.2
 
 Built with Java 8: [Artifacts](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.165.0)
-- 1.14.4
-- 1.15.2
-- 1.16.4/5
+- 1.14.4, 1.15.2, 1.16.4/5
 
 ---
 
