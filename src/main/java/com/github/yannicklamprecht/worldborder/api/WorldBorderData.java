@@ -8,7 +8,6 @@ public class WorldBorderData {
     private double x;
     private double z;
     private double damageBufferInBlocks;
-    private double damageAmount;
     private int warningTimeSeconds;
     private int warningDistance;
 
@@ -41,16 +40,6 @@ public class WorldBorderData {
     }
 
 
-    public double getDamageAmount() {
-        return damageAmount;
-    }
-
-
-    public void setDamageAmount(double damage) {
-        this.damageAmount = damage;
-    }
-
-
     public int getWarningTimeSeconds() {
         return warningTimeSeconds;
     }
@@ -73,7 +62,6 @@ public class WorldBorderData {
         worldBorder.setSize(size);
         worldBorder.setCenter(new Position(x, z));
         worldBorder.setDamageBufferInBlocks(damageBufferInBlocks);
-        worldBorder.setDamagePerSecondPerBlock(damageAmount);
         worldBorder.setWarningTimeInSeconds(warningTimeSeconds);
         worldBorder.setWarningDistanceInBlocks(warningDistance);
     }

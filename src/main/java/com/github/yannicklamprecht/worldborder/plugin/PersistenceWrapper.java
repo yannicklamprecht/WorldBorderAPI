@@ -103,7 +103,6 @@ public class PersistenceWrapper implements PersistentWorldBorderApi {
         worldBorderData.applyCenter((x, z) -> iWorldBorder.setCenter(new Position(x, z)));
         iWorldBorder.setSize(worldBorderData.getSize());
         iWorldBorder.setDamageBufferInBlocks(worldBorderData.getDamageBuffer());
-        iWorldBorder.setDamagePerSecondPerBlock(worldBorderData.getDamageAmount());
         iWorldBorder.setWarningDistanceInBlocks(worldBorderData.getWarningDistance());
         iWorldBorder.setWarningTimeInSeconds(worldBorderData.getWarningTimeSeconds());
     }
