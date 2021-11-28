@@ -15,7 +15,6 @@ public class WorldBorderDataTagType implements PersistentDataType<PersistentData
     private final NamespacedKey xKey;
     private final NamespacedKey zKey;
     private final NamespacedKey damageBufferInBlocksKey;
-    private final NamespacedKey damageAmountKey;
     private final NamespacedKey warningTimeSecondsKey;
     private final NamespacedKey warningDistanceKey;
 
@@ -24,7 +23,6 @@ public class WorldBorderDataTagType implements PersistentDataType<PersistentData
         this.xKey = new NamespacedKey(javaPlugin, "center_x");
         this.zKey = new NamespacedKey(javaPlugin, "center_z");
         this.damageBufferInBlocksKey = new NamespacedKey(javaPlugin, "damage_buffer_in_blocks");
-        this.damageAmountKey = new NamespacedKey(javaPlugin, "damage_amount");
         this.warningTimeSecondsKey = new NamespacedKey(javaPlugin, "warning_time_seconds");
         this.warningDistanceKey = new NamespacedKey(javaPlugin, "warning_distance");
     }
@@ -50,7 +48,6 @@ public class WorldBorderDataTagType implements PersistentDataType<PersistentData
             persistentDataContainer.set(zKey, PersistentDataType.DOUBLE, z);
         });
         persistentDataContainer.set(damageBufferInBlocksKey, PersistentDataType.DOUBLE, complex.getDamageBuffer());
-        persistentDataContainer.set(damageAmountKey, PersistentDataType.DOUBLE, complex.getDamageAmount());
         persistentDataContainer.set(warningTimeSecondsKey, PersistentDataType.INTEGER, complex.getWarningTimeSeconds());
         persistentDataContainer.set(warningDistanceKey, PersistentDataType.INTEGER, complex.getWarningDistance());
 
@@ -69,7 +66,6 @@ public class WorldBorderDataTagType implements PersistentDataType<PersistentData
             worldBorderData.setCenter(centerX.get(), centerZ.get());
         }
         get(primitive, damageBufferInBlocksKey, PersistentDataType.DOUBLE).ifPresent(worldBorderData::setDamageBuffer);
-        get(primitive, damageAmountKey, PersistentDataType.DOUBLE).ifPresent(worldBorderData::setDamageAmount);
         get(primitive, warningTimeSecondsKey, PersistentDataType.INTEGER).ifPresent(worldBorderData::setWarningTimeSeconds);
         get(primitive, warningDistanceKey, PersistentDataType.INTEGER).ifPresent(worldBorderData::setWarningDistance);
 

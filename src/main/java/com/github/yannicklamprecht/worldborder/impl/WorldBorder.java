@@ -42,7 +42,6 @@ public class WorldBorder extends AbstractWorldBorder {
             () -> new Position(worldBorder.getMaxX(), worldBorder.getMaxZ()),
             of(worldBorder::setSize, worldBorder::getSize),
             of(worldBorder::setDamageSafeZone, worldBorder::getDamageSafeZone),
-            of(worldBorder::setDamagePerBlock, worldBorder::getDamagePerBlock),
             of(worldBorder::setWarningTime, worldBorder::getWarningTime),
             of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
             (Location location) -> worldBorder.isWithinBounds(new ChunkPos(location.getBlockX(), location.getBlockZ())),
