@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-./gradlew api:build
+./gradlew build
 
 rm -rf docs/
 (
-./gradlew api:javadoc
-cp -r api/build/docs/javadoc/ docs/
+./gradlew javadoc
+cp -r build/docs/javadoc/ docs/
 )
