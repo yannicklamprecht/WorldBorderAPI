@@ -7,11 +7,6 @@ A world border api that allows it to define a world border per player
 
 ### Release
 
-Built with Java 16
-- 1.17.1 [click](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.171.0)
-
-### Snapshot
-
 Built with Java 17
 - 1.18 [click](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.180.0)
 
