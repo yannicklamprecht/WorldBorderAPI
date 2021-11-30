@@ -38,10 +38,22 @@ public interface IWorldBorder {
     damageBufferInBlocks(blocks);
   }
 
+  /**
+  * @deprecated serves no purpose, will be removed in MC 1.20.
+  *
+  * @return 0
+  */
+  @Deprecated(forRemoval = true, since = "1.18-rc3")
   default double getDamagePerSecondPerBlock() {
     return damagePerSecondPerBlock();
   }
 
+  /**
+  * @deprecated serves no purpose, will be removed in MC 1.20.
+  *
+  * @param damage ignored
+  */
+  @Deprecated(forRemoval = true, since = "1.18-rc3")
   default void setDamagePerSecondPerBlock(double damage) {
     damagePerSecondPerBlock(damage);
   }
@@ -90,7 +102,7 @@ public interface IWorldBorder {
 
   /**
    * @deprecated serves no purpose, will be removed in MC 1.20.
-   * @param damage ingnored
+   * @param damage ignored
    */
   @Deprecated(forRemoval = true, since = "1.18-rc3, will be removed in MC 1.20")
   default void damagePerSecondPerBlock(double damage) {}
