@@ -13,7 +13,7 @@ Built with Java 16
 ### Snapshot
 
 Built with Java 17
-- 1.18.0-rc3 [click](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.18.0-rc3)
+- 1.18 [click](https://github.com/yannicklamprecht/WorldBorderAPI/releases/tag/1.180.0)
 
 
 
