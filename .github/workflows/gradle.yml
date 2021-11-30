@@ -9,7 +9,7 @@
     build:
       strategy:
         matrix:
-          java-version: [ '16' ]
+          java-version: [ '17' ]
           os: [ 'ubuntu-latest']
       runs-on: ${{ matrix.os }}
       steps:

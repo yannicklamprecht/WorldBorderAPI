@@ -17,12 +17,11 @@ group = "com.github.yannicklamprecht"
 version = "1.18.0-SNAPSHOT"
 
 repositories {
-    mavenLocal()
-    // maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
-    paperDevBundle("1.18-rc3-R0.1-SNAPSHOT")
+    paperDevBundle("1.18-R0.1-SNAPSHOT")
 }
 
 tasks {
