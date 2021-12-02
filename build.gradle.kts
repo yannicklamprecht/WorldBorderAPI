@@ -3,7 +3,7 @@ import de.chojo.Repo
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.3.1-SNAPSHOT"
+    id("io.papermc.paperweight.userdev") version "1.3.2-SNAPSHOT"
     id("xyz.jpenilla.run-paper") version "1.0.5"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
     id("de.chojo.publishdata") version "1.0.1"
