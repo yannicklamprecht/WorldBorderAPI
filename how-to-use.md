@@ -92,9 +92,9 @@ WorldBorderAPI#getWorldBorder()
  ```xml
 
 <dependency>
-  <groupId>com.github.yannicklamprecht.worldborderapi</groupId>
-  <artifactId>api</artifactId>
-  <version>1.170.0</version>
+  <groupId>com.github.yannicklamprecht</groupId>
+  <artifactId>worldborderapi</artifactId>
+  <version>1.180.0</version>
   <scope>provided</scope>
 </dependency>
 ```
@@ -112,6 +112,6 @@ repositories {
 
 ````kotlin
 dependencies {
-    compileOnly("com.github.yannicklamprecht.worldborderapi:api:1.170.0")
+    compileOnly("com.github.yannicklamprecht:worldborderapi:1.180.0")
 }
 ````

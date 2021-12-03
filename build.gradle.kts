@@ -1,12 +1,9 @@
-import de.chojo.Repo
-
 plugins {
     `java-library`
     `maven-publish`
     id("io.papermc.paperweight.userdev") version "1.3.2-SNAPSHOT"
     id("xyz.jpenilla.run-paper") version "1.0.5"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
-    id("de.chojo.publishdata") version "1.0.1"
 }
 
 
@@ -14,7 +11,7 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.18.0-SNAPSHOT"
+version = "1.180.0"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
@@ -42,14 +39,6 @@ tasks {
     }
 }
 
-publishData {
-    addRepo(Repo.main("", "https://eldonexus.de/repository/maven-releases/", false))
-    useEldoNexusRepos()
-    publishTask("jar")
-    publishTask("sourcesJar")
-    publishTask("javadocJar")
-}
-
 java {
     withJavadocJar()
     withSourcesJar()
@@ -62,11 +51,16 @@ publishing {
                 credentials(PasswordCredentials::class)
             }
             name = "eldonexus"
-            url = uri(publishData.getRepository())
+            url = uri(
+                if (project.version.toString()
+                        .endsWith("SNAPSHOT")
+                ) "https://eldonexus.de/repository/maven-snapshots/" else "https://eldonexus.de/repository/maven-releases/"
+            )
         }
     }
     publications.create<MavenPublication>("maven") {
-        publishData.configurePublication(this)
+        from(components["java"])
+        artifact(tasks.reobfJar)
     }
 }
 
