@@ -1,0 +1,31 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: Upload Release Asset
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        java-version: [ '17' ]
+        os: [ 'ubuntu-latest' ]
+    name: Upload Release Asset
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+          architecture: x64
+      - name: Build with gradle
+        run: ./gradlew build
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/libs/worldborderapi-*.jar
