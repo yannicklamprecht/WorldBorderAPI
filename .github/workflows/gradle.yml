@@ -3,8 +3,7 @@
       branches:
         - main
         - develop
-      tags:
-        - 'deactivated.*.*.*'
+  name: Default Pipeline
   jobs:
     build:
       strategy:
