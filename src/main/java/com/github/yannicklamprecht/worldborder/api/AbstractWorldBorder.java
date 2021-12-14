@@ -21,8 +21,6 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
   private final ConsumerSupplierTupel<Integer> warningTimerInSeconds;
   private final ConsumerSupplierTupel<Integer> warningDistanceInBlocks;
 
-  private final Function<Location, Boolean> inBoundsSupplier;
-
   private final FunctionDoubleDoubleLong lerpConsumer;
 
   public AbstractWorldBorder(ConsumerSupplierTupel<Position> center,
@@ -31,7 +29,6 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
       ConsumerSupplierTupel<Double> damaheBufferInBlocks,
       ConsumerSupplierTupel<Integer> warningTimerInSeconds,
       ConsumerSupplierTupel<Integer> warningDistanceInBlocks,
-      Function<Location, Boolean> inBoundsSupplier,
       FunctionDoubleDoubleLong lerpConsumer) {
     this.center = center;
     this.minSupplier = minSupplier;
@@ -40,7 +37,6 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
     this.damaheBufferInBlocks = damaheBufferInBlocks;
     this.warningTimerInSeconds = warningTimerInSeconds;
     this.warningDistanceInBlocks = warningDistanceInBlocks;
-    this.inBoundsSupplier = inBoundsSupplier;
     this.lerpConsumer = lerpConsumer;
   }
 
@@ -103,11 +99,6 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
   @Override
   public void warningDistanceInBlocks(int blocks) {
     warningDistanceInBlocks.set(blocks);
-  }
-
-  @Override
-  public boolean isInBounds(Location location) {
-    return inBoundsSupplier.apply(location);
   }
 
   @Override

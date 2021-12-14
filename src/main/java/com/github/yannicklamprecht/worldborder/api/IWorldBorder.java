@@ -115,7 +115,14 @@ public interface IWorldBorder {
 
   void warningDistanceInBlocks(int blocks);
 
-  boolean isInBounds(Location location);
+    /**
+     * @param location ignored
+     * @deprecated serves no purpose, will be removed in MC 1.20.
+     */
+    @Deprecated(forRemoval = true, since = "1.18-rc3, will be removed in MC 1.20")
+    default boolean isInBounds(Location location) {
+        return false;
+    }
 
   void lerp(double oldSize, double newSize, long time);
 

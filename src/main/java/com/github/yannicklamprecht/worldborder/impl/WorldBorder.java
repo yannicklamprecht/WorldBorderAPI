@@ -44,7 +44,6 @@ public class WorldBorder extends AbstractWorldBorder {
             of(worldBorder::setDamageSafeZone, worldBorder::getDamageSafeZone),
             of(worldBorder::setWarningTime, worldBorder::getWarningTime),
             of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
-            (Location location) -> worldBorder.isWithinBounds(new ChunkPos(location.getChunk().getX(), location.getChunk().getZ())),
             worldBorder::lerpSizeBetween
         );
         this.handle = worldBorder;
