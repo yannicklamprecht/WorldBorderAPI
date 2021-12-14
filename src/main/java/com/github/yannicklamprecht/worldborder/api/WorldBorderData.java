@@ -58,7 +58,7 @@ public class WorldBorderData {
         this.warningDistance = distance;
     }
 
-    public void applyAll(IWorldBorder worldBorder){
+    public void applyAll(IWorldBorder worldBorder) {
         worldBorder.setSize(size);
         worldBorder.setCenter(new Position(x, z));
         worldBorder.setDamageBufferInBlocks(damageBufferInBlocks);

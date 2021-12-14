@@ -1,6 +1,10 @@
 package com.github.yannicklamprecht.worldborder.plugin;
 
-import com.github.yannicklamprecht.worldborder.api.*;
+import com.github.yannicklamprecht.worldborder.api.IWorldBorder;
+import com.github.yannicklamprecht.worldborder.api.PersistentWorldBorderApi;
+import com.github.yannicklamprecht.worldborder.api.Position;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
+import com.github.yannicklamprecht.worldborder.api.WorldBorderData;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;

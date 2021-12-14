@@ -4,7 +4,7 @@ import com.github.yannicklamprecht.worldborder.api.WorldBorderApiImpl;
 
 public class Border extends WorldBorderApiImpl {
 
-  public Border() {
-    super(WorldBorder::new, WorldBorder::new);
-  }
+    public Border() {
+        super(WorldBorder::new, WorldBorder::new);
+    }
 }

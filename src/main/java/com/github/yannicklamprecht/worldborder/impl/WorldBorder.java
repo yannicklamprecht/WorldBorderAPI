@@ -9,8 +9,6 @@ import net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
-import net.minecraft.world.level.ChunkPos;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
@@ -25,7 +23,7 @@ public class WorldBorder extends AbstractWorldBorder {
 
     public WorldBorder(Player player) {
         this(new net.minecraft.world.level.border.WorldBorder());
-        this.handle.world = ((CraftWorld)player.getWorld()).getHandle();
+        this.handle.world = ((CraftWorld) player.getWorld()).getHandle();
     }
 
     public WorldBorder(World world) {
@@ -34,24 +32,24 @@ public class WorldBorder extends AbstractWorldBorder {
 
     public WorldBorder(net.minecraft.world.level.border.WorldBorder worldBorder) {
         super(
-            of(
-                position -> worldBorder.setCenter(position.x(), position.z()),
-                () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ())
-            ),
-            () -> new Position(worldBorder.getMinX(), worldBorder.getMinZ()),
-            () -> new Position(worldBorder.getMaxX(), worldBorder.getMaxZ()),
-            of(worldBorder::setSize, worldBorder::getSize),
-            of(worldBorder::setDamageSafeZone, worldBorder::getDamageSafeZone),
-            of(worldBorder::setWarningTime, worldBorder::getWarningTime),
-            of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
-            worldBorder::lerpSizeBetween
+                of(
+                        position -> worldBorder.setCenter(position.x(), position.z()),
+                        () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ())
+                ),
+                () -> new Position(worldBorder.getMinX(), worldBorder.getMinZ()),
+                () -> new Position(worldBorder.getMaxX(), worldBorder.getMaxZ()),
+                of(worldBorder::setSize, worldBorder::getSize),
+                of(worldBorder::setDamageSafeZone, worldBorder::getDamageSafeZone),
+                of(worldBorder::setWarningTime, worldBorder::getWarningTime),
+                of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
+                worldBorder::lerpSizeBetween
         );
         this.handle = worldBorder;
     }
 
     @Override
     public void send(Player player, WorldBorderAction worldBorderAction) {
-       var packet =  switch (worldBorderAction){
+        var packet = switch (worldBorderAction) {
             case INITIALIZE -> new ClientboundInitializeBorderPacket(handle);
             case LERP_SIZE -> new ClientboundSetBorderLerpSizePacket(handle);
             case SET_CENTER -> new ClientboundSetBorderCenterPacket(handle);
