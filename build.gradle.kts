@@ -11,7 +11,7 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.181.1-SNAPSHOT"
+version = "1.181.1"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
