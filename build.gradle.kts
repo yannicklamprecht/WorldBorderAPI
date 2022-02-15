@@ -39,7 +39,7 @@ tasks {
     }
 }
 
-fun addReobfTo(target: String, classifier: String = "spigot") {
+fun addReobfTo(target: String, classifier: String? = null) {
     val buildScript: Configuration by configurations.named(target)
     buildScript.outgoing.artifact(tasks.reobfJar.get().outputJar) {
         this.classifier = classifier
