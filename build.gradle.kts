@@ -11,7 +11,7 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.181.1"
+version = "1.181.2"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
@@ -39,16 +39,17 @@ tasks {
     }
 }
 
-fun addReobfTo(target: String, classifier: String? = null) {
-    val buildScript: Configuration by configurations.named(target)
-    buildScript.outgoing.artifact(tasks.reobfJar.get().outputJar) {
-        this.classifier = classifier
+fun addReobfTo(target: NamedDomainObjectProvider<Configuration>, classifier: String? = null) {
+    target.get().let {
+        it.outgoing.artifact(tasks.reobfJar.get().outputJar) {
+            this.classifier = classifier
+        }
+        (components["java"] as AdhocComponentWithVariants).addVariantsFromConfiguration(it) {}
     }
-    (components["java"] as AdhocComponentWithVariants).addVariantsFromConfiguration(buildScript) {}
 }
 
-addReobfTo("apiElements")
-addReobfTo("runtimeElements")
+addReobfTo(configurations.apiElements)
+addReobfTo(configurations.runtimeElements)
 
 java {
     withJavadocJar()
