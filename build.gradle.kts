@@ -39,6 +39,17 @@ tasks {
     }
 }
 
+fun addReobfTo(target: String, classifier: String = "spigot") {
+    val buildScript: Configuration by configurations.named(target)
+    buildScript.outgoing.artifact(tasks.reobfJar.get().outputJar) {
+        this.classifier = classifier
+    }
+    (components["java"] as AdhocComponentWithVariants).addVariantsFromConfiguration(buildScript) {}
+}
+
+addReobfTo("apiElements")
+addReobfTo("runtimeElements")
+
 java {
     withJavadocJar()
     withSourcesJar()
@@ -60,10 +71,8 @@ publishing {
     }
     publications.create<MavenPublication>("maven") {
         from(components["java"])
-        artifact(tasks.reobfJar)
     }
 }
-
 
 bukkit {
     name = "WorldBorderAPI"
