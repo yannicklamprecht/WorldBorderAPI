@@ -1,7 +1,7 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.3.5-SNAPSHOT"
+    id("io.papermc.paperweight.userdev") version "1.3.5"
     id("xyz.jpenilla.run-paper") version "1.0.6"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
 }
@@ -11,14 +11,14 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.181.2"
+version = "1.182.0"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
-    paperDevBundle("1.18.1-R0.1-SNAPSHOT")
+    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
 }
 
 tasks {
