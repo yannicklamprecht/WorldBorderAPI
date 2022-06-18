@@ -11,14 +11,14 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.182.0"
+version = "1.19.0"
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
-    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
+    paperDevBundle("1.19-R0.1-SNAPSHOT")
 }
 
 tasks {
@@ -79,6 +79,6 @@ bukkit {
     name = "WorldBorderAPI"
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
-    apiVersion = "1.18"
+    apiVersion = "1.19"
     authors = listOf("ysl3000")
 }
