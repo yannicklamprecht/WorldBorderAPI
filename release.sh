@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-color_from_hex() {
-  curl -s -L -X GET "http://thecolorapi.com/id?hex=$1" | jq -r '.name.value'
-}
-
 get_hex_color_from_commit() {
   git rev-parse --short=6 HEAD
 }
@@ -13,8 +9,8 @@ get_changes() {
 }
 
 add_latest_changes_to_changelog() {
-  sed -i.bak -E "/^## \[$1\].*/i## [$2] $3\\n\\n$4\n" CHANGELOG.md
-  sed -i.bak -E "s/\\$'//" CHANGELOG.md
+  sed -i'.bak' -E "s/^(## \[$1\].*)/## [$2]\n\n$3\n\n\1/i" CHANGELOG.md
+  sed -i'.bak' -E "s/\\$'//" CHANGELOG.md
   rm CHANGELOG.md.bak
 }
 
@@ -29,10 +25,11 @@ git checkout "$target_branch"
 git fetch origin
 git reset origin/"$target_branch" --hard
 
-old_tag=$(git describe --abbrev=0 --tags "$(git rev-list --tags --skip=1 --max-count=1)")
+old_tag=$(git describe --abbrev=0 --tags "$(git rev-list --tags --max-count=1)")
 
 changes="$(get_changes "$old_tag")"
-release_name=$(color_from_hex "$(get_hex_color_from_commit)")
+
+add_latest_changes_to_changelog "$old_tag" "$1" "$changes"
 
 add_latest_changes_to_changelog "$old_tag" "$1" "$release_name" "$changes"
 
