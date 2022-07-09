@@ -9,7 +9,7 @@ get_hex_color_from_commit() {
 }
 
 get_changes() {
-  printf "%q" "$(git log --pretty="- %s" "$1"..master | grep --invert-match 'Update README.md')"
+  printf "%q" "$(git log --pretty="- %s" "$1".."$target_branch" | grep --invert-match 'Update README.md')"
 }
 
 add_latest_changes_to_changelog() {
@@ -23,9 +23,11 @@ if [[ $# -ne 1 ]]; then
   exit 1
 fi
 
-git checkout master
+target_branch="main"
+
+git checkout "$target_branch"
 git fetch origin
-git reset origin/master --hard
+git reset origin/"$target_branch" --hard
 
 old_tag=$(git describe --abbrev=0 --tags "$(git rev-list --tags --skip=1 --max-count=1)")
 
@@ -41,5 +43,5 @@ mvn versions:set -DnewVersion="$1"
 mvn versions:commit
 git commit -am "Release $1"
 git tag "$1"
-git push origin master --tags
-git reset origin/master --hard
+git push origin "$target_branch" --tags
+git reset origin/"$target_branch" --hard
