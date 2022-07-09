@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.190.0]
+
+- fun with release script
+- Update changelog manually, so that release script works again
+- read text
+- gradle version update for release script
+- Add package-info and update release.sh
+- Bump io.papermc.paperweight.userdev from 1.3.7 to 1.3.8
+- Remove deprecated BorderAPI
+- Update to 1.19
+- Bump net.minecrell.plugin-yml.bukkit from 0.5.1 to 0.5.2
+- Bump io.papermc.paperweight.userdev from 1.3.6 to 1.3.7
+- Bump io.papermc.paperweight.userdev from 1.3.5 to 1.3.6'
+
+## [1.190.0]
+
+
+
 ## [1.182.0] 1.18.2 release
 
 - release 1.18.2
