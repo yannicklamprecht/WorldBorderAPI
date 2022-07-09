@@ -4,6 +4,6 @@
 
 rm -rf docs/
 (
-./gradlew javadoc
+./gradlew clean javadoc
 cp -r build/docs/javadoc/ docs/
 )
