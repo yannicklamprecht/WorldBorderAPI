@@ -9,7 +9,7 @@ get_changes() {
 }
 
 add_latest_changes_to_changelog() {
-  sed -i'.bak' -E "s/^(## \[$1\].*)/## [$2]\n\n$3\n\n\1/i" CHANGELOG.md
+  sed -i'.bak' -E "s/^(## \[$1\].*)/## [$2]\n\n$3\n\n\1/" CHANGELOG.md
   sed -i'.bak' -E "s/\\$'//" CHANGELOG.md
   rm CHANGELOG.md.bak
 }
@@ -30,8 +30,6 @@ old_tag=$(git describe --abbrev=0 --tags "$(git rev-list --tags --max-count=1)")
 changes="$(get_changes "$old_tag")"
 
 add_latest_changes_to_changelog "$old_tag" "$1" "$changes"
-
-add_latest_changes_to_changelog "$old_tag" "$1" "$release_name" "$changes"
 
 sed -i.bak -E "s/(<version>).*(<\/version>)/\1$1\2/" README.md
 rm README.md.bak

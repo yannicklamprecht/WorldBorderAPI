@@ -18,10 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump io.papermc.paperweight.userdev from 1.3.6 to 1.3.7
 - Bump io.papermc.paperweight.userdev from 1.3.5 to 1.3.6'
 
-## [1.190.0]
-
-
-
 ## [1.182.0] 1.18.2 release
 
 - release 1.18.2
