@@ -1,3 +1,5 @@
+import java.nio.charset.StandardCharsets
+
 plugins {
     `java-library`
     `maven-publish`
@@ -11,7 +13,7 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = file('version.txt').text.trim()
+version = file("version.txt").readText(StandardCharsets.UTF_8).trim()
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
