@@ -39,8 +39,7 @@ add_latest_changes_to_changelog "$old_tag" "$1" "$release_name" "$changes"
 sed -i.bak -E "s/(<version>).*(<\/version>)/\1$1\2/" README.md
 rm README.md.bak
 
-mvn versions:set -DnewVersion="$1"
-mvn versions:commit
+echo "$1" > version.txt
 git commit -am "Release $1"
 git tag "$1"
 git push origin "$target_branch" --tags

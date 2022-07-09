@@ -11,7 +11,7 @@ plugins {
 description = "plugin"
 
 group = "com.github.yannicklamprecht"
-version = "1.19.0"
+version = file('version.txt').text.trim()
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
