@@ -112,6 +112,6 @@ repositories {
 
 ````kotlin
 dependencies {
-    compileOnly("com.github.yannicklamprecht:worldborderapi:1.180.0")
+    compileOnly("com.github.yannicklamprecht:worldborderapi:1.180.0:dev")
 }
 ````
