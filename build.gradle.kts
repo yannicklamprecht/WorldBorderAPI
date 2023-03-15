@@ -16,11 +16,11 @@ group = "com.github.yannicklamprecht"
 version = file("version.txt").readText(StandardCharsets.UTF_8).trim()
 
 repositories {
-    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
-    paperDevBundle("1.19.3-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
 }
 
 tasks {

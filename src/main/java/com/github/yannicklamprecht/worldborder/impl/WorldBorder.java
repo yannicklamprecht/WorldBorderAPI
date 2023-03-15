@@ -10,8 +10,8 @@ import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
 import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_19_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_19_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
