@@ -1,0 +1,13 @@
+{
+  "baseBranches": ["dev"],
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "extends": [
+    "config:base"
+  ],
+  "reviewers": [
+    "yannicklamprecht"
+  ],
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 10
+}
