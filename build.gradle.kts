@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 }
 
 tasks {
@@ -81,6 +81,6 @@ bukkit {
     name = "WorldBorderAPI"
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
-    apiVersion = "1.19"
+    apiVersion = "1.20"
     authors = listOf("ysl3000")
 }
