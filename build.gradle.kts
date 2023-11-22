@@ -3,7 +3,7 @@ import java.nio.charset.StandardCharsets
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.5.9"
+    id("io.papermc.paperweight.userdev") version "1.5.10"
     id("xyz.jpenilla.run-paper") version "2.2.2"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
