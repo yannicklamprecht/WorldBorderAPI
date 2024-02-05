@@ -4,7 +4,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("io.papermc.paperweight.userdev") version "1.5.11"
-    id("xyz.jpenilla.run-paper") version "2.2.2"
+    id("xyz.jpenilla.run-paper") version "2.2.3"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
 
