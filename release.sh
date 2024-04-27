@@ -35,6 +35,8 @@ sed -i.bak -E "s/(<version>).*(<\/version>)/\1$1\2/" README.md
 rm README.md.bak
 
 echo "$1" > version.txt
+./docs.sh
+
 git commit -am "Release $1"
 git tag "$1"
 git push origin "$target_branch" --tags
