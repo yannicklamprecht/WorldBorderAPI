@@ -5,6 +5,8 @@ import org.bukkit.util.Vector;
 
 /**
  * Represents a position in a 2-dimensional space, defined by its x and z coordinates.
+ * @param x x coordinate
+ * @param z z coordinate
  */
 public record Position(double x, double z) {
 
