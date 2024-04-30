@@ -22,3 +22,13 @@ Built with Java 17
 ## How to use
 
 See [How to use the API](how-to-use.md)
+
+
+
+
+## Publishing a new releases
+
+<u>**Do not manually create a git tag**</u>
+
+Instead use the release script 
+- `./release.sh <version>` e.g. `./release.sh 1.206.0` 
