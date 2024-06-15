@@ -81,6 +81,6 @@ bukkit {
     name = "WorldBorderAPI"
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
-    apiVersion = "1.20"
+    apiVersion = "1.21"
     authors = listOf("ysl3000")
 }
