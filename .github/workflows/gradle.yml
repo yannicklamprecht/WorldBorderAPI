@@ -22,7 +22,7 @@
             distribution: "temurin"
         - name: Build with gradle
           run: ./gradlew build
-        - uses: "actions/upload-artifact@v2"
+        - uses: "actions/upload-artifact@v4"
           with:
             path: |
               build/libs/worldborderapi-*.jar
