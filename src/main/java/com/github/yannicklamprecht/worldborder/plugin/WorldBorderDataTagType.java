@@ -9,6 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
 
+/**
+ * Represents a persistence layer to write worldborder data to player pdc
+ */
 public class WorldBorderDataTagType implements PersistentDataType<PersistentDataContainer, WorldBorderData> {
 
     private final NamespacedKey sizeKey;
@@ -18,6 +21,11 @@ public class WorldBorderDataTagType implements PersistentDataType<PersistentData
     private final NamespacedKey warningTimeSecondsKey;
     private final NamespacedKey warningDistanceKey;
 
+    /**
+     * Ctor
+     *
+     * @param javaPlugin the java plugin
+     */
     public WorldBorderDataTagType(JavaPlugin javaPlugin) {
         this.sizeKey = new NamespacedKey(javaPlugin, "size");
         this.xKey = new NamespacedKey(javaPlugin, "center_x");

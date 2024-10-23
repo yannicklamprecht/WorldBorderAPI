@@ -20,6 +20,18 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
 
     private final FunctionDoubleDoubleLong lerpConsumer;
 
+    /**
+     * Ctor
+     *
+     * @param center the center
+     * @param minSupplier the minSupplier
+     * @param maxSupplier the maxSupplier
+     * @param size the size
+     * @param damaheBufferInBlocks the damaheBufferInBlocks
+     * @param warningTimerInSeconds the warningTimerInSeconds
+     * @param warningDistanceInBlocks the warningDistanceInBlocks
+     * @param lerpConsumer the lerpConsumer
+     */
     public AbstractWorldBorder(ConsumerSupplierTupel<Position> center,
                                Supplier<Position> minSupplier, Supplier<Position> maxSupplier,
                                ConsumerSupplierTupel<Double> size,

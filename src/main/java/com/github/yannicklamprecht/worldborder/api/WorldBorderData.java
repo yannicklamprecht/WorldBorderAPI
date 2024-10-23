@@ -14,6 +14,11 @@ public class WorldBorderData {
     private int warningTimeSeconds;
     private int warningDistance;
 
+    /**
+     * Ctor
+     */
+    public WorldBorderData(){
+    }
 
     /**
      * Retrieves the size of the world border.

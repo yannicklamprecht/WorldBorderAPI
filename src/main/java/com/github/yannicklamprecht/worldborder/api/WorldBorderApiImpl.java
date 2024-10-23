@@ -1,6 +1,8 @@
 package com.github.yannicklamprecht.worldborder.api;
 
 
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -8,15 +10,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-
+/**
+ * The api impl
+ */
 public class WorldBorderApiImpl implements WorldBorderApi {
 
     private final Function<Player, IWorldBorder> getWorldBorderPlayer;
 
     private final Function<World, IWorldBorder> getWorldBorder;
 
+    /**
+     * Ctor
+     *
+     * @param getWorldBorderPlayer the getWorldBorderPlayer
+     * @param getWorldBorder the getWorldBorder
+     */
     public WorldBorderApiImpl(Function<Player, IWorldBorder> getWorldBorderPlayer, Function<World, IWorldBorder> getWorldBorder) {
         this.getWorldBorderPlayer = getWorldBorderPlayer;
         this.getWorldBorder = getWorldBorder;

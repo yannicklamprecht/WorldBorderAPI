@@ -16,20 +16,37 @@ import org.bukkit.entity.Player;
 
 import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
 
-
+/**
+ * The nms adapter impl for the world border
+ */
 public class WorldBorder extends AbstractWorldBorder {
 
     private final net.minecraft.world.level.border.WorldBorder handle;
 
+    /**
+     * Ctor
+     *
+     * @param player the bukkit player
+     */
     public WorldBorder(Player player) {
         this(new net.minecraft.world.level.border.WorldBorder());
         this.handle.world = ((CraftWorld) player.getWorld()).getHandle();
     }
 
+    /**
+     * Ctor
+     *
+     * @param world the bukkit world
+     */
     public WorldBorder(World world) {
         this(((CraftWorld) world).getHandle().getWorldBorder());
     }
 
+    /**
+     * Ctor
+     *
+     * @param worldBorder the nms world border
+     */
     public WorldBorder(net.minecraft.world.level.border.WorldBorder worldBorder) {
         super(
                 of(

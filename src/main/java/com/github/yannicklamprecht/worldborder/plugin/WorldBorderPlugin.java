@@ -10,6 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class WorldBorderPlugin extends JavaPlugin {
 
+    /**
+     * Ctor - not really needed but javadoc complains
+     */
+    public WorldBorderPlugin() {
+        super();
+    }
+
     @Override
     public void onEnable() {
         WorldBorderApi worldBorderApi = new PersistenceWrapper(this, new Border());

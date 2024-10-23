@@ -5,6 +5,8 @@ import com.github.yannicklamprecht.worldborder.api.PersistentWorldBorderApi;
 import com.github.yannicklamprecht.worldborder.api.Position;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderApi;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderData;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -13,15 +15,21 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-
+/**
+ * The Proxy that writes and reads data from the players pdc
+ */
 public class PersistenceWrapper implements PersistentWorldBorderApi {
 
     private final WorldBorderApi worldBorderApi;
     private final NamespacedKey worldBorderDataKey;
     private final WorldBorderDataTagType worldBorderDataTagType;
 
+    /**
+     * Ctor
+     *
+     * @param javaPlugin the javaPlugin
+     * @param worldBorderApi the worldBorderApi
+     */
     public PersistenceWrapper(JavaPlugin javaPlugin, WorldBorderApi worldBorderApi) {
         this.worldBorderApi = worldBorderApi;
         this.worldBorderDataKey = new NamespacedKey(javaPlugin, "world_border_data");
