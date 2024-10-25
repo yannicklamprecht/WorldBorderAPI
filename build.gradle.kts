@@ -3,7 +3,7 @@ import java.nio.charset.StandardCharsets
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.7.3"
+    id("io.papermc.paperweight.userdev") version "1.7.4"
     id("xyz.jpenilla.run-paper") version "2.3.1"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.3-R0.1-SNAPSHOT")
 }
 
 tasks {
