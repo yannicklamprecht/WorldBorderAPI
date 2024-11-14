@@ -1,9 +1,13 @@
 {
-  "baseBranches": ["dev"],
+  "baseBranches": [
+    "dev"
+  ],
   "dependencyDashboard": true,
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "reviewers": [
     "yannicklamprecht"
