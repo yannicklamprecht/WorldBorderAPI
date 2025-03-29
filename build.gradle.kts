@@ -73,7 +73,17 @@ publishing {
         }
     }
     publications.create<MavenPublication>("maven") {
-        from(components["java"])
+        artifact(tasks.named("jar").get()) {
+            classifier = "reobf"
+        }
+
+        artifact(tasks.named("sourcesJar").get()) {
+            classifier = "sources"
+        }
+
+        artifact(tasks.named("javadocJar").get()) {
+            classifier = "javadoc"
+        }
     }
 }
 
