@@ -74,7 +74,7 @@ publishing {
     }
     publications.create<MavenPublication>("maven") {
         artifact(tasks.named("jar").get()) {
-            classifier = "reobf"
+            classifier = "dev"
         }
 
         artifact(tasks.named("sourcesJar").get()) {
