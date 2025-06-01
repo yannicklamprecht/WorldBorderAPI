@@ -93,4 +93,5 @@ bukkit {
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
     apiVersion = paperweight.minecraftVersion.get()
     authors = listOf("ysl3000")
+    foliaSupported = true
 }
