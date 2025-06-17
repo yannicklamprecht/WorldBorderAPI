@@ -20,14 +20,12 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.5-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.6-R0.1-SNAPSHOT")
 }
 
 tasks {
     // Run reobfJar on build
-    build {
-        dependsOn(reobfJar)
-    }
+//    build { dependsOn(reobfJar) }
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
