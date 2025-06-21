@@ -25,7 +25,7 @@ dependencies {
 
 tasks {
     // Run reobfJar on build
-//    build { dependsOn(reobfJar) }
+    build { dependsOn(reobfJar) }
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
