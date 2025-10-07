@@ -44,10 +44,10 @@ jobs:
         architecture: x64
         distribution: "temurin"
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
+      uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
     - name: Build with gradle
       run: ./gradlew build
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+      uses: github/codeql-action/analyze@v4
