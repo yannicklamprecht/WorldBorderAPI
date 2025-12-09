@@ -1,5 +1,8 @@
 package com.github.yannicklamprecht.worldborder.api;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -209,9 +212,20 @@ public interface IWorldBorder {
      *
      * @param oldSize  the old size of the world border
      * @param newSize  the new size of the world border
-     * @param time     the time (in milliseconds) over which to interpolate the size
+     * @param time     the time (in seconds) over which to interpolate the size
      */
     void lerp(double oldSize, double newSize, long time);
+
+
+    /**
+     * Linearly interpolates the old size of the world border to the new size over a specified time.
+     *
+     * @param oldSize  the old size of the world border
+     * @param newSize  the new size of the world border
+     * @param time     the duration of the interpolation
+     * @param startTime the start time of the interpolation
+     */
+    void lerp(double oldSize, double newSize, Duration time, LocalDateTime startTime);
 
     /**
      * Sends a world border action to a player.

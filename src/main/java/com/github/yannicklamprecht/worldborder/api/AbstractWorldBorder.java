@@ -1,5 +1,8 @@
 package com.github.yannicklamprecht.worldborder.api;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.function.Supplier;
 
 /**
@@ -23,14 +26,14 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
     /**
      * Ctor
      *
-     * @param center the center
-     * @param minSupplier the minSupplier
-     * @param maxSupplier the maxSupplier
-     * @param size the size
-     * @param damaheBufferInBlocks the damaheBufferInBlocks
-     * @param warningTimerInSeconds the warningTimerInSeconds
+     * @param center                  the center
+     * @param minSupplier             the minSupplier
+     * @param maxSupplier             the maxSupplier
+     * @param size                    the size
+     * @param damaheBufferInBlocks    the damaheBufferInBlocks
+     * @param warningTimerInSeconds   the warningTimerInSeconds
      * @param warningDistanceInBlocks the warningDistanceInBlocks
-     * @param lerpConsumer the lerpConsumer
+     * @param lerpConsumer            the lerpConsumer
      */
     public AbstractWorldBorder(ConsumerSupplierTupel<Position> center,
                                Supplier<Position> minSupplier, Supplier<Position> maxSupplier,
@@ -112,6 +115,11 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
 
     @Override
     public void lerp(double oldSize, double newSize, long time) {
-        lerpConsumer.lerp(oldSize, newSize, time);
+        lerpConsumer.lerp(oldSize, newSize, time, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
+    }
+
+    @Override
+    public void lerp(double oldSize, double newSize, Duration time, LocalDateTime startTime) {
+        lerpConsumer.lerp(oldSize, newSize, time.getSeconds(), startTime.toEpochSecond(ZoneOffset.UTC));
     }
 }

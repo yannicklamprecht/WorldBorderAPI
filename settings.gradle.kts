@@ -7,7 +7,7 @@ rootProject.name = "worldborderapi"
 
 pluginManagement {
     repositories {
-        maven("https://papermc.io/repo/repository/maven-public/")
+        maven("https://repo.papermc.io/repo/repository/maven-public/")
         gradlePluginPortal()
         maven("https://repo.jpenilla.xyz/snapshots/")
         maven("https://eldonexus.de/repository/maven-public/")

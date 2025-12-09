@@ -20,12 +20,10 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
 }
 
 tasks {
-    // Run reobfJar on build
-    build { dependsOn(reobfJar) }
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
@@ -47,9 +45,6 @@ fun addReobfTo(target: NamedDomainObjectProvider<Configuration>, classifier: Str
         (components["java"] as AdhocComponentWithVariants).addVariantsFromConfiguration(it) {}
     }
 }
-
-addReobfTo(configurations.apiElements)
-addReobfTo(configurations.runtimeElements)
 
 java {
     withJavadocJar()

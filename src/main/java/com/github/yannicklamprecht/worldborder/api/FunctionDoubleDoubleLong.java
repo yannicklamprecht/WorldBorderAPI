@@ -11,7 +11,8 @@ public interface FunctionDoubleDoubleLong {
      *
      * @param oldSize the old size of the world border
      * @param newSize the new size of the world border
-     * @param time the time (in milliseconds) over which to interpolate the size
+     * @param time the time (in seconds) over which to interpolate the size
+     * @param startTime the start time of the interpolation in seconds
      */
-    void lerp(double oldSize, double newSize, long time);
+    void lerp(double oldSize, double newSize, long time, long startTime);
 }
