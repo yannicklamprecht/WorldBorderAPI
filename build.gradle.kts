@@ -24,6 +24,7 @@ dependencies {
 }
 
 tasks {
+    build { dependsOn(reobfJar) }
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
@@ -36,6 +37,9 @@ tasks {
         filteringCharset = Charsets.UTF_8.name()
     }
 }
+
+addReobfTo(configurations.apiElements)
+addReobfTo(configurations.runtimeElements)
 
 fun addReobfTo(target: NamedDomainObjectProvider<Configuration>, classifier: String? = null) {
     target.get().let {
