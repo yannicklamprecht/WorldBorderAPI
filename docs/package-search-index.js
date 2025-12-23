@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.github.yannicklamprecht.worldborder.api"},{"l":"com.github.yannicklamprecht.worldborder.impl"},{"l":"com.github.yannicklamprecht.worldborder.plugin"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"com.github.yannicklamprecht.worldborder.api"},{"l":"com.github.yannicklamprecht.worldborder.impl"},{"l":"com.github.yannicklamprecht.worldborder.plugin"}];updateSearchResults();
