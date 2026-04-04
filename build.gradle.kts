@@ -20,33 +20,20 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("26.1.1.build.10-alpha")
 }
 
 tasks {
-    build { dependsOn(reobfJar) }
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(21)
+        options.release.set(25)
     }
     javadoc {
         options.encoding = Charsets.UTF_8.name()
     }
     processResources {
         filteringCharset = Charsets.UTF_8.name()
-    }
-}
-
-addReobfTo(configurations.apiElements)
-addReobfTo(configurations.runtimeElements)
-
-fun addReobfTo(target: NamedDomainObjectProvider<Configuration>, classifier: String? = null) {
-    target.get().let {
-        it.outgoing.artifact(tasks.reobfJar.get().outputJar) {
-            this.classifier = classifier
-        }
-        (components["java"] as AdhocComponentWithVariants).addVariantsFromConfiguration(it) {}
     }
 }
 
