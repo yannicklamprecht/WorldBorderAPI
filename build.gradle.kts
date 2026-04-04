@@ -20,14 +20,19 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("26.1.1.build.10-alpha")
+    paperweight.paperDevBundle("26.1.1.build.16-alpha")
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
 }
 
 tasks {
 
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(25)
     }
     javadoc {
         options.encoding = Charsets.UTF_8.name()
