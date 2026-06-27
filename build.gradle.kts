@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("26.1.1.build.+")
+    paperweight.paperDevBundle("26.2.build.+")
 }
 
 java {
