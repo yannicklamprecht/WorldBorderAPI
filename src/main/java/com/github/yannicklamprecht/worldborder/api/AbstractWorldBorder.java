@@ -17,7 +17,7 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
 
     private final ConsumerSupplierTupel<Double> size;
 
-    private final ConsumerSupplierTupel<Double> damaheBufferInBlocks;
+    private final ConsumerSupplierTupel<Double> damageBufferInBlocks;
     private final ConsumerSupplierTupel<Integer> warningTimerInSeconds;
     private final ConsumerSupplierTupel<Integer> warningDistanceInBlocks;
 
@@ -30,7 +30,7 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
      * @param minSupplier             the minSupplier
      * @param maxSupplier             the maxSupplier
      * @param size                    the size
-     * @param damaheBufferInBlocks    the damaheBufferInBlocks
+     * @param damageBufferInBlocks    the damageBufferInBlocks
      * @param warningTimerInSeconds   the warningTimerInSeconds
      * @param warningDistanceInBlocks the warningDistanceInBlocks
      * @param lerpConsumer            the lerpConsumer
@@ -38,7 +38,7 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
     public AbstractWorldBorder(ConsumerSupplierTupel<Position> center,
                                Supplier<Position> minSupplier, Supplier<Position> maxSupplier,
                                ConsumerSupplierTupel<Double> size,
-                               ConsumerSupplierTupel<Double> damaheBufferInBlocks,
+                               ConsumerSupplierTupel<Double> damageBufferInBlocks,
                                ConsumerSupplierTupel<Integer> warningTimerInSeconds,
                                ConsumerSupplierTupel<Integer> warningDistanceInBlocks,
                                FunctionDoubleDoubleLong lerpConsumer) {
@@ -46,7 +46,7 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
         this.minSupplier = minSupplier;
         this.maxSupplier = maxSupplier;
         this.size = size;
-        this.damaheBufferInBlocks = damaheBufferInBlocks;
+        this.damageBufferInBlocks = damageBufferInBlocks;
         this.warningTimerInSeconds = warningTimerInSeconds;
         this.warningDistanceInBlocks = warningDistanceInBlocks;
         this.lerpConsumer = lerpConsumer;
@@ -85,12 +85,12 @@ public abstract class AbstractWorldBorder implements IWorldBorder {
 
     @Override
     public double damageBufferInBlocks() {
-        return damaheBufferInBlocks.get();
+        return damageBufferInBlocks.get();
     }
 
     @Override
     public void damageBufferInBlocks(double blocks) {
-        damaheBufferInBlocks.set(blocks);
+        damageBufferInBlocks.set(blocks);
     }
 
     @Override

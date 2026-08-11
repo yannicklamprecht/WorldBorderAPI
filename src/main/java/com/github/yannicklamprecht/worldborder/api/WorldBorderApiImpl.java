@@ -42,7 +42,7 @@ public class WorldBorderApiImpl implements WorldBorderApi {
 
     @Override
     public void resetWorldBorderToGlobal(Player player) {
-        getWorldBorder(player.getWorld()).send(player, WorldBorderAction.INITIALIZE);
+        player.setWorldBorder(null);
     }
 
     @Override
@@ -65,21 +65,19 @@ public class WorldBorderApiImpl implements WorldBorderApi {
         IWorldBorder border = getWorldBorder(player);
         border.setSize(size);
         border.setCenter(position);
-        border.send(player, WorldBorderAction.SET_SIZE);
-        border.send(player, WorldBorderAction.SET_CENTER);
+        border.send(player, WorldBorderAction.INITIALIZE);
     }
 
     @Override
     public void sendRedScreenForSeconds(Player player, long timeSeconds, JavaPlugin javaPlugin) {
         IWorldBorder border = getWorldBorder(player);
         border.setWarningDistanceInBlocks((int) border.getSize());
-
-        border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
+        border.send(player, WorldBorderAction.INITIALIZE);
 
         Bukkit.getScheduler().runTaskLater(javaPlugin,
                 () -> {
                     border.setWarningDistanceInBlocks(0);
-                    border.send(player, WorldBorderAction.SET_WARNING_BLOCKS);
+                    border.send(player, WorldBorderAction.INITIALIZE);
                 }, timeSeconds * 20L);
     }
 
@@ -87,7 +85,7 @@ public class WorldBorderApiImpl implements WorldBorderApi {
     public void setBorder(Player player, double size, long milliSeconds) {
         IWorldBorder worldBorder = getWorldBorder(player);
         worldBorder.lerp(worldBorder.getSize(), size, milliSeconds);
-        worldBorder.send(player, WorldBorderAction.LERP_SIZE);
+        worldBorder.send(player, WorldBorderAction.INITIALIZE);
     }
 
     @Override

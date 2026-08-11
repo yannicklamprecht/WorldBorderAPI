@@ -3,25 +3,21 @@ package com.github.yannicklamprecht.worldborder.impl;
 import com.github.yannicklamprecht.worldborder.api.AbstractWorldBorder;
 import com.github.yannicklamprecht.worldborder.api.Position;
 import com.github.yannicklamprecht.worldborder.api.WorldBorderAction;
-import net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket;
-import net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.CraftWorld;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import java.util.Optional;
 
 import static com.github.yannicklamprecht.worldborder.api.ConsumerSupplierTupel.of;
 
 /**
- * The nms adapter impl for the world border
+ * The bukkit adapter impl for the world border
  */
 public class WorldBorder extends AbstractWorldBorder {
 
-    private final net.minecraft.world.level.border.WorldBorder handle;
+    private final org.bukkit.WorldBorder handle;
 
     /**
      * Ctor
@@ -29,8 +25,7 @@ public class WorldBorder extends AbstractWorldBorder {
      * @param player the bukkit player
      */
     public WorldBorder(Player player) {
-        this(new net.minecraft.world.level.border.WorldBorder());
-        this.handle.world = ((CraftWorld) player.getWorld()).getHandle();
+        this(Optional.ofNullable(player.getWorldBorder()).orElseGet(Bukkit::createWorldBorder));
     }
 
     /**
@@ -39,42 +34,43 @@ public class WorldBorder extends AbstractWorldBorder {
      * @param world the bukkit world
      */
     public WorldBorder(World world) {
-        this(((CraftWorld) world).getHandle().getWorldBorder());
+        this(world.getWorldBorder());
     }
 
     /**
      * Ctor
      *
-     * @param worldBorder the nms world border
+     * @param worldBorder the bukkit world border
      */
-    public WorldBorder(net.minecraft.world.level.border.WorldBorder worldBorder) {
+    public WorldBorder(org.bukkit.WorldBorder worldBorder) {
         super(
-                of(
-                        position -> worldBorder.setCenter(position.x(), position.z()),
-                        () -> new Position(worldBorder.getCenterX(), worldBorder.getCenterZ())
-                ),
-                () -> new Position(worldBorder.getMinX(), worldBorder.getMinZ()),
-                () -> new Position(worldBorder.getMaxX(), worldBorder.getMaxZ()),
-                of(worldBorder::setSize, worldBorder::getSize),
-                of(worldBorder::setSafeZone, worldBorder::getSafeZone),
-                of(worldBorder::setWarningTime, worldBorder::getWarningTime),
-                of(worldBorder::setWarningBlocks, worldBorder::getWarningBlocks),
-                worldBorder::lerpSizeBetween
+            of(
+                position -> worldBorder.setCenter(position.x(), position.z()),
+                () -> new Position(worldBorder.getCenter().getX(), worldBorder.getCenter().getZ())
+            ),
+            () -> {
+                double size = worldBorder.getSize();
+                Location center = worldBorder.getCenter();
+                return new Position(center.getX() - size / 2, center.getZ() - size / 2);
+            },
+            () -> {
+                double size = worldBorder.getSize();
+                Location center = worldBorder.getCenter();
+                return new Position(center.getX() + size / 2, center.getZ() + size / 2);
+            },
+            of(worldBorder::setSize, worldBorder::getSize),
+            of(worldBorder::setDamageBuffer, worldBorder::getDamageBuffer),
+            of(worldBorder::setWarningTime, worldBorder::getWarningTime),
+            of(worldBorder::setWarningDistance, worldBorder::getWarningDistance),
+            (oldSize, newSize, time, startTime) -> worldBorder.setSize(newSize, time)
         );
         this.handle = worldBorder;
     }
 
     @Override
     public void send(Player player, WorldBorderAction worldBorderAction) {
-        var packet = switch (worldBorderAction) {
-            case INITIALIZE -> new ClientboundInitializeBorderPacket(handle);
-            case LERP_SIZE -> new ClientboundSetBorderLerpSizePacket(handle);
-            case SET_CENTER -> new ClientboundSetBorderCenterPacket(handle);
-            case SET_SIZE -> new ClientboundSetBorderSizePacket(handle);
-            case SET_WARNING_BLOCKS -> new ClientboundSetBorderWarningDistancePacket(handle);
-            case SET_WARNING_TIME -> new ClientboundSetBorderWarningDelayPacket(handle);
-        };
-
-        ((CraftPlayer) player).getHandle().connection.send(packet);
+        if (worldBorderAction == WorldBorderAction.INITIALIZE) {
+            player.setWorldBorder(handle);
+        }
     }
 }

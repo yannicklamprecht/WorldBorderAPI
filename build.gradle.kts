@@ -3,7 +3,6 @@ import java.nio.charset.StandardCharsets
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
     id("xyz.jpenilla.run-paper") version "3.1.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
@@ -16,11 +15,12 @@ group = "com.github.yannicklamprecht"
 version = file("version.txt").readText(StandardCharsets.UTF_8).trim()
 
 repositories {
-    maven("https://repo.papermc.io/repository/maven-public/")
+    mavenCentral()
+    maven("https://hub.spigotmc.org/nexus/content/groups/public/")
 }
 
 dependencies {
-    paperweight.paperDevBundle("26.2.build.+")
+    compileOnly("org.spigotmc:spigot-api:1.21.11-R0.1-SNAPSHOT")
 }
 
 java {
@@ -80,7 +80,7 @@ bukkit {
     name = "WorldBorderAPI"
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
     main = "com.github.yannicklamprecht.worldborder.plugin.WorldBorderPlugin"
-    apiVersion = paperweight.minecraftVersion.get()
+    apiVersion = "1.20"
     authors = listOf("ysl3000")
     foliaSupported = true
 }
