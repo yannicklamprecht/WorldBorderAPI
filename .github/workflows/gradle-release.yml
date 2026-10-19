@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        java-version: [ '21' ]
+        java-version: [ '25' ]
         os: [ 'ubuntu-latest' ]
     name: Upload Release Asset
     runs-on: ${{ matrix.os }}
