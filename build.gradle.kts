@@ -43,6 +43,7 @@ tasks {
 
     runServer {
         minecraftVersion("26.3")
+        pluginJars(project(":commands").tasks.named("jar"))
 
     }
 }

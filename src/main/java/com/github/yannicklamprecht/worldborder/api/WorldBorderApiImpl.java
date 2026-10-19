@@ -84,7 +84,7 @@ public class WorldBorderApiImpl implements WorldBorderApi {
     @Override
     public void setBorder(Player player, double size, long milliSeconds) {
         IWorldBorder worldBorder = getWorldBorder(player);
-        worldBorder.lerp(worldBorder.getSize(), size, milliSeconds);
+        worldBorder.lerp(worldBorder.getSize(), size, TimeUnit.MILLISECONDS.toSeconds(milliSeconds));
         worldBorder.send(player, WorldBorderAction.INITIALIZE);
     }
 

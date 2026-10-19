@@ -1,0 +1,11 @@
+name: WorldBorderAPICommands
+version: '26.2.0.0'
+main: com.github.yannicklamprecht.worldborder.commands.WorldBorderCommandsPlugin
+api-version: '1.21'
+authors: [ysl3000]
+depend: [WorldBorderAPI]
+description: Brigadier commands for controlling WorldBorderAPI player borders
+permissions:
+  worldborderapi.commands:
+    description: Allows use of the WorldBorderAPI command.
+    default: true

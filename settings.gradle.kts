@@ -4,6 +4,8 @@
 
 rootProject.name = "worldborderapi"
 
+include("commands")
+
 
 pluginManagement {
     repositories {
