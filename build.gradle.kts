@@ -40,6 +40,11 @@ tasks {
     processResources {
         filteringCharset = Charsets.UTF_8.name()
     }
+
+    runServer {
+        minecraftVersion("26.3")
+
+    }
 }
 
 java {
@@ -75,6 +80,7 @@ publishing {
         }
     }
 }
+
 
 bukkit {
     name = "WorldBorderAPI"
